@@ -10,9 +10,15 @@ esphome:
   name: ${device_name}
   friendly_name: ${friendly_name}
   on_boot:
-    priority: 600
+    # Run before WiFi/modem (which set up at ~250/200) but after hardware (~800).
+    # Pulse PWRKEY directly so the modem is booting while other components init.
+    priority: 700
     then:
-      - script.execute: modem_power_on
+      - output.turn_off: modem_reset_out
+      - output.turn_on: modem_pwrkey_out
+      - delay: 100ms
+      - output.turn_off: modem_pwrkey_out
+      - logger.log: "SIM7670G PWRKEY pulsed; modem booting in background"
 
 esp32:
   board: esp32-s3-devkitc-1
