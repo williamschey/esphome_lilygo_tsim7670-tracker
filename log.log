@@ -1,0 +1,95 @@
+INFO Starting log output from /dev/ttyACM0 with baud rate 115200
+[16:23:26.836]I (178) esp_image: segment 4: paddr=000d9d1c vaddr=4037bcc0 size=0993ch ( 39228) load
+[16:23:26.844]I (187) esp_image: segment 5: paddr=000e3660 vaddr=50000000 size=00020h (    32) load
+[16:23:26.852]I (195) boot: Loaded app from partition at offset 0x10000
+[16:23:26.856]I (199) boot: Set actual ota_seq=1 in otadata[0]
+[16:23:26.856]I (199) boot: Disabling RNG early entropy source...
+[16:23:26.965][I][logger:120]: Log initialized
+[16:23:26.966][I][modem:049]: Setting modem target state to CONNECTED
+[16:23:26.972][I][app:067]: Running through setup()
+[16:23:26.975][I][modem:069]: Modem setup...
+[16:23:27.035][W][component:389]: api set Warning flag: waiting for client connection
+[16:23:27.038][I][app:123]: setup() finished successfully!
+[16:23:28.040][W][GNSS:179]: AT+CGNSSINFO failed
+[16:23:28.041][W][component:522]: interval took a long time for an operation (1001 ms), max is 30 ms
+[16:23:28.043][W][component:389]: wifi set Warning flag: scanning for networks
+[16:23:28.044][I][app:154]: ESPHome version 2026.4.5 compiled on 2026-05-16 15:52:23 +1000
+[16:23:28.045][I][app:161]: ESP32 Chip: ESP32-S3 rev0.2, 2 core(s)
+[16:23:28.373][W][safe_mode:049]: Last reset too quick; invoke in 8 restarts
+[16:23:29.634][I][wifi:1417]: - 'redacted' [redacted]▂▄▆█
+[16:23:29.635][I][wifi:1417]: - 'redacted' [redacted]▂▄▆█
+[16:23:29.636][I][wifi:1417]: - 'redacted' [redacted]▂▄▆█
+[16:23:29.638][I][wifi:1081]: Connecting to [redacted] [redacted] (priority 0, attempt 1/2 in phase SCAN_CONNECTING)...
+[16:23:30.786][I][wifi:1551]: Connected
+[16:23:30.799][W][component:422]: wifi cleared Warning flag
+[16:23:31.950][I][modem:226]: Autodetect mode (1st): 0
+[16:23:34.456][W][modem:262]: Waiting SYNC
+[16:23:34.458][W][component:522]: modem took a long time for an operation (3409 ms), max is 30 ms
+[16:23:36.361][I][modem:226]: Autodetect mode (1st): 0
+[16:23:38.869][W][modem:262]: Waiting SYNC
+[16:23:38.871][W][component:522]: modem took a long time for an operation (3411 ms), max is 30 ms
+[16:23:40.774][I][modem:226]: Autodetect mode (1st): 0
+[16:23:43.281][W][modem:262]: Waiting SYNC
+[16:23:43.283][W][component:522]: modem took a long time for an operation (3410 ms), max is 30 ms
+[16:23:45.186][I][modem:226]: Autodetect mode (1st): 0
+[16:23:47.693][W][modem:262]: Waiting SYNC
+[16:23:47.695][W][component:522]: modem took a long time for an operation (3410 ms), max is 30 ms
+[16:23:48.696][W][GNSS:179]: AT+CGNSSINFO failed
+[16:23:49.599][I][modem:226]: Autodetect mode (1st): 0
+[16:23:52.107][W][modem:262]: Waiting SYNC
+[16:23:52.108][W][component:522]: modem took a long time for an operation (3410 ms), max is 30 ms
+[16:23:54.011][I][modem:226]: Autodetect mode (1st): 0
+[16:23:56.520][W][modem:262]: Waiting SYNC
+[16:23:56.521][W][component:522]: modem took a long time for an operation (3411 ms), max is 30 ms
+[16:23:58.424][I][modem:226]: Autodetect mode (1st): 0
+[16:24:00.933][W][modem:262]: Waiting SYNC
+[16:24:00.934][W][component:522]: modem took a long time for an operation (3411 ms), max is 30 ms
+[16:24:02.837][I][modem:226]: Autodetect mode (1st): 0
+[16:24:05.346][W][modem:262]: Waiting SYNC
+[16:24:05.347][W][component:522]: modem took a long time for an operation (3411 ms), max is 30 ms
+[16:24:07.250][I][modem:226]: Autodetect mode (1st): 0
+[16:24:09.759][W][modem:262]: Waiting SYNC
+[16:24:09.760][W][component:522]: modem took a long time for an operation (3411 ms), max is 30 ms
+[16:24:10.762][W][GNSS:179]: AT+CGNSSINFO failed
+[16:24:11.664][I][modem:226]: Autodetect mode (1st): 0
+[16:24:14.173][W][modem:262]: Waiting SYNC
+[16:24:14.174][W][component:522]: modem took a long time for an operation (3411 ms), max is 30 ms
+[16:24:16.077][I][modem:226]: Autodetect mode (1st): 0
+[16:24:18.586][W][modem:262]: Waiting SYNC
+[16:24:18.587][W][component:522]: modem took a long time for an operation (3411 ms), max is 30 ms
+[16:24:20.490][I][modem:226]: Autodetect mode (1st): 0
+[16:24:22.998][W][modem:262]: Waiting SYNC
+[16:24:22.999][W][component:522]: modem took a long time for an operation (3410 ms), max is 30 ms
+[16:24:24.903][I][modem:226]: Autodetect mode (1st): 0
+[16:24:27.412][W][modem:262]: Waiting SYNC
+[16:24:27.413][W][component:522]: modem took a long time for an operation (3411 ms), max is 30 ms
+[16:24:27.414][I][safe_mode:091]: Boot seems successful; resetting boot loop counter
+[16:24:29.318][I][modem:226]: Autodetect mode (1st): 0
+[16:24:31.827][W][modem:262]: Waiting SYNC
+[16:24:31.828][W][component:522]: modem took a long time for an operation (3411 ms), max is 30 ms
+[16:24:32.834][W][GNSS:179]: AT+CGNSSINFO failed
+[16:24:33.736][I][modem:226]: Autodetect mode (1st): 0
+[16:24:36.244][W][modem:262]: Waiting SYNC
+[16:24:36.245][W][component:522]: modem took a long time for an operation (3410 ms), max is 30 ms
+[16:24:38.148][I][modem:226]: Autodetect mode (1st): 0
+[16:24:40.655][W][modem:262]: Waiting SYNC
+[16:24:40.656][W][component:522]: modem took a long time for an operation (3409 ms), max is 30 ms
+[16:24:42.559][I][modem:226]: Autodetect mode (1st): 0
+[16:24:45.068][W][modem:262]: Waiting SYNC
+[16:24:45.069][W][component:522]: modem took a long time for an operation (3411 ms), max is 30 ms
+[16:24:46.972][I][modem:226]: Autodetect mode (1st): 0
+[16:24:49.481][W][modem:262]: Waiting SYNC
+[16:24:49.482][W][component:522]: modem took a long time for an operation (3411 ms), max is 30 ms
+[16:24:51.385][I][modem:226]: Autodetect mode (1st): 0
+[16:24:53.893][W][modem:262]: Waiting SYNC
+[16:24:53.894][W][component:522]: modem took a long time for an operation (3410 ms), max is 30 ms
+[16:24:54.896][W][GNSS:179]: AT+CGNSSINFO failed
+[16:24:55.798][I][modem:226]: Autodetect mode (1st): 0
+[16:24:58.308][W][modem:262]: Waiting SYNC
+[16:24:58.309][W][component:522]: modem took a long time for an operation (3412 ms), max is 30 ms
+[16:25:00.212][I][modem:226]: Autodetect mode (1st): 0
+[16:25:02.720][W][modem:262]: Waiting SYNC
+[16:25:02.721][W][component:522]: modem took a long time for an operation (3410 ms), max is 30 ms
+[16:25:04.624][I][modem:226]: Autodetect mode (1st): 0
+[16:25:07.132][W][modem:262]: Waiting SYNC
+[16:25:07.133][W][component:522]: modem took a long time for an operation (3410 ms), max is 30 ms
