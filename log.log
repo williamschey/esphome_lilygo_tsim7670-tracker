@@ -1,46 +1,41 @@
-INFO Starting log output from /dev/ttyACM0 with baud rate 115200
-[16:34:09.766]I (178) esp_image: segment 4: paddr=000d9de0 vaddr=4037bc70 size=0998ch ( 39308) load
-[16:34:09.775]I (187) esp_image: segment 5: paddr=000e3774 vaddr=50000000 size=00020h (    32) load
-[16:34:09.783]I (194) boot: Loaded app from partition at offset 0x10000
-[16:34:09.787]I (199) boot: Set actual ota_seq=1 in otadata[0]
-[16:34:09.787]I (199) boot: Disabling RNG early entropy source...
-[16:34:09.895][I][logger:120]: Log initialized
-[16:34:09.896][I][modem:049]: Setting modem target state to CONNECTED
-[16:34:09.902][I][app:067]: Running through setup()
-[16:34:09.905][I][modem:069]: Modem setup...
-[16:34:09.958][W][component:389]: api set Warning flag: waiting for client connection
-[16:34:09.961][I][app:123]: setup() finished successfully!
-[16:34:09.962][W][component:389]: wifi set Warning flag: scanning for networks
-[16:34:09.963][I][app:154]: ESPHome version 2026.4.5 compiled on 2026-05-16 16:33:10 +1000
-[16:34:09.964][I][app:161]: ESP32 Chip: ESP32-S3 rev0.2, 2 core(s)
-[16:34:12.565][I][wifi:1417]: - 'redacted' [redacted]▂▄▆█
-[16:34:12.567][I][wifi:1417]: - 'redacted' [redacted]▂▄▆█
-[16:34:12.568][I][wifi:1417]: - 'redacted' [redacted]▂▄▆█
-[16:34:12.570][I][wifi:1081]: Connecting to [redacted] [redacted] (priority 0, attempt 1/2 in phase SCAN_CONNECTING)...
-[16:34:13.866][I][modem:226]: Autodetect mode (1st): 0
-[16:34:16.376][W][modem:262]: Waiting SYNC
-[16:34:16.378][W][component:522]: modem took a long time for an operation (3413 ms), max is 30 ms
-[16:34:16.380][I][wifi:1551]: Connected
-[16:34:17.384][W][GNSS:185]: AT+CGNSSINFO failed
-[16:34:17.386][W][component:522]: interval took a long time for an operation (1002 ms), max is 30 ms
-[16:34:18.288][I][modem:226]: Autodetect mode (1st): 0
-[16:34:20.795][W][modem:262]: Waiting SYNC
-[16:34:20.797][W][component:522]: modem took a long time for an operation (3409 ms), max is 30 ms
-[16:34:20.798][W][component:422]: wifi cleared Warning flag
-[16:34:22.701][I][modem:226]: Autodetect mode (1st): 0
-[16:34:25.209][W][modem:262]: Waiting SYNC
-[16:34:25.211][W][component:522]: modem took a long time for an operation (3411 ms), max is 30 ms
-[16:34:27.114][I][modem:226]: Autodetect mode (1st): 0
-[16:34:29.621][W][modem:262]: Waiting SYNC
-[16:34:29.623][W][component:522]: modem took a long time for an operation (3410 ms), max is 30 ms
-[16:34:31.526][I][modem:226]: Autodetect mode (1st): 0
-[16:34:34.034][W][modem:262]: Waiting SYNC
-[16:34:34.036][W][component:522]: modem took a long time for an operation (3411 ms), max is 30 ms
-[16:34:35.940][I][modem:226]: Autodetect mode (1st): 0
-[16:34:38.448][W][modem:262]: Waiting SYNC
-[16:34:38.450][W][component:522]: modem took a long time for an operation (3411 ms), max is 30 ms
-[16:34:39.451][W][GNSS:185]: AT+CGNSSINFO failed
-[16:34:40.354][I][modem:226]: Autodetect mode (1st): 0
-[16:34:42.860][W][modem:262]: Waiting SYNC
-[16:34:42.862][W][component:522]: modem took a long time for an operation (3409 ms), max is 30 ms
-[16:34:44.765][I][modem:226]: Autodetect mode (1st): 0
+[16:40:12.494][I][logger:120]: Log initialized
+[16:40:12.495][I][modem:049]: Setting modem target state to CONNECTED
+[16:40:12.501][I][app:067]: Running through setup()
+[16:40:12.504][I][modem:069]: Modem setup...
+[16:40:12.556][W][component:389]: api set Warning flag: waiting for client connection
+[16:40:12.559][I][app:123]: setup() finished successfully!
+[16:40:12.561][W][component:389]: wifi set Warning flag: scanning for networks
+[16:40:12.562][I][app:154]: ESPHome version 2026.4.5 compiled on 2026-05-16 16:39:45 +1000
+[16:40:12.563][I][app:161]: ESP32 Chip: ESP32-S3 rev0.2, 2 core(s)
+[16:40:15.360][I][wifi:1417]: - 'redacted' [redacted]▂▄▆█
+[16:40:15.361][I][wifi:1417]: - 'redacted' [redacted]▂▄▆█
+[16:40:15.362][I][wifi:1417]: - 'redacted' [redacted]▂▄▆█
+[16:40:15.364][I][wifi:1081]: Connecting to [redacted] [redacted] (priority 0, attempt 1/2 in phase SCAN_CONNECTING)...
+[16:40:15.572][I][modem:226]: Autodetect mode (1st): 2
+[16:40:15.573][W][modem:249]: Exiting DATA_MODE. (long blocking call, make sur to have a long WDT!)
+[16:40:48.602][W][component:522]: modem took a long time for an operation (33035 ms), max is 30 ms
+[16:40:48.605][I][wifi:1551]: Connected
+[16:40:48.615][W][GNSS:185]: AT+CGNSSINFO failed
+[16:40:48.621][I][modem:226]: Autodetect mode (1st): 2
+[16:40:48.622][W][modem:249]: Exiting DATA_MODE. (long blocking call, make sur to have a long WDT!)
+[16:41:21.714][W][component:522]: modem took a long time for an operation (33097 ms), max is 30 ms
+[16:41:21.715][W][component:422]: wifi cleared Warning flag
+[16:41:21.715][I][safe_mode:091]: Boot seems successful; resetting boot loop counter
+[16:41:21.725][W][GNSS:230]: CGNSSINFO malformed: +CGNSSINFO: ,,,,,,,,
+[16:41:22.122][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[16:41:22.137][W][modem:340]: Modem not yet ready to connect
+[16:41:23.170][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
+[16:41:27.388][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[16:41:27.403][W][modem:340]: Modem not yet ready to connect
+[16:41:28.436][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
+[16:41:32.654][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[16:41:32.669][W][modem:340]: Modem not yet ready to connect
+[16:41:33.702][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
+[16:41:37.921][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[16:41:37.936][W][modem:340]: Modem not yet ready to connect
+[16:41:38.969][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
+[16:41:41.778][I][GNSS:189]: No GNSS fix yet
+[16:41:41.779][W][component:522]: interval took a long time for an operation (55 ms), max is 30 ms
+[16:41:43.189][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[16:41:43.204][W][modem:340]: Modem not yet ready to connect
+[16:41:44.237][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
