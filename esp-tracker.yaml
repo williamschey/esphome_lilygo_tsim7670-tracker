@@ -70,8 +70,8 @@ modem:
   model: SIM7670
   apn: ${apn}
   pin_code: ${sim_pin}
-  rx_pin: GPIO11      # ESP32 RX  ← modem TX
-  tx_pin: GPIO10      # ESP32 TX  → modem RX
+  rx_pin: GPIO10      # ESP32 RX  ← modem TX (MODEM_RX_PIN on LilyGo schematic)
+  tx_pin: GPIO11      # ESP32 TX  → modem RX (MODEM_TX_PIN on LilyGo schematic)
   # baud: 115200
   on_sync:
     - logger.log: "Modem synced — enabling GNSS"
