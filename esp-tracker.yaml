@@ -43,15 +43,21 @@ external_components:
     refresh: 1d
 
 # ---------------------------------------------------------------------------
-# Networking — WiFi is preferred when available, modem is the fallback.
+# Home Assistant integration. The native API works best over WiFi; when only
+# the modem is up you'll typically reach the device via WireGuard or MQTT.
 # ---------------------------------------------------------------------------
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret api_key
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
-  power_save_mode: none
-  ap:
-    ssid: "${friendly_name} Fallback"
-    password: !secret ap_password
 
 captive_portal:
 
@@ -297,14 +303,3 @@ binary_sensor:
   - platform: status
     name: "Status"
 
-# ---------------------------------------------------------------------------
-# Home Assistant integration. The native API works best over WiFi; when only
-# the modem is up you'll typically reach the device via WireGuard or MQTT.
-# ---------------------------------------------------------------------------
-api:
-  encryption:
-    key: !secret api_encryption_key
-
-ota:
-  - platform: esphome
-    password: !secret ota_password
