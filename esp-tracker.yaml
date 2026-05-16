@@ -29,7 +29,7 @@ esp32:
       CONFIG_ESP_TASK_WDT_TIMEOUT_S: "60"
 
 logger:
-  level: INFO
+  level: VERBOSE
   # GPIO43/44 (USB-CDC) is used for logging on T-SIM7670G-S3, modem UART is on GPIO10/11
   baud_rate: 115200
   logs:

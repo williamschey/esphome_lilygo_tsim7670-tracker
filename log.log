@@ -1,415 +1,318 @@
-INFO Starting log output from /dev/ttyACM0 with baud rate 115200
-[16:54:00.486]I (178) esp_image: segment 4: paddr=000d9df4 vaddr=4037bc30 size=099cch ( 39372) load
-[16:54:00.495]I (187) esp_image: segment 5: paddr=000e37c8 vaddr=50000000 size=00020h (    32) load
-[16:54:00.502]I (195) boot: Loaded app from partition at offset 0x10000
-[16:54:00.507]I (199) boot: Set actual ota_seq=1 in otadata[0]
-[16:54:00.507]I (199) boot: Disabling RNG early entropy source...
-[16:54:00.615][I][logger:120]: Log initialized
-[16:54:00.616][I][modem:049]: Setting modem target state to CONNECTED
-[16:54:00.622][I][app:067]: Running through setup()
-[16:54:00.625][I][modem:069]: Modem setup...
-[16:54:00.677][W][component:389]: api set Warning flag: waiting for client connection
-[16:54:00.679][I][app:123]: setup() finished successfully!
-[16:54:00.681][W][component:389]: wifi set Warning flag: scanning for networks
-[16:54:00.682][I][app:154]: ESPHome version 2026.4.5 compiled on 2026-05-16 16:52:54 +1000
-[16:54:00.683][I][app:161]: ESP32 Chip: ESP32-S3 rev0.2, 2 core(s)
-[16:54:03.075][I][wifi:1417]: - 'redacted' [redacted]▂▄▆█
-[16:54:03.076][I][wifi:1417]: - 'redacted' [redacted]▂▄▆█
-[16:54:03.077][I][wifi:1417]: - 'redacted' [redacted]▂▄▆█
-[16:54:03.079][I][wifi:1081]: Connecting to [redacted] [redacted] (priority 0, attempt 1/2 in phase SCAN_CONNECTING)...
-[16:54:03.662][I][GNSS:195]: GNSS engine powered on
-[16:54:03.670][W][GNSS:250]: CGNSSINFO malformed: +CGNSSINFO: ,,,,,,,,
-[16:54:03.686][I][modem:226]: Autodetect mode (1st): 2
-[16:54:03.687][W][modem:249]: Exiting DATA_MODE. (long blocking call, make sur to have a long WDT!)
-[16:54:36.718][W][component:522]: modem took a long time for an operation (33036 ms), max is 30 ms
-[16:54:36.720][I][wifi:1551]: Connected
-[16:54:36.732][W][GNSS:250]: CGNSSINFO malformed: +CGNSSINFO: ,,,,,,,,
-[16:54:36.738][I][modem:226]: Autodetect mode (1st): 2
-[16:54:36.739][W][modem:249]: Exiting DATA_MODE. (long blocking call, make sur to have a long WDT!)
-[16:55:09.761][W][component:522]: modem took a long time for an operation (33027 ms), max is 30 ms
-[16:55:09.762][W][component:422]: wifi cleared Warning flag
-[16:55:09.763][I][safe_mode:091]: Boot seems successful; resetting boot loop counter
-[16:55:09.772][W][GNSS:250]: CGNSSINFO malformed: +CGNSSINFO: ,,,,,,,,
-[16:55:10.170][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:55:10.184][W][modem:340]: Modem not yet ready to connect
-[16:55:11.217][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:55:15.434][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:55:15.449][W][modem:340]: Modem not yet ready to connect
-[16:55:16.482][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:55:20.699][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:55:20.714][W][modem:340]: Modem not yet ready to connect
-[16:55:21.747][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:55:25.964][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:55:25.979][W][modem:340]: Modem not yet ready to connect
-[16:55:27.013][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:55:29.821][I][GNSS:209]: No GNSS fix yet
-[16:55:29.823][W][component:522]: interval took a long time for an operation (54 ms), max is 30 ms
-[16:55:31.233][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:55:31.247][W][modem:340]: Modem not yet ready to connect
-[16:55:32.280][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:55:36.497][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:55:36.512][W][modem:340]: Modem not yet ready to connect
-[16:55:37.545][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:55:41.763][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:55:41.777][W][modem:340]: Modem not yet ready to connect
-[16:55:42.811][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:55:47.028][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:55:47.043][W][modem:340]: Modem not yet ready to connect
-[16:55:48.076][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:55:50.779][W][GNSS:205]: AT+CGNSSINFO failed
-[16:55:50.781][W][component:522]: interval took a long time for an operation (1002 ms), max is 30 ms
-[16:55:52.295][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:55:52.309][W][modem:340]: Modem not yet ready to connect
-[16:55:53.342][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:55:57.561][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:55:57.576][W][modem:340]: Modem not yet ready to connect
-[16:55:58.609][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:56:02.828][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:56:02.842][W][modem:340]: Modem not yet ready to connect
-[16:56:03.876][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:56:08.094][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:56:08.109][W][modem:340]: Modem not yet ready to connect
-[16:56:09.142][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:56:10.780][W][GNSS:205]: AT+CGNSSINFO failed
-[16:56:13.359][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:56:13.374][W][modem:340]: Modem not yet ready to connect
-[16:56:14.407][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:56:18.624][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:56:18.639][W][modem:340]: Modem not yet ready to connect
-[16:56:19.673][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:56:23.891][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:56:23.905][W][modem:340]: Modem not yet ready to connect
-[16:56:24.938][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:56:29.155][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:56:29.170][W][modem:340]: Modem not yet ready to connect
-[16:56:30.203][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:56:31.204][W][GNSS:205]: AT+CGNSSINFO failed
-[16:56:34.419][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:56:34.434][W][modem:340]: Modem not yet ready to connect
-[16:56:35.467][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:56:39.684][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:56:39.699][W][modem:340]: Modem not yet ready to connect
-[16:56:40.733][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:56:44.950][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:56:44.965][W][modem:340]: Modem not yet ready to connect
-[16:56:45.998][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:56:50.215][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:56:50.230][W][modem:340]: Modem not yet ready to connect
-[16:56:51.263][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:56:52.264][W][GNSS:205]: AT+CGNSSINFO failed
-[16:56:55.479][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:56:55.494][W][modem:340]: Modem not yet ready to connect
-[16:56:56.528][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:57:00.746][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:57:00.760][W][modem:340]: Modem not yet ready to connect
-[16:57:01.794][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:57:06.012][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:57:06.026][W][modem:340]: Modem not yet ready to connect
-[16:57:07.059][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:57:11.277][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:57:11.292][W][modem:340]: Modem not yet ready to connect
-[16:57:12.325][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:57:13.326][W][GNSS:205]: AT+CGNSSINFO failed
-[16:57:16.541][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:57:16.556][W][modem:340]: Modem not yet ready to connect
-[16:57:17.590][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:57:21.808][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:57:21.822][W][modem:340]: Modem not yet ready to connect
-[16:57:22.855][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:57:27.072][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:57:27.087][W][modem:340]: Modem not yet ready to connect
-[16:57:28.120][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:57:32.337][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:57:32.352][W][modem:340]: Modem not yet ready to connect
-[16:57:33.386][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:57:34.387][W][GNSS:205]: AT+CGNSSINFO failed
-[16:57:37.602][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:57:37.617][W][modem:340]: Modem not yet ready to connect
-[16:57:38.650][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:57:42.867][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:57:42.882][W][modem:340]: Modem not yet ready to connect
-[16:57:43.915][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:57:48.134][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:57:48.148][W][modem:340]: Modem not yet ready to connect
-[16:57:49.182][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:57:53.400][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:57:53.414][W][modem:340]: Modem not yet ready to connect
-[16:57:54.447][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:57:55.448][W][GNSS:205]: AT+CGNSSINFO failed
-[16:57:58.663][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:57:58.678][W][modem:340]: Modem not yet ready to connect
-[16:57:59.711][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:58:03.930][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:58:03.944][W][modem:340]: Modem not yet ready to connect
-[16:58:04.977][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:58:09.194][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:58:09.209][W][modem:340]: Modem not yet ready to connect
-[16:58:10.243][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:58:14.460][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:58:14.475][W][modem:340]: Modem not yet ready to connect
-[16:58:15.508][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:58:16.509][W][GNSS:205]: AT+CGNSSINFO failed
-[16:58:19.724][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:58:19.739][W][modem:340]: Modem not yet ready to connect
-[16:58:20.772][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:58:24.989][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:58:25.005][W][modem:340]: Modem not yet ready to connect
-[16:58:26.039][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:58:30.256][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:58:30.271][W][modem:340]: Modem not yet ready to connect
-[16:58:31.304][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:58:35.521][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:58:35.536][W][modem:340]: Modem not yet ready to connect
-[16:58:36.569][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:58:37.570][W][GNSS:205]: AT+CGNSSINFO failed
-[16:58:40.786][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:58:40.801][W][modem:340]: Modem not yet ready to connect
-[16:58:41.834][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:58:46.051][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:58:46.066][W][modem:340]: Modem not yet ready to connect
-[16:58:47.100][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:58:51.320][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:58:51.335][W][modem:340]: Modem not yet ready to connect
-[16:58:52.368][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:58:56.586][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:58:56.600][W][modem:340]: Modem not yet ready to connect
-[16:58:57.634][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:58:58.635][W][GNSS:205]: AT+CGNSSINFO failed
-[16:59:01.850][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:59:01.865][W][modem:340]: Modem not yet ready to connect
-[16:59:02.898][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:59:07.116][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:59:07.130][W][modem:340]: Modem not yet ready to connect
-[16:59:08.163][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:59:12.380][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:59:12.395][W][modem:340]: Modem not yet ready to connect
-[16:59:13.429][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:59:17.647][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:59:17.661][W][modem:340]: Modem not yet ready to connect
-[16:59:18.694][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:59:19.695][W][GNSS:205]: AT+CGNSSINFO failed
-[16:59:22.911][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:59:22.925][W][modem:340]: Modem not yet ready to connect
-[16:59:23.958][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:59:28.178][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:59:28.192][W][modem:340]: Modem not yet ready to connect
-[16:59:29.225][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:59:33.443][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:59:33.457][W][modem:340]: Modem not yet ready to connect
-[16:59:34.490][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:59:38.708][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:59:38.722][W][modem:340]: Modem not yet ready to connect
-[16:59:39.755][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:59:40.756][W][GNSS:205]: AT+CGNSSINFO failed
-[16:59:43.972][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:59:43.986][W][modem:340]: Modem not yet ready to connect
-[16:59:45.019][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:59:49.237][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:59:49.251][W][modem:340]: Modem not yet ready to connect
-[16:59:50.286][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:59:54.503][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:59:54.518][W][modem:340]: Modem not yet ready to connect
-[16:59:55.551][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[16:59:59.769][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[16:59:59.783][W][modem:340]: Modem not yet ready to connect
-[17:00:00.816][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:00:01.817][W][GNSS:205]: AT+CGNSSINFO failed
-[17:00:05.033][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:00:05.047][W][modem:340]: Modem not yet ready to connect
-[17:00:06.081][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:00:10.299][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:00:10.313][W][modem:340]: Modem not yet ready to connect
-[17:00:11.346][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:00:15.563][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:00:15.578][W][modem:340]: Modem not yet ready to connect
-[17:00:16.612][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:00:20.830][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:00:20.844][W][modem:340]: Modem not yet ready to connect
-[17:00:21.877][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:00:22.878][W][GNSS:205]: AT+CGNSSINFO failed
-[17:00:26.094][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:00:26.108][W][modem:340]: Modem not yet ready to connect
-[17:00:27.141][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:00:31.361][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:00:31.375][W][modem:340]: Modem not yet ready to connect
-[17:00:32.409][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:00:36.625][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:00:36.640][W][modem:340]: Modem not yet ready to connect
-[17:00:37.673][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:00:41.891][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:00:41.905][W][modem:340]: Modem not yet ready to connect
-[17:00:42.938][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:00:43.939][W][GNSS:205]: AT+CGNSSINFO failed
-[17:00:47.155][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:00:47.169][W][modem:340]: Modem not yet ready to connect
-[17:00:48.202][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:00:52.420][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:00:52.434][W][modem:340]: Modem not yet ready to connect
-[17:00:53.467][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:00:57.686][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:00:57.700][W][modem:340]: Modem not yet ready to connect
-[17:00:58.733][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:01:02.951][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:01:02.965][W][modem:340]: Modem not yet ready to connect
-[17:01:03.999][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:01:05.000][W][GNSS:205]: AT+CGNSSINFO failed
-[17:01:08.216][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:01:08.230][W][modem:340]: Modem not yet ready to connect
-[17:01:09.263][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:01:13.481][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:01:13.495][W][modem:340]: Modem not yet ready to connect
-[17:01:14.528][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:01:18.746][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:01:18.760][W][modem:340]: Modem not yet ready to connect
-[17:01:19.793][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:01:24.012][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:01:24.026][W][modem:340]: Modem not yet ready to connect
-[17:01:25.059][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:01:26.061][W][GNSS:205]: AT+CGNSSINFO failed
-[17:01:29.276][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:01:29.290][W][modem:340]: Modem not yet ready to connect
-[17:01:30.323][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:01:34.541][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:01:34.555][W][modem:340]: Modem not yet ready to connect
-[17:01:35.588][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:01:39.806][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:01:39.820][W][modem:340]: Modem not yet ready to connect
-[17:01:40.853][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:01:45.071][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:01:45.085][W][modem:340]: Modem not yet ready to connect
-[17:01:46.118][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:01:47.120][W][GNSS:205]: AT+CGNSSINFO failed
-[17:01:50.335][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:01:50.349][W][modem:340]: Modem not yet ready to connect
-[17:01:51.382][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:01:55.600][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:01:55.614][W][modem:340]: Modem not yet ready to connect
-[17:01:56.647][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:02:00.866][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:02:00.880][W][modem:340]: Modem not yet ready to connect
-[17:02:01.914][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:02:06.132][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:02:06.146][W][modem:340]: Modem not yet ready to connect
-[17:02:07.179][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:02:08.181][W][GNSS:205]: AT+CGNSSINFO failed
-[17:02:11.396][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:02:11.410][W][modem:340]: Modem not yet ready to connect
-[17:02:12.443][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:02:16.661][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:02:16.675][W][modem:340]: Modem not yet ready to connect
-[17:02:17.708][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:02:21.926][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:02:21.940][W][modem:340]: Modem not yet ready to connect
-[17:02:22.974][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:02:27.192][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:02:27.206][W][modem:340]: Modem not yet ready to connect
-[17:02:28.239][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:02:29.241][W][GNSS:205]: AT+CGNSSINFO failed
-[17:02:32.456][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:02:32.470][W][modem:340]: Modem not yet ready to connect
-[17:02:33.503][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:02:37.721][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:02:37.735][W][modem:340]: Modem not yet ready to connect
-[17:02:38.768][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:02:42.986][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:02:43.000][W][modem:340]: Modem not yet ready to connect
-[17:02:44.033][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:02:48.251][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:02:48.265][W][modem:340]: Modem not yet ready to connect
-[17:02:49.298][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:02:50.300][W][GNSS:205]: AT+CGNSSINFO failed
-[17:02:53.515][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:02:53.529][W][modem:340]: Modem not yet ready to connect
-[17:02:54.562][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:02:58.780][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:02:58.794][W][modem:340]: Modem not yet ready to connect
-[17:02:59.828][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:03:04.046][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:03:04.060][W][modem:340]: Modem not yet ready to connect
-[17:03:05.093][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:03:09.311][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:03:09.325][W][modem:340]: Modem not yet ready to connect
-[17:03:10.358][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:03:11.360][W][GNSS:205]: AT+CGNSSINFO failed
-[17:03:14.575][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:03:14.589][W][modem:340]: Modem not yet ready to connect
-[17:03:15.623][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:03:19.841][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:03:19.855][W][modem:340]: Modem not yet ready to connect
-[17:03:20.888][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:03:25.106][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:03:25.120][W][modem:340]: Modem not yet ready to connect
-[17:03:26.153][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:03:30.371][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:03:30.385][W][modem:340]: Modem not yet ready to connect
-[17:03:31.418][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:03:32.420][W][GNSS:205]: AT+CGNSSINFO failed
-[17:03:35.635][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:03:35.649][W][modem:340]: Modem not yet ready to connect
-[17:03:36.683][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:03:40.901][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:03:40.915][W][modem:340]: Modem not yet ready to connect
-[17:03:41.948][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:03:46.166][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:03:46.180][W][modem:340]: Modem not yet ready to connect
-[17:03:47.213][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:03:51.432][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:03:51.446][W][modem:340]: Modem not yet ready to connect
-[17:03:52.480][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:03:53.482][W][GNSS:205]: AT+CGNSSINFO failed
-[17:03:56.697][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:03:56.711][W][modem:340]: Modem not yet ready to connect
-[17:03:57.744][I][modem_handler:127]: Modem status: BAD, attached: NO, registration state: 0, radio function: OK, SIM: UNKNOWN, type: 0, ber: nan %, rssi: nan dB
-[17:04:00.682][E][modem:437]: Aborting: Modem was not able to connect (timeout).
-[17:04:00.683][I][app:247]: Forcing a reboot
-[17:04:00.790]ESP-ROM:esp32s3-20210327
-[17:04:00.791]Build:Mar 27 2021
-[17:04:00.791]rst:0xc (RTC_SW_CPU_RST),boot:0x2b (SPI_FAST_FLASH_BOOT)
-[17:04:00.792]Saved PC:0x40378efe
-WARNING Decoded 0x40378efe: esp_cpu_wait_for_intr at /data/cache/platformio/packages/framework-espidf/components/esp_hw_support/cpu.c:64
-[17:04:01.040]SPIWP:0xee
-[17:04:01.040]mode:DIO, clock div:1
-[17:04:01.040]load:0x3fce2820,len:0x152c
-[17:04:01.040]load:0x403c8700,len:0xce4
-[17:04:01.040]load:0x403cb700,len:0x2f48
-[17:04:01.040]entry 0x403c8918
-[17:04:01.040]I (24) boot: ESP-IDF 5.5.4 2nd stage bootloader
-[17:04:01.040]I (24) boot: compile time May 16 2026 15:54:46
-[17:04:01.040]I (24) boot: Multicore bootloader
-[17:04:01.040]I (25) boot: chip revision: v0.2
-[17:04:01.040]I (25) boot: efuse block revision: v1.4
-[17:04:01.040]I (25) boot.esp32s3: Boot SPI Speed : 80MHz
-[17:04:01.040]I (25) boot.esp32s3: SPI Mode       : DIO
-[17:04:01.040]I (25) boot.esp32s3: SPI Flash Size : 16MB
-[17:04:01.040]I (25) boot: Enabling RNG early entropy source...
-[17:04:01.040]I (26) boot: Partition Table:
-[17:04:01.040]I (26) boot: ## Label            Usage          Type ST Offset   Length
-[17:04:01.040]I (26) boot:  0 otadata          OTA data         01 00 00009000 00002000
-[17:04:01.040]I (26) boot:  1 phy_init         RF data          01 01 0000b000 00001000
-[17:04:01.040]I (27) boot:  2 app0             OTA app          00 10 00010000 001c0000
-[17:04:01.040]I (27) boot:  3 app1             OTA app          00 11 001d0000 001c0000
-[17:04:01.040]I (28) boot:  4 nvs              WiFi data        01 02 00390000 00070000
-[17:04:01.040]I (28) boot: End of partition table
-[17:04:01.040]I (28) esp_image: segment 0: paddr=00010020 vaddr=3c0a0020 size=23980h (145792) map
-[17:04:01.040]I (55) esp_image: segment 1: paddr=000339a8 vaddr=3fc95700 size=04a38h ( 19000) load
-[17:04:01.040]I (59) esp_image: segment 2: paddr=000383e8 vaddr=40374000 size=07c30h ( 31792) load
-[17:04:01.040]I (66) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=99dcch (630220) map
-[17:04:01.040]I (178) esp_image: segment 4: paddr=000d9df4 vaddr=4037bc30 size=099cch ( 39372) load
-[17:04:01.040]I (187) esp_image: segment 5: paddr=000e37c8 vaddr=50000000 size=00020h (    32) load
-[17:04:01.040]I (195) boot: Loaded app from partition at offset 0x10000
-[17:04:01.040]I (195) boot: Disabling RNG early entropy source...
-[17:04:01.093][I][logger:120]: Log initialized
-[17:04:01.094][I][modem:049]: Setting modem target state to CONNECTED
-[17:04:01.100][I][app:067]: Running through setup()
-[17:04:01.103][I][modem:069]: Modem setup...
-[17:04:01.155][W][component:389]: api set Warning flag: waiting for client connection
-[17:04:01.157][I][app:123]: setup() finished successfully!
-[17:04:01.159][W][component:389]: wifi set Warning flag: scanning for networks
-[17:04:01.161][I][app:154]: ESPHome version 2026.4.5 compiled on 2026-05-16 16:52:54 +1000
-[17:04:01.161][I][app:161]: ESP32 Chip: ESP32-S3 rev0.2, 2 core(s)
-[17:04:03.761][I][wifi:1417]: - 'redacted' [redacted]▂▄▆█
-[17:04:03.762][I][wifi:1417]: - 'redacted' [redacted]▂▄▆█
-[17:04:03.763][I][wifi:1417]: - 'redacted' [redacted]▂▄▆█
-[17:04:03.765][I][wifi:1081]: Connecting to [redacted] [redacted] (priority 0, attempt 1/2 in phase SCAN_CONNECTING)...
-[17:04:04.165][I][modem:226]: Autodetect mode (1st): 2
-[17:04:04.166][W][modem:249]: Exiting DATA_MODE. (long blocking call, make sur to have a long WDT!)
+[17:13:39.827][I][logger:120]: Log initialized
+[17:13:39.830][C][safe_mode:136]: Unsuccessful boot attempts: 0
+[17:13:39.830][V][preferences:121]: Saving 1 items...
+[17:13:39.834][V][preferences:132]: sync: key: 233825507, len: 4
+[17:13:39.835][D][preferences:152]: Writing 1 items: 0 cached, 1 written, 0 failed
+[17:13:39.837][I][app:067]: Running through setup()
+[17:13:39.837][V][app:068]: Sorting components by setup priority
+[17:13:39.838][V][component:236]: Setup logger
+[17:13:39.839][V][component:248]: Setup logger took 0ms
+[17:13:39.839][V][component:236]: Setup preferences
+[17:13:39.841][V][scheduler:217]: Scheduler interval for (null) is 60000ms, offset 2283ms
+[17:13:39.841][V][component:248]: Setup preferences took 1ms
+[17:13:39.842][V][component:236]: Setup gpio.output
+[17:13:39.843][V][component:248]: Setup gpio.output took 0ms
+[17:13:39.844][V][component:236]: Setup gpio.output
+[17:13:39.845][V][component:248]: Setup gpio.output took 0ms
+[17:13:39.845][V][component:236]: Setup gpio.switch
+[17:13:39.846][V][switch:025]: 'Status LED' Turning OFF.
+[17:13:39.846][V][switch:064]: 'Status LED' >> OFF
+[17:13:39.847][V][switch:025]: 'Status LED' Turning OFF.
+[17:13:39.848][V][component:248]: Setup gpio.switch took 2ms
+[17:13:39.848][V][component:236]: Setup script
+[17:13:39.849][V][component:248]: Setup script took 0ms
+[17:13:39.850][V][component:236]: Setup script
+[17:13:39.850][V][component:248]: Setup script took 0ms
+[17:13:39.851][V][component:236]: Setup script
+[17:13:39.851][V][component:248]: Setup script took 0ms
+[17:13:39.852][V][component:236]: Setup button
+[17:13:39.852][V][component:248]: Setup button took 0ms
+[17:13:39.853][V][component:236]: Setup gps
+[17:13:39.854][V][component:248]: Setup gps took 0ms
+[17:13:39.854][V][component:236]: Setup uptime.sensor
+[17:13:39.855][V][scheduler:217]: Scheduler interval for iid:0 is 60000ms, offset 4768ms
+[17:13:39.856][V][component:248]: Setup uptime.sensor took 1ms
+[17:13:39.857][V][component:236]: Setup esphome.coroutine
+[17:13:39.858][V][component:248]: Setup esphome.coroutine took 0ms
+[17:13:39.859][V][component:236]: Setup output.switch
+[17:13:39.859][V][switch:025]: 'Modem PWRKEY' Turning OFF.
+[17:13:39.860][V][switch:064]: 'Modem PWRKEY' >> OFF
+[17:13:39.860][V][component:248]: Setup output.switch took 1ms
+[17:13:39.861][V][component:236]: Setup output.switch
+[17:13:39.862][V][switch:025]: 'Modem Reset' Turning OFF.
+[17:13:39.862][V][switch:064]: 'Modem Reset' >> OFF
+[17:13:39.863][V][component:248]: Setup output.switch took 2ms
+[17:13:39.864][V][component:236]: Setup esphome.coroutine
+[17:13:39.865][V][component:248]: Setup esphome.coroutine took 0ms
+[17:13:39.865][V][component:236]: Setup nulluart
+[17:13:39.866][V][component:248]: Setup nulluart took 0ms
+[17:13:39.867][V][component:236]: Setup gps.time
+[17:13:39.868][V][scheduler:217]: Scheduler interval for iid:0 is 300000ms, offset 2755ms
+[17:13:39.868][V][component:248]: Setup gps.time took 1ms
+[17:13:39.869][V][component:236]: Setup interval
+[17:13:39.870][V][scheduler:217]: Scheduler interval for iid:0 is 20000ms, offset 2377ms
+[17:13:39.871][V][component:248]: Setup interval took 2ms
+[17:13:39.872][V][component:236]: Setup adc.sensor
+[17:13:39.873][V][scheduler:217]: Scheduler interval for iid:0 is 60000ms, offset 800ms
+[17:13:39.874][V][adc.esp32:093]: Using curve fitting calibration
+[17:13:39.875][V][component:248]: Setup adc.sensor took 3ms
+[17:13:39.876][V][component:236]: Setup wifi_info.text_sensor
+[17:13:39.877][V][component:248]: Setup wifi_info.text_sensor took 0ms
+[17:13:39.877][V][component:236]: Setup wifi_info.text_sensor
+[17:13:39.878][V][component:248]: Setup wifi_info.text_sensor took 0ms
+[17:13:39.879][V][component:236]: Setup version.text_sensor
+[17:13:39.881][V][text_sensor:037]: 'ESPHome Version': Received new state 2026.4.5 (config hash 0x3025ff6d, built 2026-05-16 17:11:02 +1000)
+[17:13:39.882][V][text_sensor:115]: 'ESPHome Version' >> '2026.4.5 (config hash 0x3025ff6d, built 2026-05-16 17:11:02 +1000)'
+[17:13:39.883][V][component:248]: Setup version.text_sensor took 3ms
+[17:13:39.884][V][component:236]: Setup status.binary_sensor
+[17:13:39.885][V][scheduler:217]: Scheduler interval for iid:0 is 1000ms, offset 432ms
+[17:13:39.885][V][binary_sensor:041]: 'Status' >> OFF
+[17:13:39.886][V][component:248]: Setup status.binary_sensor took 2ms
+[17:13:39.887][V][component:236]: Setup globals
+[17:13:39.887][V][component:248]: Setup globals took 0ms
+[17:13:39.888][V][component:236]: Setup modem
+[17:13:39.894][V][component:248]: Setup modem took 5ms
+[17:13:39.894][V][component:236]: Setup wifi
+[17:13:39.896][E][wifi_esp32:160]: esp_event_loop_create_default failed: ESP_ERR_INVALID_STATE
+[17:13:39.896][C][wifi:631]: Starting
+[17:13:39.898][V][preferences:065]: nvs_get_blob('2208764056'): ESP_ERR_NVS_NOT_FOUND - the key might not be set yet
+[17:13:39.898][V][wifi_esp32:229]: Enabling STA
+[17:13:39.899][W][wifi_esp32:251]: esp_wifi_set_mode failed: ESP_ERR_WIFI_NOT_INIT
+[17:13:39.900][V][wifi:671]: Setting Power Save Option failed
+[17:13:39.900][D][wifi:1277]: Starting scan
+[17:13:39.901][V][wifi_esp32:229]: Enabling STA
+[17:13:39.902][W][wifi_esp32:251]: esp_wifi_set_mode failed: ESP_ERR_WIFI_NOT_INIT
+[17:13:39.902][V][component:248]: Setup wifi took 8ms
+[17:13:39.903][V][component:236]: Setup esphome.ota
+[17:13:39.905][V][component:248]: Setup esphome.ota took 1ms
+[17:13:39.906][V][component:236]: Setup safe_mode
+[17:13:39.906][V][component:248]: Setup safe_mode took 0ms
+[17:13:39.907][V][component:236]: Setup api
+[17:13:39.909][W][component:389]: api set Warning flag: waiting for client connection
+[17:13:39.909][V][component:248]: Setup api took 2ms
+[17:13:39.910][V][component:236]: Setup wifi_signal.sensor
+[17:13:39.911][V][scheduler:217]: Scheduler interval for iid:0 is 60000ms, offset 3966ms
+[17:13:39.912][V][component:248]: Setup wifi_signal.sensor took 2ms
+[17:13:39.913][V][component:236]: Setup mdns
+[17:13:39.915][V][component:248]: Setup mdns took 1ms
+[17:13:39.916][I][app:123]: setup() finished successfully!
+[17:13:39.917][W][component:389]: wifi set Warning flag: scanning for networks
+[17:13:39.918][I][app:154]: ESPHome version 2026.4.5 compiled on 2026-05-16 17:11:02 +1000
+[17:13:39.919][I][app:161]: ESP32 Chip: ESP32-S3 rev0.2, 2 core(s)
+[17:13:39.920][C][logger:219]: Logger:
+[17:13:39.920][C][logger:219]:   Max Level: VERBOSE
+[17:13:39.920][C][logger:219]:   Initial Level: VERBOSE
+[17:13:39.921][C][logger:226]:   Log Baud Rate: 115200
+[17:13:39.921][C][logger:226]:   Hardware UART: USB_SERIAL_JTAG
+[17:13:39.922][C][logger:235]:   Task Log Buffer Size: 768 bytes
+[17:13:39.923][C][logger:241]:   Level for 'api': VERBOSE
+[17:13:39.923][C][logger:241]:   Level for 'api.connection': VERBOSE
+[17:13:39.924][C][logger:241]:   Level for 'modem': WARN
+[17:13:39.925][C][logger:241]:   Level for 'modem_handler': WARN
+[17:13:39.926][I][logger:254]: VERBOSE logging is active — performance impact, short-term debugging only
+[17:13:39.927][I][logger:254]:   Set log level to DEBUG or lower for long-term use.
+[17:13:39.954][C][gpio.output:010]: Binary Output:
+[17:13:39.954][C][gpio.output:152]:   Pin: GPIO18
+[17:13:39.964][C][gpio.output:010]: Binary Output:
+[17:13:39.965][C][gpio.output:152]:   Pin: GPIO17
+[17:13:39.966][D][main:1298]: SIM7670G PWRKEY pulsed; modem booting in background
+[17:13:39.981][C][switch.gpio:088]: GPIO Switch 'Status LED'
+[17:13:39.981][C][switch.gpio:088]:   Restore Mode: always OFF
+[17:13:39.982][C][switch.gpio:152]:   Pin: GPIO12
+[17:13:40.044][C][gps:012]: GPS:
+[17:13:40.045][C][gps:017]:   Latitude 'Latitude'
+[17:13:40.046][C][gps:017]:     State Class: 'measurement'
+[17:13:40.046][C][gps:017]:     Unit of Measurement: '°'
+[17:13:40.046][C][gps:017]:     Accuracy Decimals: 6
+[17:13:40.047][C][gps:223]:     Icon: 'mdi:latitude'
+[17:13:40.047][C][gps:017]:   Longitude 'Longitude'
+[17:13:40.048][C][gps:017]:     State Class: 'measurement_angle'
+[17:13:40.048][C][gps:017]:     Unit of Measurement: '°'
+[17:13:40.048][C][gps:017]:     Accuracy Decimals: 6
+[17:13:40.049][C][gps:223]:     Icon: 'mdi:longitude'
+[17:13:40.049][C][gps:017]:   Speed 'Speed'
+[17:13:40.050][C][gps:017]:     State Class: 'measurement'
+[17:13:40.050][C][gps:017]:     Unit of Measurement: 'km/h'
+[17:13:40.051][C][gps:017]:     Accuracy Decimals: 3
+[17:13:40.051][C][gps:232]:     Device Class: 'speed'
+[17:13:40.052][C][gps:223]:     Icon: 'mdi:speedometer'
+[17:13:40.052][C][gps:017]:   Course 'Course'
+[17:13:40.053][C][gps:017]:     State Class: 'measurement_angle'
+[17:13:40.053][C][gps:017]:     Unit of Measurement: '°'
+[17:13:40.053][C][gps:017]:     Accuracy Decimals: 2
+[17:13:40.054][C][gps:223]:     Icon: 'mdi:compass'
+[17:13:40.054][C][gps:017]:   Altitude 'Altitude'
+[17:13:40.055][C][gps:017]:     State Class: 'measurement'
+[17:13:40.055][C][gps:017]:     Unit of Measurement: 'm'
+[17:13:40.056][C][gps:017]:     Accuracy Decimals: 2
+[17:13:40.056][C][gps:223]:     Icon: 'mdi:altimeter'
+[17:13:40.057][C][gps:017]:   Satellites 'GPS Satellites'
+[17:13:40.057][C][gps:017]:     State Class: 'measurement'
+[17:13:40.057][C][gps:017]:     Unit of Measurement: ''
+[17:13:40.058][C][gps:017]:     Accuracy Decimals: 0
+[17:13:40.058][C][gps:223]:     Icon: 'mdi:satellite-variant'
+[17:13:40.059][C][gps:017]:   HDOP 'GPS HDOP'
+[17:13:40.059][C][gps:017]:     State Class: 'measurement'
+[17:13:40.060][C][gps:017]:     Unit of Measurement: ''
+[17:13:40.060][C][gps:017]:     Accuracy Decimals: 3
+[17:13:40.061][C][gps:223]:     Icon: 'mdi:circle-double'
+[17:13:40.072][C][uptime.sensor:017]: Uptime Sensor 'Uptime'
+[17:13:40.072][C][uptime.sensor:017]:   State Class: 'total_increasing'
+[17:13:40.072][C][uptime.sensor:017]:   Unit of Measurement: 's'
+[17:13:40.073][C][uptime.sensor:017]:   Accuracy Decimals: 0
+[17:13:40.073][C][uptime.sensor:232]:   Device Class: 'duration'
+[17:13:40.074][C][uptime.sensor:223]:   Icon: 'mdi:timer-outline'
+[17:13:40.075][C][uptime.sensor:019]:   Type: Seconds
+[17:13:40.102][C][output.switch:088]: Output Switch 'Modem PWRKEY'
+[17:13:40.102][C][output.switch:088]:   Restore Mode: always OFF
+[17:13:40.114][C][output.switch:088]: Output Switch 'Modem Reset'
+[17:13:40.114][C][output.switch:088]:   Restore Mode: always OFF
+[17:13:40.154][C][time:051]: Timezone: UTC+10:00
+[17:13:40.156][C][time:055]: Current time: 1970-01-01 10:51:01
+[17:13:40.183][C][adc.esp32:017]: ADC Sensor 'Battery Voltage'
+[17:13:40.183][C][adc.esp32:017]:   State Class: 'measurement'
+[17:13:40.184][C][adc.esp32:017]:   Unit of Measurement: 'V'
+[17:13:40.184][C][adc.esp32:017]:   Accuracy Decimals: 2
+[17:13:40.184][C][adc.esp32:232]:   Device Class: 'voltage'
+[17:13:40.185][C][adc.esp32:152]:   Pin: GPIO4
+[17:13:40.186][C][adc.esp32:125]:   Channel:       3
+[17:13:40.186][C][adc.esp32:125]:   Unit:          ADC1
+[17:13:40.186][C][adc.esp32:125]:   Attenuation:   12 dB
+[17:13:40.186][C][adc.esp32:125]:   Samples:       1
+[17:13:40.187][C][adc.esp32:125]:   Sampling mode: average
+[17:13:40.187][C][adc.esp32:125]:   Setup Status:
+[17:13:40.187][C][adc.esp32:125]:     Handle Init:  OK
+[17:13:40.187][C][adc.esp32:125]:     Config:       OK
+[17:13:40.188][C][adc.esp32:125]:     Calibration:  OK
+[17:13:40.188][C][adc.esp32:125]:     Overall Init: OK
+[17:13:40.189][C][adc.esp32:451]:   Update Interval: 60.0s
+[17:13:40.200][C][wifi_info:016]: SSID 'WiFi SSID'
+[17:13:40.215][C][wifi_info:016]: IP Address 'WiFi IP'
+[17:13:40.227][C][version.text_sensor:016]: Version Text Sensor 'ESPHome Version'
+[17:13:40.228][C][version.text_sensor:223]:   Icon: 'mdi:new-box'
+[17:13:40.243][C][status:016]: Status Binary Sensor 'Status'
+[17:13:40.243][C][status:232]:   Device Class: 'connectivity'
+[17:13:40.281][C][wifi:1505]: WiFi:
+[17:13:40.281][C][wifi:1505]:   Local MAC: E0:72:A1:CC:28:10
+[17:13:40.281][C][wifi:1505]:   Connected: NO
+[17:13:40.296][C][esphome.ota:071]: Over-The-Air updates:
+[17:13:40.296][C][esphome.ota:071]:   Address: :3232
+[17:13:40.296][C][esphome.ota:071]:   Version: 2
+[17:13:40.297][C][esphome.ota:078]:   Password configured
+[17:13:40.307][C][safe_mode:026]: Safe Mode:
+[17:13:40.308][C][safe_mode:026]:   Successful after: 60s
+[17:13:40.308][C][safe_mode:026]:   Invoke after: 10 attempts
+[17:13:40.308][C][safe_mode:026]:   Duration: 300s
+[17:13:40.309][C][safe_mode:043]:   Bootloader rollback: support unknown
+[17:13:40.321][C][api:235]: Server:
+[17:13:40.322][C][api:235]:   Address: :6053
+[17:13:40.322][C][api:235]:   Listen backlog: 4
+[17:13:40.322][C][api:235]:   Max connections: 8
+[17:13:40.323][C][api:242]:   Noise encryption: YES
+[17:13:40.337][C][wifi_signal.sensor:017]: WiFi Signal 'WiFi Signal'
+[17:13:40.337][C][wifi_signal.sensor:017]:   State Class: 'measurement'
+[17:13:40.338][C][wifi_signal.sensor:017]:   Unit of Measurement: 'dBm'
+[17:13:40.338][C][wifi_signal.sensor:017]:   Accuracy Decimals: 0
+[17:13:40.339][C][wifi_signal.sensor:232]:   Device Class: 'signal_strength'
+[17:13:40.349][C][mdns:194]: mDNS:
+[17:13:40.350][C][mdns:194]:   Hostname: esp-tracker-1
+[17:13:40.350][V][mdns:199]:   Services:
+[17:13:40.351][V][mdns:201]:   - _esphomelib, _tcp, 6053
+[17:13:40.351][V][mdns:204]:     TXT: friendly_name = ESP Tracker 1
+[17:13:40.352][V][mdns:204]:     TXT: version = 2026.4.5
+[17:13:40.353][V][mdns:204]:     TXT: mac = e072a1cc2810
+[17:13:40.353][V][mdns:204]:     TXT: platform = ESP32
+[17:13:40.354][V][mdns:204]:     TXT: board = esp32-s3-devkitc-1
+[17:13:40.355][V][mdns:204]:     TXT: network = wifi
+[17:13:40.356][V][mdns:204]:     TXT: api_encryption = Noise_NNpsk0_25519_ChaChaPoly_SHA256
+[17:13:40.680][V][adc.common:070]: 'Battery Voltage': Voltage=0.0100V
+[17:13:40.680][V][sensor:077]: 'Battery Voltage': Received new state 0.010000
+[17:13:40.681][V][sensor:125]: 'Battery Voltage' >> 0.02 V
+[17:13:42.257][I][GNSS:199]: GNSS engine powered on
+[17:13:42.266][W][GNSS:254]: CGNSSINFO malformed: +CGNSSINFO: ,,,,,,,,
+[17:13:42.932][W][modem:249]: Exiting DATA_MODE. (long blocking call, make sur to have a long WDT!)
+[17:14:15.960][W][component:522]: modem took a long time for an operation (33033 ms), max is 30 ms
+[17:14:15.961][E][wifi:1421]: Scan timeout
+[17:14:15.962][D][wifi:1828]: Retry phase: INITIAL_CONNECT → SCAN_CONNECTING
+[17:14:15.962][D][wifi:1277]: Starting scan
+[17:14:15.963][V][wifi_esp32:229]: Enabling STA
+[17:14:15.964][W][wifi_esp32:251]: esp_wifi_set_mode failed: ESP_ERR_WIFI_NOT_INIT
+[17:14:15.965][V][sensor:077]: 'Uptime': Received new state 36.235001
+[17:14:15.966][V][sensor:125]: 'Uptime' >> 36 s
+[17:14:15.975][W][GNSS:254]: CGNSSINFO malformed: +CGNSSINFO: ,,,,,,,,
+[17:14:15.981][W][modem:249]: Exiting DATA_MODE. (long blocking call, make sur to have a long WDT!)
+[17:14:49.001][D][main:486]: Modem synced (network registered)
+[17:14:49.002][W][component:522]: modem took a long time for an operation (33026 ms), max is 30 ms
+[17:14:49.003][E][wifi:1421]: Scan timeout
+[17:14:49.004][D][wifi:1828]: Retry phase: SCAN_CONNECTING → RETRY_HIDDEN
+[17:14:49.005][D][wifi:561]: Hidden candidate [redacted] at index 0
+[17:14:49.006][I][wifi:1076]: Connecting to [redacted] [redacted] (priority 0, attempt 1/1 in phase RETRY_HIDDEN)...
+[17:14:49.007][V][wifi:1082]: Connection Params:
+[17:14:49.007][V][wifi:1082]:   SSID: 'redacted'
+[17:14:49.008][V][wifi:1089]:   BSSID: Not Set
+[17:14:49.008][V][wifi:1119]:   Password: [redacted]
+[17:14:49.009][V][wifi:1126]:   Channel not set
+[17:14:49.009][V][wifi:1143]:   Using DHCP IP
+[17:14:49.010][V][wifi:1145]:   Hidden: NO
+[17:14:49.010][V][wifi_esp32:229]: Enabling STA
+[17:14:49.011][W][wifi_esp32:251]: esp_wifi_set_mode failed: ESP_ERR_WIFI_NOT_INIT
+[17:14:49.012][E][wifi:1155]: wifi_sta_connect_ failed
+[17:14:49.013][I][safe_mode:091]: Boot seems successful; resetting boot loop counter
+[17:14:49.022][W][GNSS:254]: CGNSSINFO malformed: +CGNSSINFO: ,,,,,,,,
+[17:14:49.024][V][adc.common:070]: 'Battery Voltage': Voltage=0.0090V
+[17:14:49.025][V][sensor:077]: 'Battery Voltage': Received new state 0.009000
+[17:14:49.026][V][sensor:125]: 'Battery Voltage' >> 0.02 V
+[17:14:49.026][V][preferences:121]: Saving 1 items...
+[17:14:49.032][V][preferences:132]: sync: key: 233825507, len: 4
+[17:14:49.033][D][preferences:152]: Writing 1 items: 0 cached, 1 written, 0 failed
+[17:14:49.423][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[17:14:49.438][W][modem:340]: Modem not yet ready to connect
+[17:14:50.469][W][wifi:1671]: Unknown connection status 0
+[17:14:50.470][D][wifi:1828]: Retry phase: RETRY_HIDDEN → RESTARTING
+[17:14:50.471][W][wifi:722]: Restarting adapter
+[17:14:50.976][W][wifi:1671]: Unknown connection status 0
+[17:14:50.977][D][wifi:1828]: Retry phase: RESTARTING → SCAN_CONNECTING
+[17:14:50.977][D][wifi:1277]: Starting scan
+[17:14:50.978][V][wifi_esp32:229]: Enabling STA
+[17:14:50.979][W][wifi_esp32:251]: esp_wifi_set_mode failed: ESP_ERR_WIFI_NOT_INIT
+[17:14:54.690][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[17:14:54.704][W][modem:340]: Modem not yet ready to connect
+[17:14:59.952][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[17:14:59.967][W][modem:340]: Modem not yet ready to connect
+[17:15:05.214][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[17:15:05.229][W][modem:340]: Modem not yet ready to connect
+[17:15:09.070][I][GNSS:213]: No GNSS fix yet
+[17:15:09.071][W][component:522]: interval took a long time for an operation (56 ms), max is 30 ms
+[17:15:10.481][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[17:15:10.495][W][modem:340]: Modem not yet ready to connect
+[17:15:15.743][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[17:15:15.757][W][modem:340]: Modem not yet ready to connect
+[17:15:16.790][V][sensor:077]: 'Uptime': Received new state 97.058998
+[17:15:16.791][V][sensor:125]: 'Uptime' >> 97 s
+[17:15:21.006][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[17:15:21.021][W][modem:340]: Modem not yet ready to connect
+[17:15:22.052][E][wifi:1421]: Scan timeout
+[17:15:22.053][D][wifi:1828]: Retry phase: SCAN_CONNECTING → RETRY_HIDDEN
+[17:15:22.054][D][wifi:561]: Hidden candidate [redacted] at index 0
+[17:15:22.056][I][wifi:1076]: Connecting to [redacted] [redacted] (priority 0, attempt 1/1 in phase RETRY_HIDDEN)...
+[17:15:22.056][V][wifi:1082]: Connection Params:
+[17:15:22.056][V][wifi:1082]:   SSID: 'redacted'
+[17:15:22.057][V][wifi:1089]:   BSSID: Not Set
+[17:15:22.058][V][wifi:1119]:   Password: [redacted]
+[17:15:22.058][V][wifi:1126]:   Channel not set
+[17:15:22.059][V][wifi:1143]:   Using DHCP IP
+[17:15:22.059][V][wifi:1145]:   Hidden: NO
+[17:15:22.060][V][wifi_esp32:229]: Enabling STA
+[17:15:22.061][W][wifi_esp32:251]: esp_wifi_set_mode failed: ESP_ERR_WIFI_NOT_INIT
+[17:15:22.061][E][wifi:1155]: wifi_sta_connect_ failed
+[17:15:22.566][W][wifi:1671]: Unknown connection status 0
+[17:15:22.567][D][wifi:1828]: Retry phase: RETRY_HIDDEN → RESTARTING
+[17:15:22.567][W][wifi:722]: Restarting adapter
+[17:15:23.074][W][wifi:1671]: Unknown connection status 0
+[17:15:23.075][D][wifi:1828]: Retry phase: RESTARTING → SCAN_CONNECTING
+[17:15:23.075][D][wifi:1277]: Starting scan
+[17:15:23.076][V][wifi_esp32:229]: Enabling STA
+[17:15:23.077][W][wifi_esp32:251]: esp_wifi_set_mode failed: ESP_ERR_WIFI_NOT_INIT
+[17:15:26.270][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[17:15:26.285][W][modem:340]: Modem not yet ready to connect
+❓ 
