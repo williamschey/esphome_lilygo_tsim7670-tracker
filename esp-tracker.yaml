@@ -48,6 +48,12 @@ external_components:
   - source: github://pr#6721
     components: [ modem ]
     refresh: 1d
+  # PR#7147 patches the wifi component so it can coexist with another component
+  # (modem/ethernet) that has already called esp_netif_init() and the IDF event
+  # loop. Without it, wifi STA fails with ESP_ERR_WIFI_NOT_INIT.
+  - source: github://pr#7147
+    components: [ wifi ]
+    refresh: 1d
   - source: github://oarcher/piotech@main
     components: [ nulluart ]
     refresh: 1d
