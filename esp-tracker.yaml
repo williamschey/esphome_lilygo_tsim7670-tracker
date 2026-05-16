@@ -74,8 +74,7 @@ modem:
   tx_pin: GPIO11      # ESP32 TX  → modem RX (MODEM_TX_PIN on LilyGo schematic)
   # baud: 115200
   on_sync:
-    - logger.log: "Modem synced — enabling GNSS"
-    - modem.send_at: "AT+CGNSSPWR=1"
+    - logger.log: "Modem synced (network registered)"
   on_connect:
     - logger.log: "Cellular PPP up"
   on_disconnect:
@@ -175,11 +174,32 @@ time:
   - platform: gps
     id: gps_time
 
+globals:
+  - id: gnss_powered_on
+    type: bool
+    restore_value: no
+    initial_value: "false"
+
 # Poll the modem's GNSS engine every 20 s and feed synthesized NMEA into gps.
 interval:
   - interval: 20s
     then:
       - lambda: |-
+          // GNSS works without a SIM, so power it on as soon as the modem responds.
+          // We do this lazily here (rather than in on_sync) because on_sync only
+          // fires after cellular network registration, which never happens
+          // without a SIM card.
+          if (!id(gnss_powered_on)) {
+            auto pwr_result = id(atmodem).send_at("AT+CGNSSPWR=1");
+            if (pwr_result.success) {
+              ESP_LOGI("GNSS", "GNSS engine powered on");
+              id(gnss_powered_on) = true;
+            } else {
+              ESP_LOGD("GNSS", "Modem not yet ready for GNSS power-on");
+              return;
+            }
+          }
+
           auto gnssinfo_result = id(atmodem).send_at("AT+CGNSSINFO");
           if (!gnssinfo_result.success) {
             ESP_LOGW("GNSS", "AT+CGNSSINFO failed");
