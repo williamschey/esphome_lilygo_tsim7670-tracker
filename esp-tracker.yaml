@@ -1,6 +1,6 @@
 substitutions:
-  device_name: esp-tracker
-  friendly_name: "ESP Tracker"
+  device_name: esp-tracker-1
+  friendly_name: "ESP Tracker 1"
   # Cellular APN (change to match your SIM provider, e.g. "internet", "iot.1nce.net", ...)
   apn: "internet"
   # Optional SIM PIN — leave blank if your SIM has no PIN
@@ -58,8 +58,6 @@ ota:
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
-
-captive_portal:
 
 modem:
   id: atmodem
