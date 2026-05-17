@@ -1,232 +1,451 @@
 INFO Starting log output from 192.168.4.223 using esphome API
 INFO Successfully resolved esp-tracker-1 @ 192.168.4.223 in 0.000s
-INFO Successfully connected to esp-tracker-1 @ 192.168.4.223 in 5.251s
-INFO Successful handshake with esp-tracker-1 @ 192.168.4.223 in 0.049s
-[18:17:57.929][I][app:154]: ESPHome version 2026.4.5 compiled on 2026-05-17 18:15:25 +1000
-[18:17:57.930][I][app:161]: ESP32 Chip: ESP32-S3 rev0.2, 2 core(s)
-[18:17:57.930][C][logger:219]: Logger:
-[18:17:57.930][C][logger:219]:   Max Level: DEBUG
-[18:17:57.930][C][logger:219]:   Initial Level: DEBUG
-[18:17:57.930][C][logger:226]:   Log Baud Rate: 115200
-[18:17:57.930][C][logger:226]:   Hardware UART: USB_SERIAL_JTAG
-[18:17:57.933][C][logger:235]:   Task Log Buffer Size: 768 bytes
-[18:17:57.934][C][logger:241]:   Level for 'GNSS': DEBUG
-[18:17:57.947][D][api.connection:2409]: Home Assistant 2026.5.2 (192.168.4.84): connected
-[18:17:57.947][C][uart.idf:254]: UART Bus 0:
-[18:17:57.947][C][uart.idf:152]:   TX Pin: GPIO11
-[18:17:57.947][C][uart.idf:152]:   RX Pin: GPIO10
-[18:17:57.955][C][uart.idf:259]:   RX Buffer Size: 1024
-[18:17:57.955][C][uart.idf:259]:   RX Full Threshold: 114
-[18:17:57.955][C][uart.idf:259]:   RX Timeout: 2
-[18:17:57.955][C][uart.idf:268]:   Baud Rate: 115200 baud
-[18:17:57.955][C][uart.idf:268]:   Data Bits: 8
-[18:17:57.955][C][uart.idf:268]:   Parity: NONE
-[18:17:57.955][C][uart.idf:268]:   Stop bits: 1
-[18:17:57.955][C][uart.idf:268]:   Wake on data RX: ENABLED
-[18:17:57.956][C][gpio.output:010]: Binary Output:
-[18:17:57.956][C][gpio.output:152]:   Pin: GPIO18
-[18:17:57.967][C][gpio.output:010]: Binary Output:
-[18:17:57.982][C][gpio.output:152]:   Pin: GPIO17
-[18:17:57.982][C][switch.gpio:088]: GPIO Switch 'Status LED'
-[18:17:57.982][C][switch.gpio:088]:   Restore Mode: always OFF
-[18:17:57.983][C][switch.gpio:152]:   Pin: GPIO12
-[18:17:58.022][C][gps:012]: GPS:
-[18:17:58.024][C][gps:017]:   Latitude 'Latitude'
-[18:17:58.024][C][gps:017]:     State Class: 'measurement'
-[18:17:58.024][C][gps:017]:     Unit of Measurement: '°'
-[18:17:58.024][C][gps:017]:     Accuracy Decimals: 6
-[18:17:58.024][C][gps:223]:     Icon: 'mdi:latitude'
-[18:17:58.024][C][gps:017]:   Longitude 'Longitude'
-[18:17:58.024][C][gps:017]:     State Class: 'measurement_angle'
-[18:17:58.024][C][gps:017]:     Unit of Measurement: '°'
-[18:17:58.024][C][gps:017]:     Accuracy Decimals: 6
-[18:17:58.030][C][gps:223]:     Icon: 'mdi:longitude'
-[18:17:58.031][C][gps:017]:   Speed 'Speed'
-[18:17:58.031][C][gps:017]:     State Class: 'measurement'
-[18:17:58.031][C][gps:017]:     Unit of Measurement: 'km/h'
-[18:17:58.031][C][gps:017]:     Accuracy Decimals: 3
-[18:17:58.031][C][gps:232]:     Device Class: 'speed'
-[18:17:58.031][C][gps:223]:     Icon: 'mdi:speedometer'
-[18:17:58.059][C][gps:017]:   Course 'Course'
-[18:17:58.059][C][gps:017]:     State Class: 'measurement_angle'
-[18:17:58.059][C][gps:017]:     Unit of Measurement: '°'
-[18:17:58.059][C][gps:017]:     Accuracy Decimals: 2
-[18:17:58.059][C][gps:223]:     Icon: 'mdi:compass'
-[18:17:58.060][C][gps:017]:   Altitude 'Altitude'
-[18:17:58.060][C][gps:017]:     State Class: 'measurement'
-[18:17:58.060][C][gps:017]:     Unit of Measurement: 'm'
-[18:17:58.060][C][gps:017]:     Accuracy Decimals: 2
-[18:17:58.060][C][gps:223]:     Icon: 'mdi:altimeter'
-[18:17:58.060][C][gps:017]:   Satellites 'GPS Satellites'
-[18:17:58.060][C][gps:017]:     State Class: 'measurement'
-[18:17:58.060][C][gps:017]:     Unit of Measurement: ''
-[18:17:58.060][C][gps:017]:     Accuracy Decimals: 0
-[18:17:58.061][C][gps:223]:     Icon: 'mdi:satellite-variant'
-[18:17:58.061][C][gps:017]:   HDOP 'GPS HDOP'
-[18:17:58.061][C][gps:017]:     State Class: 'measurement'
-[18:17:58.061][C][gps:017]:     Unit of Measurement: ''
-[18:17:58.061][C][gps:017]:     Accuracy Decimals: 3
-[18:17:58.062][C][gps:223]:     Icon: 'mdi:circle-double'
-[18:17:58.062][C][uptime.sensor:017]: Uptime Sensor 'Uptime'
-[18:17:58.062][C][uptime.sensor:017]:   State Class: 'total_increasing'
-[18:17:58.062][C][uptime.sensor:017]:   Unit of Measurement: 's'
-[18:17:58.062][C][uptime.sensor:017]:   Accuracy Decimals: 0
-[18:17:58.063][C][uptime.sensor:232]:   Device Class: 'duration'
-[18:17:58.063][C][uptime.sensor:223]:   Icon: 'mdi:timer-outline'
-[18:17:58.063][C][uptime.sensor:019]:   Type: Seconds
-[18:17:58.065][C][output.switch:088]: Output Switch 'Modem PWRKEY'
-[18:17:58.065][C][output.switch:088]:   Restore Mode: always OFF
-[18:17:58.100][C][output.switch:088]: Output Switch 'Modem Reset'
-[18:17:58.100][C][output.switch:088]:   Restore Mode: always OFF
-[18:17:58.100][C][time:051]: Timezone: UTC+10:00
-[18:17:58.100][C][time:055]: Current time: 1970-01-01 10:20:05
-[18:17:58.121][C][adc.esp32:017]: ADC Sensor 'Battery Voltage'
-[18:17:58.121][C][adc.esp32:017]:   State Class: 'measurement'
-[18:17:58.121][C][adc.esp32:017]:   Unit of Measurement: 'V'
-[18:17:58.121][C][adc.esp32:017]:   Accuracy Decimals: 2
-[18:17:58.122][C][adc.esp32:232]:   Device Class: 'voltage'
-[18:17:58.122][C][adc.esp32:152]:   Pin: GPIO4
-[18:17:58.122][C][adc.esp32:125]:   Channel:       3
-[18:17:58.122][C][adc.esp32:125]:   Unit:          ADC1
-[18:17:58.122][C][adc.esp32:125]:   Attenuation:   12 dB
-[18:17:58.122][C][adc.esp32:125]:   Samples:       1
-[18:17:58.122][C][adc.esp32:125]:   Sampling mode: average
-[18:17:58.122][C][adc.esp32:125]:   Setup Status:
-[18:17:58.122][C][adc.esp32:125]:     Handle Init:  OK
-[18:17:58.122][C][adc.esp32:125]:     Config:       OK
-[18:17:58.122][C][adc.esp32:125]:     Calibration:  OK
-[18:17:58.122][C][adc.esp32:125]:     Overall Init: OK
-[18:17:58.134][C][adc.esp32:451]:   Update Interval: 60.0s
-[18:17:58.146][C][wifi_info:016]: SSID 'WiFi SSID'
-[18:17:58.146][C][wifi_info:016]: IP Address 'WiFi IP'
-[18:17:58.146][C][version.text_sensor:016]: Version Text Sensor 'ESPHome Version'
-[18:17:58.151][C][version.text_sensor:223]:   Icon: 'mdi:new-box'
-[18:17:58.176][C][status:016]: Status Binary Sensor 'Status'
-[18:17:58.176][C][status:232]:   Device Class: 'connectivity'
-[18:17:58.176][C][wifi:1505]: WiFi:
-[18:17:58.176][C][wifi:1505]:   Local MAC: E0:72:A1:CC:28:10
-[18:17:58.176][C][wifi:1505]:   Connected: YES
-[18:17:58.179][C][wifi:1216]:   IP Address: 192.168.4.223
-[18:17:58.197][C][wifi:1227]:   SSID: [redacted]
-[18:17:58.197][C][wifi:1227]:   BSSID: [redacted]
-[18:17:58.197][C][wifi:1227]:   Hostname: 'esp-tracker-1'
-[18:17:58.197][C][wifi:1227]:   Signal strength: -50 dB ▂▄▆█
-[18:17:58.197][C][wifi:1227]:   Channel: 11
-[18:17:58.197][C][wifi:1227]:   Subnet: 255.255.252.0
-[18:17:58.197][C][wifi:1227]:   Gateway: 192.168.4.1
-[18:17:58.197][C][wifi:1227]:   DNS1: 192.168.4.1
-[18:17:58.197][C][wifi:1227]:   DNS2: 0.0.0.0
-[18:17:58.198][C][esphome.ota:071]: Over-The-Air updates:
-[18:17:58.198][C][esphome.ota:071]:   Address: esp-tracker-1.local:3232
-[18:17:58.198][C][esphome.ota:071]:   Version: 2
-[18:17:58.199][C][esphome.ota:078]:   Password configured
-[18:17:58.201][C][safe_mode:026]: Safe Mode:
-[18:17:58.201][C][safe_mode:026]:   Successful after: 60s
-[18:17:58.201][C][safe_mode:026]:   Invoke after: 10 attempts
-[18:17:58.201][C][safe_mode:026]:   Duration: 300s
-[18:17:58.206][C][safe_mode:043]:   Bootloader rollback: supported
-[18:17:58.206][C][api:235]: Server:
-[18:17:58.206][C][api:235]:   Address: esp-tracker-1.local:6053
-[18:17:58.206][C][api:235]:   Listen backlog: 4
-[18:17:58.206][C][api:235]:   Max connections: 8
-[18:17:58.206][C][api:242]:   Noise encryption: YES
-[18:17:58.223][C][wifi_signal.sensor:017]: WiFi Signal 'WiFi Signal'
-[18:17:58.223][C][wifi_signal.sensor:017]:   State Class: 'measurement'
-[18:17:58.223][C][wifi_signal.sensor:017]:   Unit of Measurement: 'dBm'
-[18:17:58.223][C][wifi_signal.sensor:017]:   Accuracy Decimals: 0
-[18:17:58.267][C][wifi_signal.sensor:232]:   Device Class: 'signal_strength'
-[18:17:58.268][C][mdns:194]: mDNS:
-[18:17:58.268][C][mdns:194]:   Hostname: esp-tracker-1
-[18:17:58.434][S][binary_sensor]: 'Status' >> ON
+INFO Successfully connected to esp-tracker-1 @ 192.168.4.223 in 5.119s
+INFO Successful handshake with esp-tracker-1 @ 192.168.4.223 in 0.054s
+[18:55:31.052][I][app:154]: ESPHome version 2026.4.5 compiled on 2026-05-17 18:52:56 +1000
+[18:55:31.052][I][app:161]: ESP32 Chip: ESP32-S3 rev0.2, 2 core(s)
+[18:55:31.052][C][logger:219]: Logger:
+[18:55:31.052][C][logger:219]:   Max Level: DEBUG
+[18:55:31.052][C][logger:219]:   Initial Level: DEBUG
+[18:55:31.052][C][logger:226]:   Log Baud Rate: 115200
+[18:55:31.052][C][logger:226]:   Hardware UART: USB_SERIAL_JTAG
+[18:55:31.056][C][logger:235]:   Task Log Buffer Size: 768 bytes
+[18:55:31.061][C][logger:241]:   Level for 'GNSS': DEBUG
+[18:55:31.064][D][api.connection:2409]: Home Assistant 2026.5.2 (192.168.4.84): connected
+[18:55:31.083][C][uart.idf:254]: UART Bus 0:
+[18:55:31.083][C][uart.idf:152]:   TX Pin: GPIO11
+[18:55:31.083][C][uart.idf:152]:   RX Pin: GPIO10
+[18:55:31.084][C][uart.idf:259]:   RX Buffer Size: 1024
+[18:55:31.084][C][uart.idf:259]:   RX Full Threshold: 114
+[18:55:31.084][C][uart.idf:259]:   RX Timeout: 2
+[18:55:31.084][C][uart.idf:268]:   Baud Rate: 115200 baud
+[18:55:31.084][C][uart.idf:268]:   Data Bits: 8
+[18:55:31.084][C][uart.idf:268]:   Parity: NONE
+[18:55:31.084][C][uart.idf:268]:   Stop bits: 1
+[18:55:31.084][C][uart.idf:268]:   Wake on data RX: ENABLED
+[18:55:31.114][C][gpio.output:010]: Binary Output:
+[18:55:31.114][C][gpio.output:152]:   Pin: GPIO18
+[18:55:31.114][C][gpio.output:010]: Binary Output:
+[18:55:31.114][C][gpio.output:152]:   Pin: GPIO17
+[18:55:31.117][C][switch.gpio:088]: GPIO Switch 'Status LED'
+[18:55:31.117][C][switch.gpio:088]:   Restore Mode: always OFF
+[18:55:31.117][C][switch.gpio:152]:   Pin: GPIO12
+[18:55:31.117][C][switch.gpio:088]: GPIO Switch 'Modem GPS Enable'
+[18:55:31.117][C][switch.gpio:088]:   Restore Mode: always ON
+[18:55:31.117][C][switch.gpio:152]:   Pin: GPIO4
+[18:55:31.161][C][gps:012]: GPS:
+[18:55:31.162][C][gps:017]:   Latitude 'Latitude'
+[18:55:31.162][C][gps:017]:     State Class: 'measurement'
+[18:55:31.162][C][gps:017]:     Unit of Measurement: '°'
+[18:55:31.162][C][gps:017]:     Accuracy Decimals: 6
+[18:55:31.162][C][gps:223]:     Icon: 'mdi:latitude'
+[18:55:31.162][C][gps:017]:   Longitude 'Longitude'
+[18:55:31.162][C][gps:017]:     State Class: 'measurement_angle'
+[18:55:31.162][C][gps:017]:     Unit of Measurement: '°'
+[18:55:31.162][C][gps:017]:     Accuracy Decimals: 6
+[18:55:31.176][C][gps:223]:     Icon: 'mdi:longitude'
+[18:55:31.176][C][gps:017]:   Speed 'Speed'
+[18:55:31.176][C][gps:017]:     State Class: 'measurement'
+[18:55:31.176][C][gps:017]:     Unit of Measurement: 'km/h'
+[18:55:31.176][C][gps:017]:     Accuracy Decimals: 3
+[18:55:31.177][C][gps:232]:     Device Class: 'speed'
+[18:55:31.177][C][gps:223]:     Icon: 'mdi:speedometer'
+[18:55:31.177][C][gps:017]:   Course 'Course'
+[18:55:31.177][C][gps:017]:     State Class: 'measurement_angle'
+[18:55:31.177][C][gps:017]:     Unit of Measurement: '°'
+[18:55:31.177][C][gps:017]:     Accuracy Decimals: 2
+[18:55:31.177][C][gps:223]:     Icon: 'mdi:compass'
+[18:55:31.177][C][gps:017]:   Altitude 'Altitude'
+[18:55:31.177][C][gps:017]:     State Class: 'measurement'
+[18:55:31.177][C][gps:017]:     Unit of Measurement: 'm'
+[18:55:31.177][C][gps:017]:     Accuracy Decimals: 2
+[18:55:31.178][C][gps:223]:     Icon: 'mdi:altimeter'
+[18:55:31.178][C][gps:017]:   Satellites 'GPS Satellites'
+[18:55:31.178][C][gps:017]:     State Class: 'measurement'
+[18:55:31.178][C][gps:017]:     Unit of Measurement: ''
+[18:55:31.178][C][gps:017]:     Accuracy Decimals: 0
+[18:55:31.178][C][gps:223]:     Icon: 'mdi:satellite-variant'
+[18:55:31.179][C][gps:017]:   HDOP 'GPS HDOP'
+[18:55:31.179][C][gps:017]:     State Class: 'measurement'
+[18:55:31.179][C][gps:017]:     Unit of Measurement: ''
+[18:55:31.179][C][gps:017]:     Accuracy Decimals: 3
+[18:55:31.179][C][gps:223]:     Icon: 'mdi:circle-double'
+[18:55:31.184][C][uptime.sensor:017]: Uptime Sensor 'Uptime'
+[18:55:31.184][C][uptime.sensor:017]:   State Class: 'total_increasing'
+[18:55:31.184][C][uptime.sensor:017]:   Unit of Measurement: 's'
+[18:55:31.184][C][uptime.sensor:017]:   Accuracy Decimals: 0
+[18:55:31.184][C][uptime.sensor:232]:   Device Class: 'duration'
+[18:55:31.184][C][uptime.sensor:223]:   Icon: 'mdi:timer-outline'
+[18:55:31.184][C][uptime.sensor:019]:   Type: Seconds
+[18:55:31.199][C][output.switch:088]: Output Switch 'Modem PWRKEY'
+[18:55:31.199][C][output.switch:088]:   Restore Mode: always OFF
+[18:55:31.208][C][output.switch:088]: Output Switch 'Modem Reset'
+[18:55:31.208][C][output.switch:088]:   Restore Mode: always OFF
+[18:55:31.245][C][time:051]: Timezone: UTC+10:00
+[18:55:31.248][C][time:055]: Current time: 1970-01-01 10:57:38
+[18:55:31.256][C][wifi_info:016]: SSID 'WiFi SSID'
+[18:55:31.260][C][wifi_info:016]: IP Address 'WiFi IP'
+[18:55:31.272][C][version.text_sensor:016]: Version Text Sensor 'ESPHome Version'
+[18:55:31.272][C][version.text_sensor:223]:   Icon: 'mdi:new-box'
+[18:55:31.278][C][status:016]: Status Binary Sensor 'Status'
+[18:55:31.297][C][status:232]:   Device Class: 'connectivity'
+[18:55:31.302][C][wifi:1505]: WiFi:
+[18:55:31.302][C][wifi:1505]:   Local MAC: E0:72:A1:CC:28:10
+[18:55:31.302][C][wifi:1505]:   Connected: YES
+[18:55:31.304][C][wifi:1216]:   IP Address: 192.168.4.223
+[18:55:31.318][C][wifi:1227]:   SSID: [redacted]
+[18:55:31.318][C][wifi:1227]:   BSSID: [redacted]
+[18:55:31.318][C][wifi:1227]:   Hostname: 'esp-tracker-1'
+[18:55:31.318][C][wifi:1227]:   Signal strength: -50 dB ▂▄▆█
+[18:55:31.318][C][wifi:1227]:   Channel: 11
+[18:55:31.318][C][wifi:1227]:   Subnet: 255.255.252.0
+[18:55:31.318][C][wifi:1227]:   Gateway: 192.168.4.1
+[18:55:31.318][C][wifi:1227]:   DNS1: 192.168.4.1
+[18:55:31.318][C][wifi:1227]:   DNS2: 0.0.0.0
+[18:55:31.319][S][binary_sensor]: 'Status' >> ON
+[18:55:31.327][C][esphome.ota:071]: Over-The-Air updates:
+[18:55:31.327][C][esphome.ota:071]:   Address: esp-tracker-1.local:3232
+[18:55:31.327][C][esphome.ota:071]:   Version: 2
+[18:55:31.327][C][esphome.ota:078]:   Password configured
+[18:55:31.327][C][safe_mode:026]: Safe Mode:
+[18:55:31.327][C][safe_mode:026]:   Successful after: 60s
+[18:55:31.327][C][safe_mode:026]:   Invoke after: 10 attempts
+[18:55:31.327][C][safe_mode:026]:   Duration: 300s
+[18:55:31.327][C][safe_mode:043]:   Bootloader rollback: supported
+[18:55:31.331][C][api:235]: Server:
+[18:55:31.331][C][api:235]:   Address: esp-tracker-1.local:6053
+[18:55:31.331][C][api:235]:   Listen backlog: 4
+[18:55:31.331][C][api:235]:   Max connections: 8
+[18:55:31.334][C][api:242]:   Noise encryption: YES
+[18:55:31.347][C][wifi_signal.sensor:017]: WiFi Signal 'WiFi Signal'
+[18:55:31.347][C][wifi_signal.sensor:017]:   State Class: 'measurement'
+[18:55:31.347][C][wifi_signal.sensor:017]:   Unit of Measurement: 'dBm'
+[18:55:31.347][C][wifi_signal.sensor:017]:   Accuracy Decimals: 0
+[18:55:31.347][C][wifi_signal.sensor:232]:   Device Class: 'signal_strength'
+[18:55:31.351][C][mdns:194]: mDNS:
+[18:55:31.351][C][mdns:194]:   Hostname: esp-tracker-1
 
-[18:18:12.278]+CGNSSINFO: ,,,,,,,,
+[18:55:47.128]+CGNSSINFO: ,,,,,,,,
 
-[18:18:12.278]OK
-[18:18:12.278]'
-[18:18:12.281][I][GNSS:273]: No GNSS fix yet
+[18:55:47.128]OK
+[18:55:47.128]'
+[18:55:47.146][I][GNSS:282]: No GNSS fix yet
 
-[18:18:32.278]+CGNSSINFO: ,,,,,,,,
+[18:56:07.144]+CGNSSINFO: ,,,,,,,,
 
-[18:18:32.278]OK
-[18:18:32.278]'
-[18:18:32.281][I][GNSS:273]: No GNSS fix yet
-[18:18:52.112][I][safe_mode:091]: Boot seems successful; resetting boot loop counter
+[18:56:07.144]OK
+[18:56:07.144]'
+[18:56:07.151][I][GNSS:282]: No GNSS fix yet
+[18:56:25.474][I][safe_mode:091]: Boot seems successful; resetting boot loop counter
+[18:56:26.158][S][sensor]: 'WiFi Signal' >> -50 dBm
 
-[18:18:52.282]+CGNSSINFO: ,,,,,,,,
+[18:56:27.133]+CGNSSINFO: ,,,,,,,,
 
-[18:18:52.282]OK
-[18:18:52.282]'
-[18:18:52.285][I][GNSS:273]: No GNSS fix yet
-[18:18:54.431][S][sensor]: 'WiFi Signal' >> -50 dBm
-[18:18:54.555][D][preferences:152]: Writing 1 items: 0 cached, 1 written, 0 failed
-[18:18:55.659][S][sensor]: 'Uptime' >> 64 s
-[18:18:56.671][S][sensor]: 'Battery Voltage' >> 0.02 V
+[18:56:27.133]OK
+[18:56:27.133]'
+[18:56:27.142][I][GNSS:282]: No GNSS fix yet
+[18:56:29.224][D][preferences:152]: Writing 1 items: 0 cached, 1 written, 0 failed
+[18:56:29.305][S][sensor]: 'Uptime' >> 64 s
 
-[18:19:12.279]+CGNSSINFO: ,,,,,,,,
+[18:56:47.136]+CGNSSINFO: ,,,,,,,,
 
-[18:19:12.279]OK
-[18:19:12.279]'
-[18:19:12.326][I][GNSS:273]: No GNSS fix yet
+[18:56:47.136]OK
+[18:56:47.136]'
+[18:56:47.181][I][GNSS:282]: No GNSS fix yet
 
-[18:19:32.291]+CGNSSINFO: ,,,,,,,,
+[18:57:07.136]+CGNSSINFO: ,,,,,,,,
 
-[18:19:32.291]OK
-[18:19:32.291]'
-[18:19:32.293][I][GNSS:273]: No GNSS fix yet
+[18:57:07.136]OK
+[18:57:07.136]'
+[18:57:07.144][I][GNSS:282]: No GNSS fix yet
+[18:57:26.158][S][sensor]: 'WiFi Signal' >> -50 dBm
 
-[18:19:52.280]+CGNSSINFO: ,,,,,,,,
+[18:57:27.138]+CGNSSINFO: ,,,,,,,,
 
-[18:19:52.280]OK
-[18:19:52.280]'
-[18:19:52.287][I][GNSS:273]: No GNSS fix yet
-[18:19:54.428][S][sensor]: 'WiFi Signal' >> -50 dBm
-[18:19:55.657][S][sensor]: 'Uptime' >> 124 s
-[18:19:56.673][S][sensor]: 'Battery Voltage' >> 0.02 V
+[18:57:27.138]OK
+[18:57:27.138]'
+[18:57:27.141][I][GNSS:282]: No GNSS fix yet
+[18:57:29.305][S][sensor]: 'Uptime' >> 124 s
 
-[18:20:12.285]+CGNSSINFO: ,,,,,,,,
+[18:57:47.136]+CGNSSINFO: ,,,,,,,,
 
-[18:20:12.285]OK
-[18:20:12.285]'
-[18:20:12.334][I][GNSS:273]: No GNSS fix yet
+[18:57:47.136]OK
+[18:57:47.136]'
+[18:57:47.179][I][GNSS:282]: No GNSS fix yet
 
-[18:20:32.286]+CGNSSINFO: ,,,,,,,,
+[18:58:07.139]+CGNSSINFO: ,,,,,,,,
 
-[18:20:32.286]OK
-[18:20:32.286]'
-[18:20:32.286][I][GNSS:273]: No GNSS fix yet
+[18:58:07.139]OK
+[18:58:07.139]'
+[18:58:07.141][I][GNSS:282]: No GNSS fix yet
+[18:58:26.157][S][sensor]: 'WiFi Signal' >> -50 dBm
 
-[18:20:52.285]+CGNSSINFO: ,,,,,,,,
+[18:58:27.139]+CGNSSINFO: ,,,,,,,,
 
-[18:20:52.285]OK
-[18:20:52.285]'
-[18:20:52.287][I][GNSS:273]: No GNSS fix yet
-[18:20:54.429][S][sensor]: 'WiFi Signal' >> -50 dBm
-[18:20:55.656][S][sensor]: 'Uptime' >> 184 s
-[18:20:56.675][S][sensor]: 'Battery Voltage' >> 0.02 V
+[18:58:27.139]OK
+[18:58:27.139]'
+[18:58:27.145][I][GNSS:282]: No GNSS fix yet
+[18:58:29.316][S][sensor]: 'Uptime' >> 184 s
 
-[18:21:12.288]+CGNSSINFO: ,,,,,,,,
+[18:58:47.139]+CGNSSINFO: ,,,,,,,,
 
-[18:21:12.288]OK
-[18:21:12.288]'
-[18:21:12.331][I][GNSS:273]: No GNSS fix yet
+[18:58:47.139]OK
+[18:58:47.139]'
+[18:58:47.184][I][GNSS:282]: No GNSS fix yet
 
-[18:21:32.292]+CGNSSINFO: ,,,,,,,,
+[18:59:07.139]+CGNSSINFO: ,,,,,,,,
 
-[18:21:32.292]OK
-[18:21:32.292]'
-[18:21:32.295][I][GNSS:273]: No GNSS fix yet
+[18:59:07.139]OK
+[18:59:07.139]'
+[18:59:07.142][I][GNSS:282]: No GNSS fix yet
+[18:59:26.160][S][sensor]: 'WiFi Signal' >> -50 dBm
 
-[18:21:52.293]+CGNSSINFO: ,,,,,,,,
+[18:59:27.141]+CGNSSINFO: ,,,,,,,,
 
-[18:21:52.293]OK
-[18:21:52.293]'
-[18:21:52.305][I][GNSS:273]: No GNSS fix yet
-[18:21:54.429][S][sensor]: 'WiFi Signal' >> -50 dBm
-[18:21:55.656][S][sensor]: 'Uptime' >> 244 s
-[18:21:56.677][S][sensor]: 'Battery Voltage' >> 0.02 V
+[18:59:27.141]OK
+[18:59:27.141]'
+[18:59:27.149][I][GNSS:282]: No GNSS fix yet
+[18:59:29.304][S][sensor]: 'Uptime' >> 244 s
 
-[18:22:12.295]+CGNSSINFO: ,,,,,,,,
+[18:59:47.144]+CGNSSINFO: ,,,,,,,,
 
-[18:22:12.295]OK
-[18:22:12.295]'
-[18:22:12.338][I][GNSS:273]: No GNSS fix yet
+[18:59:47.144]OK
+[18:59:47.144]'
+[18:59:47.208][I][GNSS:282]: No GNSS fix yet
+
+[19:00:07.147]+CGNSSINFO: ,,,,,,,,
+
+[19:00:07.147]OK
+[19:00:07.147]'
+[19:00:07.148][I][GNSS:282]: No GNSS fix yet
+[19:00:26.159][S][sensor]: 'WiFi Signal' >> -50 dBm
+
+[19:00:27.146]+CGNSSINFO: ,,,,,,,,
+
+[19:00:27.146]OK
+[19:00:27.146]'
+[19:00:27.149][I][GNSS:282]: No GNSS fix yet
+[19:00:29.309][S][sensor]: 'Uptime' >> 304 s
+[19:00:30.699][D][wifi:2415]: Roam scan (-50 dBm, attempt 1/3)
+
+[19:00:47.159]+CGNSSINFO: ,,,,,,,,
+
+[19:00:47.159]OK
+[19:00:47.159]'
+[19:00:47.202][I][GNSS:282]: No GNSS fix yet
+
+[19:01:07.162]+CGNSSINFO: ,,,,,,,,
+
+[19:01:07.162]OK
+[19:01:07.162]'
+[19:01:07.163][I][GNSS:282]: No GNSS fix yet
+[19:01:26.172][S][sensor]: 'WiFi Signal' >> -50 dBm
+
+[19:01:27.151]+CGNSSINFO: ,,,,,,,,
+
+[19:01:27.151]OK
+[19:01:27.151]'
+[19:01:27.154][I][GNSS:282]: No GNSS fix yet
+[19:01:29.310][S][sensor]: 'Uptime' >> 364 s
+
+[19:01:47.157]+CGNSSINFO: ,,,,,,,,
+
+[19:01:47.157]OK
+[19:01:47.157]'
+[19:01:47.201][I][GNSS:282]: No GNSS fix yet
+
+[19:02:07.152]+CGNSSINFO: ,,,,,,,,
+
+[19:02:07.152]OK
+[19:02:07.152]'
+[19:02:07.154][I][GNSS:282]: No GNSS fix yet
+[19:02:26.159][S][sensor]: 'WiFi Signal' >> -50 dBm
+
+[19:02:27.153]+CGNSSINFO: ,,,,,,,,
+
+[19:02:27.153]OK
+[19:02:27.153]'
+[19:02:27.173][I][GNSS:282]: No GNSS fix yet
+[19:02:29.310][S][sensor]: 'Uptime' >> 424 s
+
+[19:02:47.157]+CGNSSINFO: ,,,,,,,,
+
+[19:02:47.157]OK
+[19:02:47.157]'
+[19:02:47.201][I][GNSS:282]: No GNSS fix yet
+
+[19:03:07.155]+CGNSSINFO: ,,,,,,,,
+
+[19:03:07.155]OK
+[19:03:07.155]'
+[19:03:07.155][I][GNSS:282]: No GNSS fix yet
+[19:03:26.163][S][sensor]: 'WiFi Signal' >> -50 dBm
+
+[19:03:27.156]+CGNSSINFO: ,,,,,,,,
+
+[19:03:27.156]OK
+[19:03:27.156]'
+[19:03:27.159][I][GNSS:282]: No GNSS fix yet
+[19:03:29.324][S][sensor]: 'Uptime' >> 484 s
+
+[19:03:47.156]+CGNSSINFO: ,,,,,,,,
+
+[19:03:47.156]OK
+[19:03:47.156]'
+[19:03:47.202][I][GNSS:282]: No GNSS fix yet
+
+[19:04:07.157]+CGNSSINFO: ,,,,,,,,
+
+[19:04:07.157]OK
+[19:04:07.157]'
+[19:04:07.160][I][GNSS:282]: No GNSS fix yet
+[19:04:26.165][S][sensor]: 'WiFi Signal' >> -50 dBm
+
+[19:04:27.159]+CGNSSINFO: ,,,,,,,,
+
+[19:04:27.159]OK
+[19:04:27.159]'
+[19:04:27.162][I][GNSS:282]: No GNSS fix yet
+[19:04:29.323][S][sensor]: 'Uptime' >> 544 s
+
+[19:04:47.159]+CGNSSINFO: ,,,,,,,,
+
+[19:04:47.159]OK
+[19:04:47.159]'
+[19:04:47.207][I][GNSS:282]: No GNSS fix yet
+
+[19:05:07.162]+CGNSSINFO: ,,,,,,,,
+
+[19:05:07.162]OK
+[19:05:07.162]'
+[19:05:07.164][I][GNSS:282]: No GNSS fix yet
+[19:05:26.165][S][sensor]: 'WiFi Signal' >> -50 dBm
+
+[19:05:27.162]+CGNSSINFO: ,,,,,,,,
+
+[19:05:27.162]OK
+[19:05:27.162]'
+[19:05:27.174][I][GNSS:282]: No GNSS fix yet
+[19:05:29.310][S][sensor]: 'Uptime' >> 604 s
+[19:05:30.705][D][wifi:2415]: Roam scan (-50 dBm, attempt 2/3)
+
+[19:05:47.163]+CGNSSINFO: ,,,,,,,,
+
+[19:05:47.163]OK
+[19:05:47.163]'
+[19:05:47.207][I][GNSS:282]: No GNSS fix yet
+
+[19:06:07.162]+CGNSSINFO: ,,,,,,,,
+
+[19:06:07.162]OK
+[19:06:07.162]'
+[19:06:07.164][I][GNSS:282]: No GNSS fix yet
+[19:06:26.166][S][sensor]: 'WiFi Signal' >> -50 dBm
+
+[19:06:27.162]+CGNSSINFO: ,,,,,,,,
+
+[19:06:27.162]OK
+[19:06:27.162]'
+[19:06:27.170][I][GNSS:282]: No GNSS fix yet
+[19:06:29.310][S][sensor]: 'Uptime' >> 664 s
+
+[19:06:47.164]+CGNSSINFO: ,,,,,,,,
+
+[19:06:47.164]OK
+[19:06:47.164]'
+[19:06:47.210][I][GNSS:282]: No GNSS fix yet
+
+[19:07:07.166]+CGNSSINFO: ,,,,,,,,
+
+[19:07:07.166]OK
+[19:07:07.166]'
+[19:07:07.167][I][GNSS:282]: No GNSS fix yet
+[19:07:26.172][S][sensor]: 'WiFi Signal' >> -50 dBm
+
+[19:07:27.165]+CGNSSINFO: ,,,,,,,,
+
+[19:07:27.165]OK
+[19:07:27.165]'
+[19:07:27.168][I][GNSS:282]: No GNSS fix yet
+[19:07:29.326][S][sensor]: 'Uptime' >> 724 s
+
+[19:07:47.207]+CGNSSINFO: ,,,,,,,,
+
+[19:07:47.207]OK
+[19:07:47.207]'
+[19:07:47.282][I][GNSS:282]: No GNSS fix yet
+
+[19:08:07.166]+CGNSSINFO: ,,,,,,,,
+
+[19:08:07.166]OK
+[19:08:07.166]'
+[19:08:07.168][I][GNSS:282]: No GNSS fix yet
+[19:08:26.168][S][sensor]: 'WiFi Signal' >> -50 dBm
+
+[19:08:27.168]+CGNSSINFO: ,,,,,,,,
+
+[19:08:27.168]OK
+[19:08:27.168]'
+[19:08:27.172][I][GNSS:282]: No GNSS fix yet
+[19:08:29.312][S][sensor]: 'Uptime' >> 784 s
+
+[19:08:47.170]+CGNSSINFO: ,,,,,,,,
+
+[19:08:47.170]OK
+[19:08:47.170]'
+[19:08:47.213][I][GNSS:282]: No GNSS fix yet
+
+[19:09:07.172]+CGNSSINFO: ,,,,,,,,
+
+[19:09:07.172]OK
+[19:09:07.172]'
+[19:09:07.173][I][GNSS:282]: No GNSS fix yet
+[19:09:26.169][S][sensor]: 'WiFi Signal' >> -50 dBm
+
+[19:09:27.177]+CGNSSINFO: ,,,,,,,,
+
+[19:09:27.177]OK
+[19:09:27.177]'
+[19:09:27.180][I][GNSS:282]: No GNSS fix yet
+[19:09:29.314][S][sensor]: 'Uptime' >> 844 s
+
+[19:09:47.173]+CGNSSINFO: ,,,,,,,,
+
+[19:09:47.173]OK
+[19:09:47.173]'
+[19:09:47.221][I][GNSS:282]: No GNSS fix yet
+
+[19:10:07.180]+CGNSSINFO: ,,,,,,,,
+
+[19:10:07.180]OK
+[19:10:07.180]'
+[19:10:07.181][I][GNSS:282]: No GNSS fix yet
+[19:10:26.170][S][sensor]: 'WiFi Signal' >> -50 dBm
+
+[19:10:27.177]+CGNSSINFO: ,,,,,,,,
+
+[19:10:27.177]OK
+[19:10:27.177]'
+[19:10:27.180][I][GNSS:282]: No GNSS fix yet
+[19:10:29.323][S][sensor]: 'Uptime' >> 904 s
+[19:10:30.712][D][wifi:2415]: Roam scan (-50 dBm, attempt 3/3)
+
+[19:10:47.176]+CGNSSINFO: ,,,,,,,,
+
+[19:10:47.176]OK
+[19:10:47.176]'
+[19:10:47.231][I][GNSS:282]: No GNSS fix yet
+
+[19:11:07.181]+CGNSSINFO: ,,,,,,,,
+
+[19:11:07.181]OK
+[19:11:07.181]'
+[19:11:07.181][I][GNSS:282]: No GNSS fix yet
+[19:11:26.174][S][sensor]: 'WiFi Signal' >> -50 dBm
+
+[19:11:27.182]+CGNSSINFO: ,,,,,,,,
+
+[19:11:27.182]OK
+[19:11:27.182]'
+[19:11:27.185][I][GNSS:282]: No GNSS fix yet
+[19:11:29.314][S][sensor]: 'Uptime' >> 964 s
