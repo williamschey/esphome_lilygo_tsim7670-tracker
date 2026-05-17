@@ -1,318 +1,367 @@
-[17:13:39.827][I][logger:120]: Log initialized
-[17:13:39.830][C][safe_mode:136]: Unsuccessful boot attempts: 0
-[17:13:39.830][V][preferences:121]: Saving 1 items...
-[17:13:39.834][V][preferences:132]: sync: key: 233825507, len: 4
-[17:13:39.835][D][preferences:152]: Writing 1 items: 0 cached, 1 written, 0 failed
-[17:13:39.837][I][app:067]: Running through setup()
-[17:13:39.837][V][app:068]: Sorting components by setup priority
-[17:13:39.838][V][component:236]: Setup logger
-[17:13:39.839][V][component:248]: Setup logger took 0ms
-[17:13:39.839][V][component:236]: Setup preferences
-[17:13:39.841][V][scheduler:217]: Scheduler interval for (null) is 60000ms, offset 2283ms
-[17:13:39.841][V][component:248]: Setup preferences took 1ms
-[17:13:39.842][V][component:236]: Setup gpio.output
-[17:13:39.843][V][component:248]: Setup gpio.output took 0ms
-[17:13:39.844][V][component:236]: Setup gpio.output
-[17:13:39.845][V][component:248]: Setup gpio.output took 0ms
-[17:13:39.845][V][component:236]: Setup gpio.switch
-[17:13:39.846][V][switch:025]: 'Status LED' Turning OFF.
-[17:13:39.846][V][switch:064]: 'Status LED' >> OFF
-[17:13:39.847][V][switch:025]: 'Status LED' Turning OFF.
-[17:13:39.848][V][component:248]: Setup gpio.switch took 2ms
-[17:13:39.848][V][component:236]: Setup script
-[17:13:39.849][V][component:248]: Setup script took 0ms
-[17:13:39.850][V][component:236]: Setup script
-[17:13:39.850][V][component:248]: Setup script took 0ms
-[17:13:39.851][V][component:236]: Setup script
-[17:13:39.851][V][component:248]: Setup script took 0ms
-[17:13:39.852][V][component:236]: Setup button
-[17:13:39.852][V][component:248]: Setup button took 0ms
-[17:13:39.853][V][component:236]: Setup gps
-[17:13:39.854][V][component:248]: Setup gps took 0ms
-[17:13:39.854][V][component:236]: Setup uptime.sensor
-[17:13:39.855][V][scheduler:217]: Scheduler interval for iid:0 is 60000ms, offset 4768ms
-[17:13:39.856][V][component:248]: Setup uptime.sensor took 1ms
-[17:13:39.857][V][component:236]: Setup esphome.coroutine
-[17:13:39.858][V][component:248]: Setup esphome.coroutine took 0ms
-[17:13:39.859][V][component:236]: Setup output.switch
-[17:13:39.859][V][switch:025]: 'Modem PWRKEY' Turning OFF.
-[17:13:39.860][V][switch:064]: 'Modem PWRKEY' >> OFF
-[17:13:39.860][V][component:248]: Setup output.switch took 1ms
-[17:13:39.861][V][component:236]: Setup output.switch
-[17:13:39.862][V][switch:025]: 'Modem Reset' Turning OFF.
-[17:13:39.862][V][switch:064]: 'Modem Reset' >> OFF
-[17:13:39.863][V][component:248]: Setup output.switch took 2ms
-[17:13:39.864][V][component:236]: Setup esphome.coroutine
-[17:13:39.865][V][component:248]: Setup esphome.coroutine took 0ms
-[17:13:39.865][V][component:236]: Setup nulluart
-[17:13:39.866][V][component:248]: Setup nulluart took 0ms
-[17:13:39.867][V][component:236]: Setup gps.time
-[17:13:39.868][V][scheduler:217]: Scheduler interval for iid:0 is 300000ms, offset 2755ms
-[17:13:39.868][V][component:248]: Setup gps.time took 1ms
-[17:13:39.869][V][component:236]: Setup interval
-[17:13:39.870][V][scheduler:217]: Scheduler interval for iid:0 is 20000ms, offset 2377ms
-[17:13:39.871][V][component:248]: Setup interval took 2ms
-[17:13:39.872][V][component:236]: Setup adc.sensor
-[17:13:39.873][V][scheduler:217]: Scheduler interval for iid:0 is 60000ms, offset 800ms
-[17:13:39.874][V][adc.esp32:093]: Using curve fitting calibration
-[17:13:39.875][V][component:248]: Setup adc.sensor took 3ms
-[17:13:39.876][V][component:236]: Setup wifi_info.text_sensor
-[17:13:39.877][V][component:248]: Setup wifi_info.text_sensor took 0ms
-[17:13:39.877][V][component:236]: Setup wifi_info.text_sensor
-[17:13:39.878][V][component:248]: Setup wifi_info.text_sensor took 0ms
-[17:13:39.879][V][component:236]: Setup version.text_sensor
-[17:13:39.881][V][text_sensor:037]: 'ESPHome Version': Received new state 2026.4.5 (config hash 0x3025ff6d, built 2026-05-16 17:11:02 +1000)
-[17:13:39.882][V][text_sensor:115]: 'ESPHome Version' >> '2026.4.5 (config hash 0x3025ff6d, built 2026-05-16 17:11:02 +1000)'
-[17:13:39.883][V][component:248]: Setup version.text_sensor took 3ms
-[17:13:39.884][V][component:236]: Setup status.binary_sensor
-[17:13:39.885][V][scheduler:217]: Scheduler interval for iid:0 is 1000ms, offset 432ms
-[17:13:39.885][V][binary_sensor:041]: 'Status' >> OFF
-[17:13:39.886][V][component:248]: Setup status.binary_sensor took 2ms
-[17:13:39.887][V][component:236]: Setup globals
-[17:13:39.887][V][component:248]: Setup globals took 0ms
-[17:13:39.888][V][component:236]: Setup modem
-[17:13:39.894][V][component:248]: Setup modem took 5ms
-[17:13:39.894][V][component:236]: Setup wifi
-[17:13:39.896][E][wifi_esp32:160]: esp_event_loop_create_default failed: ESP_ERR_INVALID_STATE
-[17:13:39.896][C][wifi:631]: Starting
-[17:13:39.898][V][preferences:065]: nvs_get_blob('2208764056'): ESP_ERR_NVS_NOT_FOUND - the key might not be set yet
-[17:13:39.898][V][wifi_esp32:229]: Enabling STA
-[17:13:39.899][W][wifi_esp32:251]: esp_wifi_set_mode failed: ESP_ERR_WIFI_NOT_INIT
-[17:13:39.900][V][wifi:671]: Setting Power Save Option failed
-[17:13:39.900][D][wifi:1277]: Starting scan
-[17:13:39.901][V][wifi_esp32:229]: Enabling STA
-[17:13:39.902][W][wifi_esp32:251]: esp_wifi_set_mode failed: ESP_ERR_WIFI_NOT_INIT
-[17:13:39.902][V][component:248]: Setup wifi took 8ms
-[17:13:39.903][V][component:236]: Setup esphome.ota
-[17:13:39.905][V][component:248]: Setup esphome.ota took 1ms
-[17:13:39.906][V][component:236]: Setup safe_mode
-[17:13:39.906][V][component:248]: Setup safe_mode took 0ms
-[17:13:39.907][V][component:236]: Setup api
-[17:13:39.909][W][component:389]: api set Warning flag: waiting for client connection
-[17:13:39.909][V][component:248]: Setup api took 2ms
-[17:13:39.910][V][component:236]: Setup wifi_signal.sensor
-[17:13:39.911][V][scheduler:217]: Scheduler interval for iid:0 is 60000ms, offset 3966ms
-[17:13:39.912][V][component:248]: Setup wifi_signal.sensor took 2ms
-[17:13:39.913][V][component:236]: Setup mdns
-[17:13:39.915][V][component:248]: Setup mdns took 1ms
-[17:13:39.916][I][app:123]: setup() finished successfully!
-[17:13:39.917][W][component:389]: wifi set Warning flag: scanning for networks
-[17:13:39.918][I][app:154]: ESPHome version 2026.4.5 compiled on 2026-05-16 17:11:02 +1000
-[17:13:39.919][I][app:161]: ESP32 Chip: ESP32-S3 rev0.2, 2 core(s)
-[17:13:39.920][C][logger:219]: Logger:
-[17:13:39.920][C][logger:219]:   Max Level: VERBOSE
-[17:13:39.920][C][logger:219]:   Initial Level: VERBOSE
-[17:13:39.921][C][logger:226]:   Log Baud Rate: 115200
-[17:13:39.921][C][logger:226]:   Hardware UART: USB_SERIAL_JTAG
-[17:13:39.922][C][logger:235]:   Task Log Buffer Size: 768 bytes
-[17:13:39.923][C][logger:241]:   Level for 'api': VERBOSE
-[17:13:39.923][C][logger:241]:   Level for 'api.connection': VERBOSE
-[17:13:39.924][C][logger:241]:   Level for 'modem': WARN
-[17:13:39.925][C][logger:241]:   Level for 'modem_handler': WARN
-[17:13:39.926][I][logger:254]: VERBOSE logging is active — performance impact, short-term debugging only
-[17:13:39.927][I][logger:254]:   Set log level to DEBUG or lower for long-term use.
-[17:13:39.954][C][gpio.output:010]: Binary Output:
-[17:13:39.954][C][gpio.output:152]:   Pin: GPIO18
-[17:13:39.964][C][gpio.output:010]: Binary Output:
-[17:13:39.965][C][gpio.output:152]:   Pin: GPIO17
-[17:13:39.966][D][main:1298]: SIM7670G PWRKEY pulsed; modem booting in background
-[17:13:39.981][C][switch.gpio:088]: GPIO Switch 'Status LED'
-[17:13:39.981][C][switch.gpio:088]:   Restore Mode: always OFF
-[17:13:39.982][C][switch.gpio:152]:   Pin: GPIO12
-[17:13:40.044][C][gps:012]: GPS:
-[17:13:40.045][C][gps:017]:   Latitude 'Latitude'
-[17:13:40.046][C][gps:017]:     State Class: 'measurement'
-[17:13:40.046][C][gps:017]:     Unit of Measurement: '°'
-[17:13:40.046][C][gps:017]:     Accuracy Decimals: 6
-[17:13:40.047][C][gps:223]:     Icon: 'mdi:latitude'
-[17:13:40.047][C][gps:017]:   Longitude 'Longitude'
-[17:13:40.048][C][gps:017]:     State Class: 'measurement_angle'
-[17:13:40.048][C][gps:017]:     Unit of Measurement: '°'
-[17:13:40.048][C][gps:017]:     Accuracy Decimals: 6
-[17:13:40.049][C][gps:223]:     Icon: 'mdi:longitude'
-[17:13:40.049][C][gps:017]:   Speed 'Speed'
-[17:13:40.050][C][gps:017]:     State Class: 'measurement'
-[17:13:40.050][C][gps:017]:     Unit of Measurement: 'km/h'
-[17:13:40.051][C][gps:017]:     Accuracy Decimals: 3
-[17:13:40.051][C][gps:232]:     Device Class: 'speed'
-[17:13:40.052][C][gps:223]:     Icon: 'mdi:speedometer'
-[17:13:40.052][C][gps:017]:   Course 'Course'
-[17:13:40.053][C][gps:017]:     State Class: 'measurement_angle'
-[17:13:40.053][C][gps:017]:     Unit of Measurement: '°'
-[17:13:40.053][C][gps:017]:     Accuracy Decimals: 2
-[17:13:40.054][C][gps:223]:     Icon: 'mdi:compass'
-[17:13:40.054][C][gps:017]:   Altitude 'Altitude'
-[17:13:40.055][C][gps:017]:     State Class: 'measurement'
-[17:13:40.055][C][gps:017]:     Unit of Measurement: 'm'
-[17:13:40.056][C][gps:017]:     Accuracy Decimals: 2
-[17:13:40.056][C][gps:223]:     Icon: 'mdi:altimeter'
-[17:13:40.057][C][gps:017]:   Satellites 'GPS Satellites'
-[17:13:40.057][C][gps:017]:     State Class: 'measurement'
-[17:13:40.057][C][gps:017]:     Unit of Measurement: ''
-[17:13:40.058][C][gps:017]:     Accuracy Decimals: 0
-[17:13:40.058][C][gps:223]:     Icon: 'mdi:satellite-variant'
-[17:13:40.059][C][gps:017]:   HDOP 'GPS HDOP'
-[17:13:40.059][C][gps:017]:     State Class: 'measurement'
-[17:13:40.060][C][gps:017]:     Unit of Measurement: ''
-[17:13:40.060][C][gps:017]:     Accuracy Decimals: 3
-[17:13:40.061][C][gps:223]:     Icon: 'mdi:circle-double'
-[17:13:40.072][C][uptime.sensor:017]: Uptime Sensor 'Uptime'
-[17:13:40.072][C][uptime.sensor:017]:   State Class: 'total_increasing'
-[17:13:40.072][C][uptime.sensor:017]:   Unit of Measurement: 's'
-[17:13:40.073][C][uptime.sensor:017]:   Accuracy Decimals: 0
-[17:13:40.073][C][uptime.sensor:232]:   Device Class: 'duration'
-[17:13:40.074][C][uptime.sensor:223]:   Icon: 'mdi:timer-outline'
-[17:13:40.075][C][uptime.sensor:019]:   Type: Seconds
-[17:13:40.102][C][output.switch:088]: Output Switch 'Modem PWRKEY'
-[17:13:40.102][C][output.switch:088]:   Restore Mode: always OFF
-[17:13:40.114][C][output.switch:088]: Output Switch 'Modem Reset'
-[17:13:40.114][C][output.switch:088]:   Restore Mode: always OFF
-[17:13:40.154][C][time:051]: Timezone: UTC+10:00
-[17:13:40.156][C][time:055]: Current time: 1970-01-01 10:51:01
-[17:13:40.183][C][adc.esp32:017]: ADC Sensor 'Battery Voltage'
-[17:13:40.183][C][adc.esp32:017]:   State Class: 'measurement'
-[17:13:40.184][C][adc.esp32:017]:   Unit of Measurement: 'V'
-[17:13:40.184][C][adc.esp32:017]:   Accuracy Decimals: 2
-[17:13:40.184][C][adc.esp32:232]:   Device Class: 'voltage'
-[17:13:40.185][C][adc.esp32:152]:   Pin: GPIO4
-[17:13:40.186][C][adc.esp32:125]:   Channel:       3
-[17:13:40.186][C][adc.esp32:125]:   Unit:          ADC1
-[17:13:40.186][C][adc.esp32:125]:   Attenuation:   12 dB
-[17:13:40.186][C][adc.esp32:125]:   Samples:       1
-[17:13:40.187][C][adc.esp32:125]:   Sampling mode: average
-[17:13:40.187][C][adc.esp32:125]:   Setup Status:
-[17:13:40.187][C][adc.esp32:125]:     Handle Init:  OK
-[17:13:40.187][C][adc.esp32:125]:     Config:       OK
-[17:13:40.188][C][adc.esp32:125]:     Calibration:  OK
-[17:13:40.188][C][adc.esp32:125]:     Overall Init: OK
-[17:13:40.189][C][adc.esp32:451]:   Update Interval: 60.0s
-[17:13:40.200][C][wifi_info:016]: SSID 'WiFi SSID'
-[17:13:40.215][C][wifi_info:016]: IP Address 'WiFi IP'
-[17:13:40.227][C][version.text_sensor:016]: Version Text Sensor 'ESPHome Version'
-[17:13:40.228][C][version.text_sensor:223]:   Icon: 'mdi:new-box'
-[17:13:40.243][C][status:016]: Status Binary Sensor 'Status'
-[17:13:40.243][C][status:232]:   Device Class: 'connectivity'
-[17:13:40.281][C][wifi:1505]: WiFi:
-[17:13:40.281][C][wifi:1505]:   Local MAC: E0:72:A1:CC:28:10
-[17:13:40.281][C][wifi:1505]:   Connected: NO
-[17:13:40.296][C][esphome.ota:071]: Over-The-Air updates:
-[17:13:40.296][C][esphome.ota:071]:   Address: :3232
-[17:13:40.296][C][esphome.ota:071]:   Version: 2
-[17:13:40.297][C][esphome.ota:078]:   Password configured
-[17:13:40.307][C][safe_mode:026]: Safe Mode:
-[17:13:40.308][C][safe_mode:026]:   Successful after: 60s
-[17:13:40.308][C][safe_mode:026]:   Invoke after: 10 attempts
-[17:13:40.308][C][safe_mode:026]:   Duration: 300s
-[17:13:40.309][C][safe_mode:043]:   Bootloader rollback: support unknown
-[17:13:40.321][C][api:235]: Server:
-[17:13:40.322][C][api:235]:   Address: :6053
-[17:13:40.322][C][api:235]:   Listen backlog: 4
-[17:13:40.322][C][api:235]:   Max connections: 8
-[17:13:40.323][C][api:242]:   Noise encryption: YES
-[17:13:40.337][C][wifi_signal.sensor:017]: WiFi Signal 'WiFi Signal'
-[17:13:40.337][C][wifi_signal.sensor:017]:   State Class: 'measurement'
-[17:13:40.338][C][wifi_signal.sensor:017]:   Unit of Measurement: 'dBm'
-[17:13:40.338][C][wifi_signal.sensor:017]:   Accuracy Decimals: 0
-[17:13:40.339][C][wifi_signal.sensor:232]:   Device Class: 'signal_strength'
-[17:13:40.349][C][mdns:194]: mDNS:
-[17:13:40.350][C][mdns:194]:   Hostname: esp-tracker-1
-[17:13:40.350][V][mdns:199]:   Services:
-[17:13:40.351][V][mdns:201]:   - _esphomelib, _tcp, 6053
-[17:13:40.351][V][mdns:204]:     TXT: friendly_name = ESP Tracker 1
-[17:13:40.352][V][mdns:204]:     TXT: version = 2026.4.5
-[17:13:40.353][V][mdns:204]:     TXT: mac = e072a1cc2810
-[17:13:40.353][V][mdns:204]:     TXT: platform = ESP32
-[17:13:40.354][V][mdns:204]:     TXT: board = esp32-s3-devkitc-1
-[17:13:40.355][V][mdns:204]:     TXT: network = wifi
-[17:13:40.356][V][mdns:204]:     TXT: api_encryption = Noise_NNpsk0_25519_ChaChaPoly_SHA256
-[17:13:40.680][V][adc.common:070]: 'Battery Voltage': Voltage=0.0100V
-[17:13:40.680][V][sensor:077]: 'Battery Voltage': Received new state 0.010000
-[17:13:40.681][V][sensor:125]: 'Battery Voltage' >> 0.02 V
-[17:13:42.257][I][GNSS:199]: GNSS engine powered on
-[17:13:42.266][W][GNSS:254]: CGNSSINFO malformed: +CGNSSINFO: ,,,,,,,,
-[17:13:42.932][W][modem:249]: Exiting DATA_MODE. (long blocking call, make sur to have a long WDT!)
-[17:14:15.960][W][component:522]: modem took a long time for an operation (33033 ms), max is 30 ms
-[17:14:15.961][E][wifi:1421]: Scan timeout
-[17:14:15.962][D][wifi:1828]: Retry phase: INITIAL_CONNECT → SCAN_CONNECTING
-[17:14:15.962][D][wifi:1277]: Starting scan
-[17:14:15.963][V][wifi_esp32:229]: Enabling STA
-[17:14:15.964][W][wifi_esp32:251]: esp_wifi_set_mode failed: ESP_ERR_WIFI_NOT_INIT
-[17:14:15.965][V][sensor:077]: 'Uptime': Received new state 36.235001
-[17:14:15.966][V][sensor:125]: 'Uptime' >> 36 s
-[17:14:15.975][W][GNSS:254]: CGNSSINFO malformed: +CGNSSINFO: ,,,,,,,,
-[17:14:15.981][W][modem:249]: Exiting DATA_MODE. (long blocking call, make sur to have a long WDT!)
-[17:14:49.001][D][main:486]: Modem synced (network registered)
-[17:14:49.002][W][component:522]: modem took a long time for an operation (33026 ms), max is 30 ms
-[17:14:49.003][E][wifi:1421]: Scan timeout
-[17:14:49.004][D][wifi:1828]: Retry phase: SCAN_CONNECTING → RETRY_HIDDEN
-[17:14:49.005][D][wifi:561]: Hidden candidate [redacted] at index 0
-[17:14:49.006][I][wifi:1076]: Connecting to [redacted] [redacted] (priority 0, attempt 1/1 in phase RETRY_HIDDEN)...
-[17:14:49.007][V][wifi:1082]: Connection Params:
-[17:14:49.007][V][wifi:1082]:   SSID: 'redacted'
-[17:14:49.008][V][wifi:1089]:   BSSID: Not Set
-[17:14:49.008][V][wifi:1119]:   Password: [redacted]
-[17:14:49.009][V][wifi:1126]:   Channel not set
-[17:14:49.009][V][wifi:1143]:   Using DHCP IP
-[17:14:49.010][V][wifi:1145]:   Hidden: NO
-[17:14:49.010][V][wifi_esp32:229]: Enabling STA
-[17:14:49.011][W][wifi_esp32:251]: esp_wifi_set_mode failed: ESP_ERR_WIFI_NOT_INIT
-[17:14:49.012][E][wifi:1155]: wifi_sta_connect_ failed
-[17:14:49.013][I][safe_mode:091]: Boot seems successful; resetting boot loop counter
-[17:14:49.022][W][GNSS:254]: CGNSSINFO malformed: +CGNSSINFO: ,,,,,,,,
-[17:14:49.024][V][adc.common:070]: 'Battery Voltage': Voltage=0.0090V
-[17:14:49.025][V][sensor:077]: 'Battery Voltage': Received new state 0.009000
-[17:14:49.026][V][sensor:125]: 'Battery Voltage' >> 0.02 V
-[17:14:49.026][V][preferences:121]: Saving 1 items...
-[17:14:49.032][V][preferences:132]: sync: key: 233825507, len: 4
-[17:14:49.033][D][preferences:152]: Writing 1 items: 0 cached, 1 written, 0 failed
-[17:14:49.423][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:14:49.438][W][modem:340]: Modem not yet ready to connect
-[17:14:50.469][W][wifi:1671]: Unknown connection status 0
-[17:14:50.470][D][wifi:1828]: Retry phase: RETRY_HIDDEN → RESTARTING
-[17:14:50.471][W][wifi:722]: Restarting adapter
-[17:14:50.976][W][wifi:1671]: Unknown connection status 0
-[17:14:50.977][D][wifi:1828]: Retry phase: RESTARTING → SCAN_CONNECTING
-[17:14:50.977][D][wifi:1277]: Starting scan
-[17:14:50.978][V][wifi_esp32:229]: Enabling STA
-[17:14:50.979][W][wifi_esp32:251]: esp_wifi_set_mode failed: ESP_ERR_WIFI_NOT_INIT
-[17:14:54.690][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:14:54.704][W][modem:340]: Modem not yet ready to connect
-[17:14:59.952][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:14:59.967][W][modem:340]: Modem not yet ready to connect
-[17:15:05.214][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:15:05.229][W][modem:340]: Modem not yet ready to connect
-[17:15:09.070][I][GNSS:213]: No GNSS fix yet
-[17:15:09.071][W][component:522]: interval took a long time for an operation (56 ms), max is 30 ms
-[17:15:10.481][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:15:10.495][W][modem:340]: Modem not yet ready to connect
-[17:15:15.743][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:15:15.757][W][modem:340]: Modem not yet ready to connect
-[17:15:16.790][V][sensor:077]: 'Uptime': Received new state 97.058998
-[17:15:16.791][V][sensor:125]: 'Uptime' >> 97 s
-[17:15:21.006][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:15:21.021][W][modem:340]: Modem not yet ready to connect
-[17:15:22.052][E][wifi:1421]: Scan timeout
-[17:15:22.053][D][wifi:1828]: Retry phase: SCAN_CONNECTING → RETRY_HIDDEN
-[17:15:22.054][D][wifi:561]: Hidden candidate [redacted] at index 0
-[17:15:22.056][I][wifi:1076]: Connecting to [redacted] [redacted] (priority 0, attempt 1/1 in phase RETRY_HIDDEN)...
-[17:15:22.056][V][wifi:1082]: Connection Params:
-[17:15:22.056][V][wifi:1082]:   SSID: 'redacted'
-[17:15:22.057][V][wifi:1089]:   BSSID: Not Set
-[17:15:22.058][V][wifi:1119]:   Password: [redacted]
-[17:15:22.058][V][wifi:1126]:   Channel not set
-[17:15:22.059][V][wifi:1143]:   Using DHCP IP
-[17:15:22.059][V][wifi:1145]:   Hidden: NO
-[17:15:22.060][V][wifi_esp32:229]: Enabling STA
-[17:15:22.061][W][wifi_esp32:251]: esp_wifi_set_mode failed: ESP_ERR_WIFI_NOT_INIT
-[17:15:22.061][E][wifi:1155]: wifi_sta_connect_ failed
-[17:15:22.566][W][wifi:1671]: Unknown connection status 0
-[17:15:22.567][D][wifi:1828]: Retry phase: RETRY_HIDDEN → RESTARTING
-[17:15:22.567][W][wifi:722]: Restarting adapter
-[17:15:23.074][W][wifi:1671]: Unknown connection status 0
-[17:15:23.075][D][wifi:1828]: Retry phase: RESTARTING → SCAN_CONNECTING
-[17:15:23.075][D][wifi:1277]: Starting scan
-[17:15:23.076][V][wifi_esp32:229]: Enabling STA
-[17:15:23.077][W][wifi_esp32:251]: esp_wifi_set_mode failed: ESP_ERR_WIFI_NOT_INIT
-[17:15:26.270][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[17:15:26.285][W][modem:340]: Modem not yet ready to connect
-❓ 
+INFO Starting log output from /dev/ttyACM0 with baud rate 115200
+[12:11:38.494]I (179) esp_image: segment 4: paddr=000dbde0 vaddr=4037a3c0 size=0b23ch ( 45628) load
+[12:11:38.505]I (190) esp_image: segment 5: paddr=000e7024 vaddr=50000000 size=00020h (    32) load
+[12:11:38.512]I (197) boot: Loaded app from partition at offset 0x10000
+[12:11:38.516]I (201) boot: Set actual ota_seq=1 in otadata[0]
+[12:11:38.516]I (201) boot: Disabling RNG early entropy source...
+[12:11:38.621][I][logger:120]: Log initialized
+[12:11:38.624][C][safe_mode:136]: Unsuccessful boot attempts: 0
+[12:11:38.625][V][preferences:121]: Saving 1 items...
+[12:11:38.629][V][preferences:132]: sync: key: 233825507, len: 4
+[12:11:38.630][D][preferences:152]: Writing 1 items: 0 cached, 1 written, 0 failed
+[12:11:38.632][I][app:067]: Running through setup()
+[12:11:38.632][V][app:068]: Sorting components by setup priority
+[12:11:38.633][V][component:236]: Setup logger
+[12:11:38.634][V][component:248]: Setup logger took 0ms
+[12:11:38.634][V][component:236]: Setup preferences
+[12:11:38.636][V][scheduler:217]: Scheduler interval for (null) is 60000ms, offset 3648ms
+[12:11:38.637][V][component:248]: Setup preferences took 1ms
+[12:11:38.637][V][component:236]: Setup gpio.output
+[12:11:38.638][V][component:248]: Setup gpio.output took 0ms
+[12:11:38.639][V][component:236]: Setup gpio.output
+[12:11:38.640][V][component:248]: Setup gpio.output took 1ms
+[12:11:38.640][V][component:236]: Setup gpio.switch
+[12:11:38.641][V][switch:025]: 'Status LED' Turning OFF.
+[12:11:38.642][V][switch:064]: 'Status LED' >> OFF
+[12:11:38.642][V][switch:025]: 'Status LED' Turning OFF.
+[12:11:38.643][V][component:248]: Setup gpio.switch took 2ms
+[12:11:38.644][V][component:236]: Setup script
+[12:11:38.644][V][component:248]: Setup script took 0ms
+[12:11:38.645][V][component:236]: Setup script
+[12:11:38.646][V][component:248]: Setup script took 0ms
+[12:11:38.646][V][component:236]: Setup script
+[12:11:38.647][V][component:248]: Setup script took 0ms
+[12:11:38.647][V][component:236]: Setup button
+[12:11:38.648][V][component:248]: Setup button took 0ms
+[12:11:38.649][V][component:236]: Setup gps
+[12:11:38.649][V][component:248]: Setup gps took 0ms
+[12:11:38.650][V][component:236]: Setup uptime.sensor
+[12:11:38.651][V][scheduler:217]: Scheduler interval for iid:0 is 60000ms, offset 2751ms
+[12:11:38.652][V][component:248]: Setup uptime.sensor took 1ms
+[12:11:38.653][V][component:236]: Setup esphome.coroutine
+[12:11:38.653][V][component:248]: Setup esphome.coroutine took 0ms
+[12:11:38.654][V][component:236]: Setup output.switch
+[12:11:38.655][V][switch:025]: 'Modem PWRKEY' Turning OFF.
+[12:11:38.655][V][switch:064]: 'Modem PWRKEY' >> OFF
+[12:11:38.656][V][component:248]: Setup output.switch took 2ms
+[12:11:38.656][V][component:236]: Setup output.switch
+[12:11:38.657][V][switch:025]: 'Modem Reset' Turning OFF.
+[12:11:38.658][V][switch:064]: 'Modem Reset' >> OFF
+[12:11:38.658][V][component:248]: Setup output.switch took 1ms
+[12:11:38.659][V][component:236]: Setup esphome.coroutine
+[12:11:38.660][V][component:248]: Setup esphome.coroutine took 0ms
+[12:11:38.661][V][component:236]: Setup nulluart
+[12:11:38.662][V][component:248]: Setup nulluart took 0ms
+[12:11:38.662][V][component:236]: Setup gps.time
+[12:11:38.663][V][scheduler:217]: Scheduler interval for iid:0 is 300000ms, offset 2567ms
+[12:11:38.664][V][component:248]: Setup gps.time took 1ms
+[12:11:38.665][V][component:236]: Setup interval
+[12:11:38.666][V][scheduler:217]: Scheduler interval for iid:0 is 20000ms, offset 541ms
+[12:11:38.667][V][component:248]: Setup interval took 1ms
+[12:11:38.667][V][component:236]: Setup adc.sensor
+[12:11:38.669][V][scheduler:217]: Scheduler interval for iid:0 is 60000ms, offset 1210ms
+[12:11:38.670][V][adc.esp32:093]: Using curve fitting calibration
+[12:11:38.671][V][component:248]: Setup adc.sensor took 3ms
+[12:11:38.672][V][component:236]: Setup wifi_info.text_sensor
+[12:11:38.672][V][component:248]: Setup wifi_info.text_sensor took 0ms
+[12:11:38.673][V][component:236]: Setup wifi_info.text_sensor
+[12:11:38.674][V][component:248]: Setup wifi_info.text_sensor took 0ms
+[12:11:38.675][V][component:236]: Setup version.text_sensor
+[12:11:38.676][V][text_sensor:037]: 'ESPHome Version': Received new state 2026.4.5 (config hash 0xd22345fa, built 2026-05-16 17:22:31 +1000)
+[12:11:38.678][V][text_sensor:115]: 'ESPHome Version' >> '2026.4.5 (config hash 0xd22345fa, built 2026-05-16 17:22:31 +1000)'
+[12:11:38.679][V][component:248]: Setup version.text_sensor took 3ms
+[12:11:38.679][V][component:236]: Setup status.binary_sensor
+[12:11:38.681][V][scheduler:217]: Scheduler interval for iid:0 is 1000ms, offset 70ms
+[12:11:38.681][V][binary_sensor:041]: 'Status' >> OFF
+[12:11:38.682][V][component:248]: Setup status.binary_sensor took 2ms
+[12:11:38.683][V][component:236]: Setup globals
+[12:11:38.683][V][component:248]: Setup globals took 0ms
+[12:11:38.684][V][component:236]: Setup modem
+[12:11:38.690][V][component:248]: Setup modem took 5ms
+[12:11:38.690][V][component:236]: Setup wifi
+[12:11:38.699][C][wifi:624]: Starting
+[12:11:38.701][V][preferences:065]: nvs_get_blob('3796336611'): ESP_ERR_NVS_NOT_FOUND - the key might not be set yet
+[12:11:38.701][V][wifi_esp32:235]: Enabling STA
+[12:11:38.737][D][wifi:1282]: Starting scan
+[12:11:38.740][V][component:248]: Setup wifi took 48ms
+[12:11:38.741][V][component:236]: Setup esphome.ota
+[12:11:38.743][V][component:248]: Setup esphome.ota took 1ms
+[12:11:38.744][V][component:236]: Setup safe_mode
+[12:11:38.745][V][component:248]: Setup safe_mode took 0ms
+[12:11:38.745][V][component:236]: Setup api
+[12:11:38.748][W][component:389]: api set Warning flag: waiting for client connection
+[12:11:38.748][V][component:248]: Setup api took 2ms
+[12:11:38.749][V][component:236]: Setup wifi_signal.sensor
+[12:11:38.750][V][scheduler:217]: Scheduler interval for iid:0 is 60000ms, offset 625ms
+[12:11:38.751][V][component:248]: Setup wifi_signal.sensor took 1ms
+[12:11:38.752][V][component:236]: Setup mdns
+[12:11:38.754][V][component:248]: Setup mdns took 2ms
+[12:11:38.755][I][app:123]: setup() finished successfully!
+[12:11:38.756][V][wifi_esp32:735]: STA start
+[12:11:38.758][W][component:389]: wifi set Warning flag: scanning for networks
+[12:11:38.759][I][app:154]: ESPHome version 2026.4.5 compiled on 2026-05-16 17:22:31 +1000
+[12:11:38.760][I][app:161]: ESP32 Chip: ESP32-S3 rev0.2, 2 core(s)
+[12:11:38.760][C][logger:219]: Logger:
+[12:11:38.761][C][logger:219]:   Max Level: VERBOSE
+[12:11:38.761][C][logger:219]:   Initial Level: VERBOSE
+[12:11:38.761][C][logger:226]:   Log Baud Rate: 115200
+[12:11:38.762][C][logger:226]:   Hardware UART: USB_SERIAL_JTAG
+[12:11:38.763][C][logger:235]:   Task Log Buffer Size: 768 bytes
+[12:11:38.763][C][logger:241]:   Level for 'api': VERBOSE
+[12:11:38.764][C][logger:241]:   Level for 'api.connection': VERBOSE
+[12:11:38.765][C][logger:241]:   Level for 'modem': WARN
+[12:11:38.766][C][logger:241]:   Level for 'modem_handler': WARN
+[12:11:38.767][I][logger:254]: VERBOSE logging is active — performance impact, short-term debugging only
+[12:11:38.767][I][logger:254]:   Set log level to DEBUG or lower for long-term use.
+[12:11:38.769][D][main:1305]: SIM7670G PWRKEY pulsed; modem booting in background
+[12:11:38.796][C][gpio.output:010]: Binary Output:
+[12:11:38.796][C][gpio.output:152]:   Pin: GPIO18
+[12:11:38.807][C][gpio.output:010]: Binary Output:
+[12:11:38.808][C][gpio.output:152]:   Pin: GPIO17
+[12:11:38.824][C][switch.gpio:088]: GPIO Switch 'Status LED'
+[12:11:38.824][C][switch.gpio:088]:   Restore Mode: always OFF
+[12:11:38.825][C][switch.gpio:152]:   Pin: GPIO12
+[12:11:38.887][C][gps:012]: GPS:
+[12:11:38.888][C][gps:017]:   Latitude 'Latitude'
+[12:11:38.888][C][gps:017]:     State Class: 'measurement'
+[12:11:38.889][C][gps:017]:     Unit of Measurement: '°'
+[12:11:38.889][C][gps:017]:     Accuracy Decimals: 6
+[12:11:38.890][C][gps:223]:     Icon: 'mdi:latitude'
+[12:11:38.890][C][gps:017]:   Longitude 'Longitude'
+[12:11:38.891][C][gps:017]:     State Class: 'measurement_angle'
+[12:11:38.891][C][gps:017]:     Unit of Measurement: '°'
+[12:11:38.891][C][gps:017]:     Accuracy Decimals: 6
+[12:11:38.892][C][gps:223]:     Icon: 'mdi:longitude'
+[12:11:38.893][C][gps:017]:   Speed 'Speed'
+[12:11:38.893][C][gps:017]:     State Class: 'measurement'
+[12:11:38.893][C][gps:017]:     Unit of Measurement: 'km/h'
+[12:11:38.894][C][gps:017]:     Accuracy Decimals: 3
+[12:11:38.894][C][gps:232]:     Device Class: 'speed'
+[12:11:38.895][C][gps:223]:     Icon: 'mdi:speedometer'
+[12:11:38.895][C][gps:017]:   Course 'Course'
+[12:11:38.896][C][gps:017]:     State Class: 'measurement_angle'
+[12:11:38.896][C][gps:017]:     Unit of Measurement: '°'
+[12:11:38.897][C][gps:017]:     Accuracy Decimals: 2
+[12:11:38.897][C][gps:223]:     Icon: 'mdi:compass'
+[12:11:38.898][C][gps:017]:   Altitude 'Altitude'
+[12:11:38.898][C][gps:017]:     State Class: 'measurement'
+[12:11:38.898][C][gps:017]:     Unit of Measurement: 'm'
+[12:11:38.899][C][gps:017]:     Accuracy Decimals: 2
+[12:11:38.899][C][gps:223]:     Icon: 'mdi:altimeter'
+[12:11:38.900][C][gps:017]:   Satellites 'GPS Satellites'
+[12:11:38.900][C][gps:017]:     State Class: 'measurement'
+[12:11:38.901][C][gps:017]:     Unit of Measurement: ''
+[12:11:38.901][C][gps:017]:     Accuracy Decimals: 0
+[12:11:38.902][C][gps:223]:     Icon: 'mdi:satellite-variant'
+[12:11:38.902][C][gps:017]:   HDOP 'GPS HDOP'
+[12:11:38.903][C][gps:017]:     State Class: 'measurement'
+[12:11:38.903][C][gps:017]:     Unit of Measurement: ''
+[12:11:38.903][C][gps:017]:     Accuracy Decimals: 3
+[12:11:38.904][C][gps:223]:     Icon: 'mdi:circle-double'
+[12:11:38.915][C][uptime.sensor:017]: Uptime Sensor 'Uptime'
+[12:11:38.915][C][uptime.sensor:017]:   State Class: 'total_increasing'
+[12:11:38.915][C][uptime.sensor:017]:   Unit of Measurement: 's'
+[12:11:38.916][C][uptime.sensor:017]:   Accuracy Decimals: 0
+[12:11:38.916][C][uptime.sensor:232]:   Device Class: 'duration'
+[12:11:38.917][C][uptime.sensor:223]:   Icon: 'mdi:timer-outline'
+[12:11:38.918][C][uptime.sensor:019]:   Type: Seconds
+[12:11:38.945][C][output.switch:088]: Output Switch 'Modem PWRKEY'
+[12:11:38.945][C][output.switch:088]:   Restore Mode: always OFF
+[12:11:38.956][C][output.switch:088]: Output Switch 'Modem Reset'
+[12:11:38.957][C][output.switch:088]:   Restore Mode: always OFF
+[12:11:38.998][C][time:051]: Timezone: UTC+10:00
+[12:11:38.999][C][time:055]: Current time: 1970-01-02 05:49:00
+[12:11:39.026][C][adc.esp32:017]: ADC Sensor 'Battery Voltage'
+[12:11:39.026][C][adc.esp32:017]:   State Class: 'measurement'
+[12:11:39.026][C][adc.esp32:017]:   Unit of Measurement: 'V'
+[12:11:39.027][C][adc.esp32:017]:   Accuracy Decimals: 2
+[12:11:39.027][C][adc.esp32:232]:   Device Class: 'voltage'
+[12:11:39.028][C][adc.esp32:152]:   Pin: GPIO4
+[12:11:39.029][C][adc.esp32:125]:   Channel:       3
+[12:11:39.029][C][adc.esp32:125]:   Unit:          ADC1
+[12:11:39.029][C][adc.esp32:125]:   Attenuation:   12 dB
+[12:11:39.029][C][adc.esp32:125]:   Samples:       1
+[12:11:39.030][C][adc.esp32:125]:   Sampling mode: average
+[12:11:39.030][C][adc.esp32:125]:   Setup Status:
+[12:11:39.030][C][adc.esp32:125]:     Handle Init:  OK
+[12:11:39.030][C][adc.esp32:125]:     Config:       OK
+[12:11:39.031][C][adc.esp32:125]:     Calibration:  OK
+[12:11:39.031][C][adc.esp32:125]:     Overall Init: OK
+[12:11:39.032][C][adc.esp32:451]:   Update Interval: 60.0s
+[12:11:39.043][C][wifi_info:016]: SSID 'WiFi SSID'
+[12:11:39.058][C][wifi_info:016]: IP Address 'WiFi IP'
+[12:11:39.070][C][version.text_sensor:016]: Version Text Sensor 'ESPHome Version'
+[12:11:39.070][C][version.text_sensor:223]:   Icon: 'mdi:new-box'
+[12:11:39.085][C][status:016]: Status Binary Sensor 'Status'
+[12:11:39.086][C][status:232]:   Device Class: 'connectivity'
+[12:11:39.123][C][wifi:1510]: WiFi:
+[12:11:39.124][C][wifi:1510]:   Local MAC: E0:72:A1:CC:28:10
+[12:11:39.124][C][wifi:1510]:   Connected: NO
+[12:11:39.140][C][esphome.ota:071]: Over-The-Air updates:
+[12:11:39.140][C][esphome.ota:071]:   Address: :3232
+[12:11:39.140][C][esphome.ota:071]:   Version: 2
+[12:11:39.141][C][esphome.ota:078]:   Password configured
+[12:11:39.153][C][safe_mode:026]: Safe Mode:
+[12:11:39.153][C][safe_mode:026]:   Successful after: 60s
+[12:11:39.153][C][safe_mode:026]:   Invoke after: 10 attempts
+[12:11:39.153][C][safe_mode:026]:   Duration: 300s
+[12:11:39.154][C][safe_mode:043]:   Bootloader rollback: support unknown
+[12:11:39.168][C][api:235]: Server:
+[12:11:39.169][C][api:235]:   Address: :6053
+[12:11:39.169][C][api:235]:   Listen backlog: 4
+[12:11:39.169][C][api:235]:   Max connections: 8
+[12:11:39.170][C][api:242]:   Noise encryption: YES
+[12:11:39.182][C][wifi_signal.sensor:017]: WiFi Signal 'WiFi Signal'
+[12:11:39.182][C][wifi_signal.sensor:017]:   State Class: 'measurement'
+[12:11:39.182][C][wifi_signal.sensor:017]:   Unit of Measurement: 'dBm'
+[12:11:39.183][C][wifi_signal.sensor:017]:   Accuracy Decimals: 0
+[12:11:39.183][C][wifi_signal.sensor:232]:   Device Class: 'signal_strength'
+[12:11:39.196][C][mdns:194]: mDNS:
+[12:11:39.197][C][mdns:194]:   Hostname: esp-tracker-1
+[12:11:39.197][V][mdns:199]:   Services:
+[12:11:39.198][V][mdns:201]:   - _esphomelib, _tcp, 6053
+[12:11:39.198][V][mdns:204]:     TXT: friendly_name = ESP Tracker 1
+[12:11:39.199][V][mdns:204]:     TXT: version = 2026.4.5
+[12:11:39.200][V][mdns:204]:     TXT: mac = e072a1cc2810
+[12:11:39.200][V][mdns:204]:     TXT: platform = ESP32
+[12:11:39.201][V][mdns:204]:     TXT: board = esp32-s3-devkitc-1
+[12:11:39.202][V][mdns:204]:     TXT: network = wifi
+[12:11:39.203][V][mdns:204]:     TXT: api_encryption = Noise_NNpsk0_25519_ChaChaPoly_SHA256
+[12:11:39.219][I][GNSS:205]: GNSS engine powered on
+[12:11:39.227][W][GNSS:260]: CGNSSINFO malformed: +CGNSSINFO: ,,,,,,,,
+[12:11:39.886][V][adc.common:070]: 'Battery Voltage': Voltage=0.0090V
+[12:11:39.887][V][sensor:077]: 'Battery Voltage': Received new state 0.009000
+[12:11:39.888][V][sensor:125]: 'Battery Voltage' >> 0.02 V
+[12:11:41.341][V][wifi_esp32:829]: Scan done: status=0 number=10 scan_id=128
+[12:11:41.343][V][wifi:513]: - [redacted] [redacted] -87dB Ch:1
+[12:11:41.346][V][wifi:513]: - [redacted] [redacted] -42dB Ch:11
+[12:11:41.348][V][wifi:513]: - [redacted] [redacted] -42dB Ch:11
+[12:11:41.351][V][wifi:513]: - [redacted] [redacted] -69dB Ch:11
+[12:11:41.353][V][wifi:513]: - [redacted] [redacted] -69dB Ch:11
+[12:11:41.356][V][wifi:513]: - [redacted] [redacted] -72dB Ch:11
+[12:11:41.358][V][wifi:513]: - [redacted] [redacted] -72dB Ch:11
+[12:11:41.360][V][wifi_esp32:892]: Scan complete: 10 found, 3 stored (filtered)
+[12:11:41.361][D][wifi:1442]: Found networks:
+[12:11:41.362][I][wifi:1413]: - 'redacted' [redacted]▂▄▆█ Ch:11 -42dB P:0
+[12:11:41.364][I][wifi:1413]: - 'redacted' [redacted]▂▄▆█ Ch:11 -69dB P:0
+[12:11:41.365][I][wifi:1413]: - 'redacted' [redacted]▂▄▆█ Ch:11 -72dB P:0
+[12:11:41.366][D][wifi:1815]: Retry phase: INITIAL_CONNECT → SCAN_CONNECTING
+[12:11:41.368][I][wifi:1081]: Connecting to [redacted] [redacted] (priority 0, attempt 1/2 in phase SCAN_CONNECTING)...
+[12:11:41.368][V][wifi:1087]: Connection Params:
+[12:11:41.369][V][wifi:1087]:   SSID: 'redacted'
+[12:11:41.369][V][wifi:1092]:   BSSID: F0:B6:61:39:5D:E7
+[12:11:41.370][V][wifi:1124]:   Password: [redacted]
+[12:11:41.371][V][wifi:1129]:   Channel: 11
+[12:11:41.371][V][wifi:1148]:   Using DHCP IP
+[12:11:41.372][V][wifi:1150]:   Hidden: NO
+[12:11:41.403][V][sensor:077]: 'Uptime': Received new state 2.875000
+[12:11:41.404][V][sensor:125]: 'Uptime' >> 3 s
+[12:11:41.508][V][wifi_esp32:763]: Connected ssid='redacted' bssid=[redacted] channel=11, authmode=WPA2 PSK
+[12:11:41.764][W][modem:249]: Exiting DATA_MODE. (long blocking call, make sur to have a long WDT!)
+[12:12:14.795][W][component:522]: modem took a long time for an operation (33036 ms), max is 30 ms
+[12:12:14.797][V][wifi_esp32:807]: static_ip=192.168.7.33 gateway=192.168.4.1
+[12:12:14.798][V][text_sensor:037]: 'WiFi IP': Received new state 192.168.7.33
+[12:12:14.798][V][text_sensor:115]: 'WiFi IP' >> '192.168.7.33'
+[12:12:14.800][I][wifi:1551]: Connected
+[12:12:14.802][C][wifi:1221]:   IP Address: 192.168.7.33
+[12:12:14.805][C][wifi:1232]:   SSID: [redacted]
+[12:12:14.805][C][wifi:1232]:   BSSID: [redacted]
+[12:12:14.805][C][wifi:1232]:   Hostname: 'esp-tracker-1'
+[12:12:14.806][C][wifi:1232]:   Signal strength: -42 dB ▂▄▆█
+[12:12:14.806][C][wifi:1232]:   Channel: 11
+[12:12:14.806][C][wifi:1232]:   Subnet: 255.255.252.0
+[12:12:14.807][C][wifi:1232]:   Gateway: 192.168.4.1
+[12:12:14.807][C][wifi:1232]:   DNS1: 192.168.4.1
+[12:12:14.807][C][wifi:1232]:   DNS2: 0.0.0.0
+[12:12:14.810][V][text_sensor:037]: 'WiFi SSID': Received new state redacted
+[12:12:14.811][V][text_sensor:115]: 'WiFi SSID' >> 'redacted'
+[12:12:14.813][V][sensor:077]: 'WiFi Signal': Received new state -42.000000
+[12:12:14.814][V][sensor:125]: 'WiFi Signal' >> -42 dBm
+[12:12:14.823][W][GNSS:260]: CGNSSINFO malformed: +CGNSSINFO: ,,,,,,,,
+[12:12:14.829][W][modem:249]: Exiting DATA_MODE. (long blocking call, make sur to have a long WDT!)
+[12:12:47.852][D][main:486]: Modem synced (network registered)
+[12:12:47.853][W][component:522]: modem took a long time for an operation (33029 ms), max is 30 ms
+[12:12:47.854][W][component:422]: wifi cleared Warning flag
+[12:12:47.855][I][safe_mode:091]: Boot seems successful; resetting boot loop counter
+[12:12:47.865][W][GNSS:260]: CGNSSINFO malformed: +CGNSSINFO: ,,,,,,,,
+[12:12:47.867][V][sensor:077]: 'WiFi Signal': Received new state -43.000000
+[12:12:47.868][V][sensor:125]: 'WiFi Signal' >> -43 dBm
+[12:12:47.869][V][adc.common:070]: 'Battery Voltage': Voltage=0.0100V
+[12:12:47.870][V][sensor:077]: 'Battery Voltage': Received new state 0.010000
+[12:12:47.871][V][sensor:125]: 'Battery Voltage' >> 0.02 V
+[12:12:47.872][V][sensor:077]: 'Uptime': Received new state 69.345001
+[12:12:47.873][V][sensor:125]: 'Uptime' >> 69 s
+[12:12:48.263][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:12:48.277][W][modem:340]: Modem not yet ready to connect
+[12:12:53.525][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:12:53.539][W][modem:340]: Modem not yet ready to connect
+[12:12:58.787][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:12:58.801][W][modem:340]: Modem not yet ready to connect
+[12:13:04.050][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:13:04.064][W][modem:340]: Modem not yet ready to connect
+[12:13:07.906][I][GNSS:219]: No GNSS fix yet
+[12:13:09.315][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:13:09.329][W][modem:340]: Modem not yet ready to connect
+[12:13:14.579][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:13:14.593][W][modem:340]: Modem not yet ready to connect
+[12:13:15.625][V][preferences:121]: Saving 1 items...
+[12:13:15.631][V][preferences:132]: sync: key: 233825507, len: 4
+[12:13:15.631][D][preferences:152]: Writing 1 items: 0 cached, 1 written, 0 failed
+[12:13:19.847][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:13:19.862][W][modem:340]: Modem not yet ready to connect
+[12:13:25.109][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:13:25.124][W][modem:340]: Modem not yet ready to connect
+[12:13:28.870][W][GNSS:215]: AT+CGNSSINFO failed
+[12:13:28.871][W][component:522]: interval took a long time for an operation (1001 ms), max is 30 ms
+[12:13:30.371][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:13:30.386][W][modem:340]: Modem not yet ready to connect
+[12:13:35.633][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:13:35.647][W][modem:340]: Modem not yet ready to connect
+[12:13:40.896][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:13:40.911][W][modem:340]: Modem not yet ready to connect
+[12:13:46.158][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:13:46.172][W][modem:340]: Modem not yet ready to connect
+[12:13:47.868][V][adc.common:070]: 'Battery Voltage': Voltage=0.0080V
+[12:13:47.869][V][sensor:077]: 'Battery Voltage': Received new state 0.008000
+[12:13:47.869][V][sensor:125]: 'Battery Voltage' >> 0.02 V
+[12:13:47.871][V][sensor:077]: 'Uptime': Received new state 129.343002
+[12:13:47.871][V][sensor:125]: 'Uptime' >> 129 s
+[12:13:47.874][V][sensor:077]: 'WiFi Signal': Received new state -42.000000
+[12:13:47.875][V][sensor:125]: 'WiFi Signal' >> -42 dBm
+[12:13:48.886][W][GNSS:215]: AT+CGNSSINFO failed
+[12:13:51.425][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:13:51.440][W][modem:340]: Modem not yet ready to connect
+[12:13:56.689][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:13:56.704][W][modem:340]: Modem not yet ready to connect
+[12:14:01.951][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:14:01.966][W][modem:340]: Modem not yet ready to connect
+[12:14:07.214][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:14:07.229][W][modem:340]: Modem not yet ready to connect
+[12:14:09.262][W][GNSS:215]: AT+CGNSSINFO failed
+[12:14:12.477][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:14:12.492][W][modem:340]: Modem not yet ready to connect
+[12:14:17.739][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:14:17.754][W][modem:340]: Modem not yet ready to connect
+[12:14:23.001][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:14:23.016][W][modem:340]: Modem not yet ready to connect
+[12:14:28.263][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:14:28.278][W][modem:340]: Modem not yet ready to connect
+[12:14:30.311][W][GNSS:215]: AT+CGNSSINFO failed
+[12:14:33.526][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:14:33.541][W][modem:340]: Modem not yet ready to connect
+[12:14:38.788][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:14:38.803][W][modem:340]: Modem not yet ready to connect
+[12:14:44.051][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:14:44.066][W][modem:340]: Modem not yet ready to connect
+[12:14:47.868][V][sensor:077]: 'WiFi Signal': Received new state -41.000000
+[12:14:47.869][V][sensor:125]: 'WiFi Signal' >> -41 dBm
+[12:14:47.871][V][sensor:077]: 'Uptime': Received new state 189.341995
+[12:14:47.871][V][sensor:125]: 'Uptime' >> 189 s
+[12:14:47.873][V][adc.common:070]: 'Battery Voltage': Voltage=0.0080V
+[12:14:47.874][V][sensor:077]: 'Battery Voltage': Received new state 0.008000
+[12:14:47.874][V][sensor:125]: 'Battery Voltage' >> 0.02 V
+[12:14:49.321][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:14:49.336][W][modem:340]: Modem not yet ready to connect
+[12:14:51.368][W][GNSS:215]: AT+CGNSSINFO failed
+[12:14:54.583][W][modem_handler:139]: Failed to check pin: AT+CPIN?
+[12:14:54.598][W][modem:340]: Modem not yet ready to connect
