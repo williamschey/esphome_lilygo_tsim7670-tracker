@@ -94,6 +94,15 @@ switch:
     id: status_led
     name: "Status LED"
     pin: GPIO12
+  - platform: gpio
+    id: modem_gps_enable
+    name: "Modem GPS Enable"
+    # MODEM_GPS_ENABLE_GPIO on the LilyGo T-SIM7670G-S3: must be driven HIGH
+    # to power the active GPS antenna's LNA, otherwise no satellites will ever
+    # be received even outdoors with a clear sky.
+    pin: GPIO4
+    restore_mode: ALWAYS_ON
+    internal: true
 
 script:
   - id: modem_power_on
@@ -324,13 +333,6 @@ interval:
 # Diagnostics
 # ---------------------------------------------------------------------------
 sensor:
-  - platform: adc
-    pin: GPIO4
-    name: "Battery Voltage"
-    update_interval: 60s
-    attenuation: 12db
-    filters:
-      - multiply: 2.0    # on-board 1:1 divider
   - platform: wifi_signal
     name: "WiFi Signal"
     update_interval: 60s
