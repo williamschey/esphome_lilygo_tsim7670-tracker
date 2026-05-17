@@ -24,6 +24,8 @@ esp32:
 
 logger:
   level: INFO
+  logs:
+    GNSS: DEBUG
   # GPIO43/44 (USB-CDC) is used for logging on T-SIM7670G-S3, modem UART is on GPIO10/11
   baud_rate: 115200
 
@@ -196,23 +198,28 @@ interval:
 
           // GNSS works without a SIM, so power it on as soon as the modem responds.
           if (!id(gnss_powered_on)) {
-            std::string pwr = send_at("AT+CGNSSPWR=1", 1000);
-            if (pwr.find("OK") != std::string::npos) {
-              ESP_LOGI("GNSS", "GNSS engine powered on");
-              // Enable all constellations (GPS+GLONASS+Galileo+BeiDou) for fastest fix
-              std::string mode = send_at("AT+CGNSSMODE=15", 1000);
-              ESP_LOGI("GNSS", "CGNSSMODE response: %s", mode.c_str());
-              // Report power state for debugging
-              std::string check = send_at("AT+CGNSSPWR?", 1000);
-              ESP_LOGI("GNSS", "CGNSSPWR? response: %s", check.c_str());
-              id(gnss_powered_on) = true;
-            } else {
-              ESP_LOGD("GNSS", "Modem not yet ready for GNSS power-on");
+            // Wake the AT interface with a couple of harmless commands first
+            send_at("AT", 500);
+            send_at("ATE0", 500);  // disable echo so responses are cleaner
+            std::string pwr = send_at("AT+CGNSSPWR=1", 2000);
+            ESP_LOGI("GNSS", "CGNSSPWR=1: '%s'", pwr.c_str());
+            if (pwr.find("OK") == std::string::npos &&
+                pwr.find("already") == std::string::npos) {
+              ESP_LOGW("GNSS", "Modem not yet ready for GNSS power-on");
               return;
             }
+            // The GNSS engine needs ~1.5s after power-on before it accepts queries.
+            delay(2000);
+            std::string mode = send_at("AT+CGNSSMODE=15,1", 1000);
+            ESP_LOGI("GNSS", "CGNSSMODE=15,1: '%s'", mode.c_str());
+            std::string check = send_at("AT+CGNSSPWR?", 1000);
+            ESP_LOGI("GNSS", "CGNSSPWR?: '%s'", check.c_str());
+            id(gnss_powered_on) = true;
+            ESP_LOGI("GNSS", "GNSS engine powered on");
           }
 
           std::string resp = send_at("AT+CGNSSINFO", 1000);
+          ESP_LOGD("GNSS", "Raw CGNSSINFO: '%s'", resp.c_str());
           if (resp.find("OK") == std::string::npos) {
             ESP_LOGW("GNSS", "AT+CGNSSINFO failed: %s", resp.c_str());
             return;
