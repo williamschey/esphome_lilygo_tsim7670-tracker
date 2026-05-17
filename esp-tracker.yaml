@@ -179,8 +179,8 @@ interval:
             std::string full = cmd + "\r\n";
             id(modem_uart).write_array(reinterpret_cast<const uint8_t *>(full.c_str()), full.size());
             std::string out;
-            uint32_t start = millis();
-            while (millis() - start < timeout_ms) {
+            uint32_t start = ::millis();
+            while (::millis() - start < timeout_ms) {
               while (id(modem_uart).available() > 0) {
                 uint8_t b;
                 if (id(modem_uart).read_byte(&b)) out += static_cast<char>(b);
