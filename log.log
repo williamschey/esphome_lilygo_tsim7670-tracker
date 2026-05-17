@@ -1,367 +1,225 @@
-INFO Starting log output from /dev/ttyACM0 with baud rate 115200
-[12:11:38.494]I (179) esp_image: segment 4: paddr=000dbde0 vaddr=4037a3c0 size=0b23ch ( 45628) load
-[12:11:38.505]I (190) esp_image: segment 5: paddr=000e7024 vaddr=50000000 size=00020h (    32) load
-[12:11:38.512]I (197) boot: Loaded app from partition at offset 0x10000
-[12:11:38.516]I (201) boot: Set actual ota_seq=1 in otadata[0]
-[12:11:38.516]I (201) boot: Disabling RNG early entropy source...
-[12:11:38.621][I][logger:120]: Log initialized
-[12:11:38.624][C][safe_mode:136]: Unsuccessful boot attempts: 0
-[12:11:38.625][V][preferences:121]: Saving 1 items...
-[12:11:38.629][V][preferences:132]: sync: key: 233825507, len: 4
-[12:11:38.630][D][preferences:152]: Writing 1 items: 0 cached, 1 written, 0 failed
-[12:11:38.632][I][app:067]: Running through setup()
-[12:11:38.632][V][app:068]: Sorting components by setup priority
-[12:11:38.633][V][component:236]: Setup logger
-[12:11:38.634][V][component:248]: Setup logger took 0ms
-[12:11:38.634][V][component:236]: Setup preferences
-[12:11:38.636][V][scheduler:217]: Scheduler interval for (null) is 60000ms, offset 3648ms
-[12:11:38.637][V][component:248]: Setup preferences took 1ms
-[12:11:38.637][V][component:236]: Setup gpio.output
-[12:11:38.638][V][component:248]: Setup gpio.output took 0ms
-[12:11:38.639][V][component:236]: Setup gpio.output
-[12:11:38.640][V][component:248]: Setup gpio.output took 1ms
-[12:11:38.640][V][component:236]: Setup gpio.switch
-[12:11:38.641][V][switch:025]: 'Status LED' Turning OFF.
-[12:11:38.642][V][switch:064]: 'Status LED' >> OFF
-[12:11:38.642][V][switch:025]: 'Status LED' Turning OFF.
-[12:11:38.643][V][component:248]: Setup gpio.switch took 2ms
-[12:11:38.644][V][component:236]: Setup script
-[12:11:38.644][V][component:248]: Setup script took 0ms
-[12:11:38.645][V][component:236]: Setup script
-[12:11:38.646][V][component:248]: Setup script took 0ms
-[12:11:38.646][V][component:236]: Setup script
-[12:11:38.647][V][component:248]: Setup script took 0ms
-[12:11:38.647][V][component:236]: Setup button
-[12:11:38.648][V][component:248]: Setup button took 0ms
-[12:11:38.649][V][component:236]: Setup gps
-[12:11:38.649][V][component:248]: Setup gps took 0ms
-[12:11:38.650][V][component:236]: Setup uptime.sensor
-[12:11:38.651][V][scheduler:217]: Scheduler interval for iid:0 is 60000ms, offset 2751ms
-[12:11:38.652][V][component:248]: Setup uptime.sensor took 1ms
-[12:11:38.653][V][component:236]: Setup esphome.coroutine
-[12:11:38.653][V][component:248]: Setup esphome.coroutine took 0ms
-[12:11:38.654][V][component:236]: Setup output.switch
-[12:11:38.655][V][switch:025]: 'Modem PWRKEY' Turning OFF.
-[12:11:38.655][V][switch:064]: 'Modem PWRKEY' >> OFF
-[12:11:38.656][V][component:248]: Setup output.switch took 2ms
-[12:11:38.656][V][component:236]: Setup output.switch
-[12:11:38.657][V][switch:025]: 'Modem Reset' Turning OFF.
-[12:11:38.658][V][switch:064]: 'Modem Reset' >> OFF
-[12:11:38.658][V][component:248]: Setup output.switch took 1ms
-[12:11:38.659][V][component:236]: Setup esphome.coroutine
-[12:11:38.660][V][component:248]: Setup esphome.coroutine took 0ms
-[12:11:38.661][V][component:236]: Setup nulluart
-[12:11:38.662][V][component:248]: Setup nulluart took 0ms
-[12:11:38.662][V][component:236]: Setup gps.time
-[12:11:38.663][V][scheduler:217]: Scheduler interval for iid:0 is 300000ms, offset 2567ms
-[12:11:38.664][V][component:248]: Setup gps.time took 1ms
-[12:11:38.665][V][component:236]: Setup interval
-[12:11:38.666][V][scheduler:217]: Scheduler interval for iid:0 is 20000ms, offset 541ms
-[12:11:38.667][V][component:248]: Setup interval took 1ms
-[12:11:38.667][V][component:236]: Setup adc.sensor
-[12:11:38.669][V][scheduler:217]: Scheduler interval for iid:0 is 60000ms, offset 1210ms
-[12:11:38.670][V][adc.esp32:093]: Using curve fitting calibration
-[12:11:38.671][V][component:248]: Setup adc.sensor took 3ms
-[12:11:38.672][V][component:236]: Setup wifi_info.text_sensor
-[12:11:38.672][V][component:248]: Setup wifi_info.text_sensor took 0ms
-[12:11:38.673][V][component:236]: Setup wifi_info.text_sensor
-[12:11:38.674][V][component:248]: Setup wifi_info.text_sensor took 0ms
-[12:11:38.675][V][component:236]: Setup version.text_sensor
-[12:11:38.676][V][text_sensor:037]: 'ESPHome Version': Received new state 2026.4.5 (config hash 0xd22345fa, built 2026-05-16 17:22:31 +1000)
-[12:11:38.678][V][text_sensor:115]: 'ESPHome Version' >> '2026.4.5 (config hash 0xd22345fa, built 2026-05-16 17:22:31 +1000)'
-[12:11:38.679][V][component:248]: Setup version.text_sensor took 3ms
-[12:11:38.679][V][component:236]: Setup status.binary_sensor
-[12:11:38.681][V][scheduler:217]: Scheduler interval for iid:0 is 1000ms, offset 70ms
-[12:11:38.681][V][binary_sensor:041]: 'Status' >> OFF
-[12:11:38.682][V][component:248]: Setup status.binary_sensor took 2ms
-[12:11:38.683][V][component:236]: Setup globals
-[12:11:38.683][V][component:248]: Setup globals took 0ms
-[12:11:38.684][V][component:236]: Setup modem
-[12:11:38.690][V][component:248]: Setup modem took 5ms
-[12:11:38.690][V][component:236]: Setup wifi
-[12:11:38.699][C][wifi:624]: Starting
-[12:11:38.701][V][preferences:065]: nvs_get_blob('3796336611'): ESP_ERR_NVS_NOT_FOUND - the key might not be set yet
-[12:11:38.701][V][wifi_esp32:235]: Enabling STA
-[12:11:38.737][D][wifi:1282]: Starting scan
-[12:11:38.740][V][component:248]: Setup wifi took 48ms
-[12:11:38.741][V][component:236]: Setup esphome.ota
-[12:11:38.743][V][component:248]: Setup esphome.ota took 1ms
-[12:11:38.744][V][component:236]: Setup safe_mode
-[12:11:38.745][V][component:248]: Setup safe_mode took 0ms
-[12:11:38.745][V][component:236]: Setup api
-[12:11:38.748][W][component:389]: api set Warning flag: waiting for client connection
-[12:11:38.748][V][component:248]: Setup api took 2ms
-[12:11:38.749][V][component:236]: Setup wifi_signal.sensor
-[12:11:38.750][V][scheduler:217]: Scheduler interval for iid:0 is 60000ms, offset 625ms
-[12:11:38.751][V][component:248]: Setup wifi_signal.sensor took 1ms
-[12:11:38.752][V][component:236]: Setup mdns
-[12:11:38.754][V][component:248]: Setup mdns took 2ms
-[12:11:38.755][I][app:123]: setup() finished successfully!
-[12:11:38.756][V][wifi_esp32:735]: STA start
-[12:11:38.758][W][component:389]: wifi set Warning flag: scanning for networks
-[12:11:38.759][I][app:154]: ESPHome version 2026.4.5 compiled on 2026-05-16 17:22:31 +1000
-[12:11:38.760][I][app:161]: ESP32 Chip: ESP32-S3 rev0.2, 2 core(s)
-[12:11:38.760][C][logger:219]: Logger:
-[12:11:38.761][C][logger:219]:   Max Level: VERBOSE
-[12:11:38.761][C][logger:219]:   Initial Level: VERBOSE
-[12:11:38.761][C][logger:226]:   Log Baud Rate: 115200
-[12:11:38.762][C][logger:226]:   Hardware UART: USB_SERIAL_JTAG
-[12:11:38.763][C][logger:235]:   Task Log Buffer Size: 768 bytes
-[12:11:38.763][C][logger:241]:   Level for 'api': VERBOSE
-[12:11:38.764][C][logger:241]:   Level for 'api.connection': VERBOSE
-[12:11:38.765][C][logger:241]:   Level for 'modem': WARN
-[12:11:38.766][C][logger:241]:   Level for 'modem_handler': WARN
-[12:11:38.767][I][logger:254]: VERBOSE logging is active — performance impact, short-term debugging only
-[12:11:38.767][I][logger:254]:   Set log level to DEBUG or lower for long-term use.
-[12:11:38.769][D][main:1305]: SIM7670G PWRKEY pulsed; modem booting in background
-[12:11:38.796][C][gpio.output:010]: Binary Output:
-[12:11:38.796][C][gpio.output:152]:   Pin: GPIO18
-[12:11:38.807][C][gpio.output:010]: Binary Output:
-[12:11:38.808][C][gpio.output:152]:   Pin: GPIO17
-[12:11:38.824][C][switch.gpio:088]: GPIO Switch 'Status LED'
-[12:11:38.824][C][switch.gpio:088]:   Restore Mode: always OFF
-[12:11:38.825][C][switch.gpio:152]:   Pin: GPIO12
-[12:11:38.887][C][gps:012]: GPS:
-[12:11:38.888][C][gps:017]:   Latitude 'Latitude'
-[12:11:38.888][C][gps:017]:     State Class: 'measurement'
-[12:11:38.889][C][gps:017]:     Unit of Measurement: '°'
-[12:11:38.889][C][gps:017]:     Accuracy Decimals: 6
-[12:11:38.890][C][gps:223]:     Icon: 'mdi:latitude'
-[12:11:38.890][C][gps:017]:   Longitude 'Longitude'
-[12:11:38.891][C][gps:017]:     State Class: 'measurement_angle'
-[12:11:38.891][C][gps:017]:     Unit of Measurement: '°'
-[12:11:38.891][C][gps:017]:     Accuracy Decimals: 6
-[12:11:38.892][C][gps:223]:     Icon: 'mdi:longitude'
-[12:11:38.893][C][gps:017]:   Speed 'Speed'
-[12:11:38.893][C][gps:017]:     State Class: 'measurement'
-[12:11:38.893][C][gps:017]:     Unit of Measurement: 'km/h'
-[12:11:38.894][C][gps:017]:     Accuracy Decimals: 3
-[12:11:38.894][C][gps:232]:     Device Class: 'speed'
-[12:11:38.895][C][gps:223]:     Icon: 'mdi:speedometer'
-[12:11:38.895][C][gps:017]:   Course 'Course'
-[12:11:38.896][C][gps:017]:     State Class: 'measurement_angle'
-[12:11:38.896][C][gps:017]:     Unit of Measurement: '°'
-[12:11:38.897][C][gps:017]:     Accuracy Decimals: 2
-[12:11:38.897][C][gps:223]:     Icon: 'mdi:compass'
-[12:11:38.898][C][gps:017]:   Altitude 'Altitude'
-[12:11:38.898][C][gps:017]:     State Class: 'measurement'
-[12:11:38.898][C][gps:017]:     Unit of Measurement: 'm'
-[12:11:38.899][C][gps:017]:     Accuracy Decimals: 2
-[12:11:38.899][C][gps:223]:     Icon: 'mdi:altimeter'
-[12:11:38.900][C][gps:017]:   Satellites 'GPS Satellites'
-[12:11:38.900][C][gps:017]:     State Class: 'measurement'
-[12:11:38.901][C][gps:017]:     Unit of Measurement: ''
-[12:11:38.901][C][gps:017]:     Accuracy Decimals: 0
-[12:11:38.902][C][gps:223]:     Icon: 'mdi:satellite-variant'
-[12:11:38.902][C][gps:017]:   HDOP 'GPS HDOP'
-[12:11:38.903][C][gps:017]:     State Class: 'measurement'
-[12:11:38.903][C][gps:017]:     Unit of Measurement: ''
-[12:11:38.903][C][gps:017]:     Accuracy Decimals: 3
-[12:11:38.904][C][gps:223]:     Icon: 'mdi:circle-double'
-[12:11:38.915][C][uptime.sensor:017]: Uptime Sensor 'Uptime'
-[12:11:38.915][C][uptime.sensor:017]:   State Class: 'total_increasing'
-[12:11:38.915][C][uptime.sensor:017]:   Unit of Measurement: 's'
-[12:11:38.916][C][uptime.sensor:017]:   Accuracy Decimals: 0
-[12:11:38.916][C][uptime.sensor:232]:   Device Class: 'duration'
-[12:11:38.917][C][uptime.sensor:223]:   Icon: 'mdi:timer-outline'
-[12:11:38.918][C][uptime.sensor:019]:   Type: Seconds
-[12:11:38.945][C][output.switch:088]: Output Switch 'Modem PWRKEY'
-[12:11:38.945][C][output.switch:088]:   Restore Mode: always OFF
-[12:11:38.956][C][output.switch:088]: Output Switch 'Modem Reset'
-[12:11:38.957][C][output.switch:088]:   Restore Mode: always OFF
-[12:11:38.998][C][time:051]: Timezone: UTC+10:00
-[12:11:38.999][C][time:055]: Current time: 1970-01-02 05:49:00
-[12:11:39.026][C][adc.esp32:017]: ADC Sensor 'Battery Voltage'
-[12:11:39.026][C][adc.esp32:017]:   State Class: 'measurement'
-[12:11:39.026][C][adc.esp32:017]:   Unit of Measurement: 'V'
-[12:11:39.027][C][adc.esp32:017]:   Accuracy Decimals: 2
-[12:11:39.027][C][adc.esp32:232]:   Device Class: 'voltage'
-[12:11:39.028][C][adc.esp32:152]:   Pin: GPIO4
-[12:11:39.029][C][adc.esp32:125]:   Channel:       3
-[12:11:39.029][C][adc.esp32:125]:   Unit:          ADC1
-[12:11:39.029][C][adc.esp32:125]:   Attenuation:   12 dB
-[12:11:39.029][C][adc.esp32:125]:   Samples:       1
-[12:11:39.030][C][adc.esp32:125]:   Sampling mode: average
-[12:11:39.030][C][adc.esp32:125]:   Setup Status:
-[12:11:39.030][C][adc.esp32:125]:     Handle Init:  OK
-[12:11:39.030][C][adc.esp32:125]:     Config:       OK
-[12:11:39.031][C][adc.esp32:125]:     Calibration:  OK
-[12:11:39.031][C][adc.esp32:125]:     Overall Init: OK
-[12:11:39.032][C][adc.esp32:451]:   Update Interval: 60.0s
-[12:11:39.043][C][wifi_info:016]: SSID 'WiFi SSID'
-[12:11:39.058][C][wifi_info:016]: IP Address 'WiFi IP'
-[12:11:39.070][C][version.text_sensor:016]: Version Text Sensor 'ESPHome Version'
-[12:11:39.070][C][version.text_sensor:223]:   Icon: 'mdi:new-box'
-[12:11:39.085][C][status:016]: Status Binary Sensor 'Status'
-[12:11:39.086][C][status:232]:   Device Class: 'connectivity'
-[12:11:39.123][C][wifi:1510]: WiFi:
-[12:11:39.124][C][wifi:1510]:   Local MAC: E0:72:A1:CC:28:10
-[12:11:39.124][C][wifi:1510]:   Connected: NO
-[12:11:39.140][C][esphome.ota:071]: Over-The-Air updates:
-[12:11:39.140][C][esphome.ota:071]:   Address: :3232
-[12:11:39.140][C][esphome.ota:071]:   Version: 2
-[12:11:39.141][C][esphome.ota:078]:   Password configured
-[12:11:39.153][C][safe_mode:026]: Safe Mode:
-[12:11:39.153][C][safe_mode:026]:   Successful after: 60s
-[12:11:39.153][C][safe_mode:026]:   Invoke after: 10 attempts
-[12:11:39.153][C][safe_mode:026]:   Duration: 300s
-[12:11:39.154][C][safe_mode:043]:   Bootloader rollback: support unknown
-[12:11:39.168][C][api:235]: Server:
-[12:11:39.169][C][api:235]:   Address: :6053
-[12:11:39.169][C][api:235]:   Listen backlog: 4
-[12:11:39.169][C][api:235]:   Max connections: 8
-[12:11:39.170][C][api:242]:   Noise encryption: YES
-[12:11:39.182][C][wifi_signal.sensor:017]: WiFi Signal 'WiFi Signal'
-[12:11:39.182][C][wifi_signal.sensor:017]:   State Class: 'measurement'
-[12:11:39.182][C][wifi_signal.sensor:017]:   Unit of Measurement: 'dBm'
-[12:11:39.183][C][wifi_signal.sensor:017]:   Accuracy Decimals: 0
-[12:11:39.183][C][wifi_signal.sensor:232]:   Device Class: 'signal_strength'
-[12:11:39.196][C][mdns:194]: mDNS:
-[12:11:39.197][C][mdns:194]:   Hostname: esp-tracker-1
-[12:11:39.197][V][mdns:199]:   Services:
-[12:11:39.198][V][mdns:201]:   - _esphomelib, _tcp, 6053
-[12:11:39.198][V][mdns:204]:     TXT: friendly_name = ESP Tracker 1
-[12:11:39.199][V][mdns:204]:     TXT: version = 2026.4.5
-[12:11:39.200][V][mdns:204]:     TXT: mac = e072a1cc2810
-[12:11:39.200][V][mdns:204]:     TXT: platform = ESP32
-[12:11:39.201][V][mdns:204]:     TXT: board = esp32-s3-devkitc-1
-[12:11:39.202][V][mdns:204]:     TXT: network = wifi
-[12:11:39.203][V][mdns:204]:     TXT: api_encryption = Noise_NNpsk0_25519_ChaChaPoly_SHA256
-[12:11:39.219][I][GNSS:205]: GNSS engine powered on
-[12:11:39.227][W][GNSS:260]: CGNSSINFO malformed: +CGNSSINFO: ,,,,,,,,
-[12:11:39.886][V][adc.common:070]: 'Battery Voltage': Voltage=0.0090V
-[12:11:39.887][V][sensor:077]: 'Battery Voltage': Received new state 0.009000
-[12:11:39.888][V][sensor:125]: 'Battery Voltage' >> 0.02 V
-[12:11:41.341][V][wifi_esp32:829]: Scan done: status=0 number=10 scan_id=128
-[12:11:41.343][V][wifi:513]: - [redacted] [redacted] -87dB Ch:1
-[12:11:41.346][V][wifi:513]: - [redacted] [redacted] -42dB Ch:11
-[12:11:41.348][V][wifi:513]: - [redacted] [redacted] -42dB Ch:11
-[12:11:41.351][V][wifi:513]: - [redacted] [redacted] -69dB Ch:11
-[12:11:41.353][V][wifi:513]: - [redacted] [redacted] -69dB Ch:11
-[12:11:41.356][V][wifi:513]: - [redacted] [redacted] -72dB Ch:11
-[12:11:41.358][V][wifi:513]: - [redacted] [redacted] -72dB Ch:11
-[12:11:41.360][V][wifi_esp32:892]: Scan complete: 10 found, 3 stored (filtered)
-[12:11:41.361][D][wifi:1442]: Found networks:
-[12:11:41.362][I][wifi:1413]: - 'redacted' [redacted]▂▄▆█ Ch:11 -42dB P:0
-[12:11:41.364][I][wifi:1413]: - 'redacted' [redacted]▂▄▆█ Ch:11 -69dB P:0
-[12:11:41.365][I][wifi:1413]: - 'redacted' [redacted]▂▄▆█ Ch:11 -72dB P:0
-[12:11:41.366][D][wifi:1815]: Retry phase: INITIAL_CONNECT → SCAN_CONNECTING
-[12:11:41.368][I][wifi:1081]: Connecting to [redacted] [redacted] (priority 0, attempt 1/2 in phase SCAN_CONNECTING)...
-[12:11:41.368][V][wifi:1087]: Connection Params:
-[12:11:41.369][V][wifi:1087]:   SSID: 'redacted'
-[12:11:41.369][V][wifi:1092]:   BSSID: F0:B6:61:39:5D:E7
-[12:11:41.370][V][wifi:1124]:   Password: [redacted]
-[12:11:41.371][V][wifi:1129]:   Channel: 11
-[12:11:41.371][V][wifi:1148]:   Using DHCP IP
-[12:11:41.372][V][wifi:1150]:   Hidden: NO
-[12:11:41.403][V][sensor:077]: 'Uptime': Received new state 2.875000
-[12:11:41.404][V][sensor:125]: 'Uptime' >> 3 s
-[12:11:41.508][V][wifi_esp32:763]: Connected ssid='redacted' bssid=[redacted] channel=11, authmode=WPA2 PSK
-[12:11:41.764][W][modem:249]: Exiting DATA_MODE. (long blocking call, make sur to have a long WDT!)
-[12:12:14.795][W][component:522]: modem took a long time for an operation (33036 ms), max is 30 ms
-[12:12:14.797][V][wifi_esp32:807]: static_ip=192.168.7.33 gateway=192.168.4.1
-[12:12:14.798][V][text_sensor:037]: 'WiFi IP': Received new state 192.168.7.33
-[12:12:14.798][V][text_sensor:115]: 'WiFi IP' >> '192.168.7.33'
-[12:12:14.800][I][wifi:1551]: Connected
-[12:12:14.802][C][wifi:1221]:   IP Address: 192.168.7.33
-[12:12:14.805][C][wifi:1232]:   SSID: [redacted]
-[12:12:14.805][C][wifi:1232]:   BSSID: [redacted]
-[12:12:14.805][C][wifi:1232]:   Hostname: 'esp-tracker-1'
-[12:12:14.806][C][wifi:1232]:   Signal strength: -42 dB ▂▄▆█
-[12:12:14.806][C][wifi:1232]:   Channel: 11
-[12:12:14.806][C][wifi:1232]:   Subnet: 255.255.252.0
-[12:12:14.807][C][wifi:1232]:   Gateway: 192.168.4.1
-[12:12:14.807][C][wifi:1232]:   DNS1: 192.168.4.1
-[12:12:14.807][C][wifi:1232]:   DNS2: 0.0.0.0
-[12:12:14.810][V][text_sensor:037]: 'WiFi SSID': Received new state redacted
-[12:12:14.811][V][text_sensor:115]: 'WiFi SSID' >> 'redacted'
-[12:12:14.813][V][sensor:077]: 'WiFi Signal': Received new state -42.000000
-[12:12:14.814][V][sensor:125]: 'WiFi Signal' >> -42 dBm
-[12:12:14.823][W][GNSS:260]: CGNSSINFO malformed: +CGNSSINFO: ,,,,,,,,
-[12:12:14.829][W][modem:249]: Exiting DATA_MODE. (long blocking call, make sur to have a long WDT!)
-[12:12:47.852][D][main:486]: Modem synced (network registered)
-[12:12:47.853][W][component:522]: modem took a long time for an operation (33029 ms), max is 30 ms
-[12:12:47.854][W][component:422]: wifi cleared Warning flag
-[12:12:47.855][I][safe_mode:091]: Boot seems successful; resetting boot loop counter
-[12:12:47.865][W][GNSS:260]: CGNSSINFO malformed: +CGNSSINFO: ,,,,,,,,
-[12:12:47.867][V][sensor:077]: 'WiFi Signal': Received new state -43.000000
-[12:12:47.868][V][sensor:125]: 'WiFi Signal' >> -43 dBm
-[12:12:47.869][V][adc.common:070]: 'Battery Voltage': Voltage=0.0100V
-[12:12:47.870][V][sensor:077]: 'Battery Voltage': Received new state 0.010000
-[12:12:47.871][V][sensor:125]: 'Battery Voltage' >> 0.02 V
-[12:12:47.872][V][sensor:077]: 'Uptime': Received new state 69.345001
-[12:12:47.873][V][sensor:125]: 'Uptime' >> 69 s
-[12:12:48.263][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:12:48.277][W][modem:340]: Modem not yet ready to connect
-[12:12:53.525][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:12:53.539][W][modem:340]: Modem not yet ready to connect
-[12:12:58.787][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:12:58.801][W][modem:340]: Modem not yet ready to connect
-[12:13:04.050][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:13:04.064][W][modem:340]: Modem not yet ready to connect
-[12:13:07.906][I][GNSS:219]: No GNSS fix yet
-[12:13:09.315][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:13:09.329][W][modem:340]: Modem not yet ready to connect
-[12:13:14.579][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:13:14.593][W][modem:340]: Modem not yet ready to connect
-[12:13:15.625][V][preferences:121]: Saving 1 items...
-[12:13:15.631][V][preferences:132]: sync: key: 233825507, len: 4
-[12:13:15.631][D][preferences:152]: Writing 1 items: 0 cached, 1 written, 0 failed
-[12:13:19.847][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:13:19.862][W][modem:340]: Modem not yet ready to connect
-[12:13:25.109][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:13:25.124][W][modem:340]: Modem not yet ready to connect
-[12:13:28.870][W][GNSS:215]: AT+CGNSSINFO failed
-[12:13:28.871][W][component:522]: interval took a long time for an operation (1001 ms), max is 30 ms
-[12:13:30.371][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:13:30.386][W][modem:340]: Modem not yet ready to connect
-[12:13:35.633][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:13:35.647][W][modem:340]: Modem not yet ready to connect
-[12:13:40.896][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:13:40.911][W][modem:340]: Modem not yet ready to connect
-[12:13:46.158][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:13:46.172][W][modem:340]: Modem not yet ready to connect
-[12:13:47.868][V][adc.common:070]: 'Battery Voltage': Voltage=0.0080V
-[12:13:47.869][V][sensor:077]: 'Battery Voltage': Received new state 0.008000
-[12:13:47.869][V][sensor:125]: 'Battery Voltage' >> 0.02 V
-[12:13:47.871][V][sensor:077]: 'Uptime': Received new state 129.343002
-[12:13:47.871][V][sensor:125]: 'Uptime' >> 129 s
-[12:13:47.874][V][sensor:077]: 'WiFi Signal': Received new state -42.000000
-[12:13:47.875][V][sensor:125]: 'WiFi Signal' >> -42 dBm
-[12:13:48.886][W][GNSS:215]: AT+CGNSSINFO failed
-[12:13:51.425][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:13:51.440][W][modem:340]: Modem not yet ready to connect
-[12:13:56.689][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:13:56.704][W][modem:340]: Modem not yet ready to connect
-[12:14:01.951][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:14:01.966][W][modem:340]: Modem not yet ready to connect
-[12:14:07.214][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:14:07.229][W][modem:340]: Modem not yet ready to connect
-[12:14:09.262][W][GNSS:215]: AT+CGNSSINFO failed
-[12:14:12.477][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:14:12.492][W][modem:340]: Modem not yet ready to connect
-[12:14:17.739][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:14:17.754][W][modem:340]: Modem not yet ready to connect
-[12:14:23.001][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:14:23.016][W][modem:340]: Modem not yet ready to connect
-[12:14:28.263][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:14:28.278][W][modem:340]: Modem not yet ready to connect
-[12:14:30.311][W][GNSS:215]: AT+CGNSSINFO failed
-[12:14:33.526][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:14:33.541][W][modem:340]: Modem not yet ready to connect
-[12:14:38.788][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:14:38.803][W][modem:340]: Modem not yet ready to connect
-[12:14:44.051][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:14:44.066][W][modem:340]: Modem not yet ready to connect
-[12:14:47.868][V][sensor:077]: 'WiFi Signal': Received new state -41.000000
-[12:14:47.869][V][sensor:125]: 'WiFi Signal' >> -41 dBm
-[12:14:47.871][V][sensor:077]: 'Uptime': Received new state 189.341995
-[12:14:47.871][V][sensor:125]: 'Uptime' >> 189 s
-[12:14:47.873][V][adc.common:070]: 'Battery Voltage': Voltage=0.0080V
-[12:14:47.874][V][sensor:077]: 'Battery Voltage': Received new state 0.008000
-[12:14:47.874][V][sensor:125]: 'Battery Voltage' >> 0.02 V
-[12:14:49.321][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:14:49.336][W][modem:340]: Modem not yet ready to connect
-[12:14:51.368][W][GNSS:215]: AT+CGNSSINFO failed
-[12:14:54.583][W][modem_handler:139]: Failed to check pin: AT+CPIN?
-[12:14:54.598][W][modem:340]: Modem not yet ready to connect
+INFO ESPHome 2026.4.5
+INFO Reading configuration /config/esphome/esp-tracker.yaml...
+INFO Detected timezone 'Australia/Brisbane'
+INFO Generating C++ source...
+INFO Compiling app... Build path: /data/build/esp-tracker-1
+Processing esp-tracker-1 (board: esp32-s3-devkitc-1; framework: espidf; platform: https://github.com/pioarduino/platform-espressif32/releases/download/55.03.38-1/platform-espressif32.zip)
+--------------------------------------------------------------------------------
+Library Manager: Installing esphome/noise-c @ 0.1.11
+Unpacking  [####################################]  100%
+Library Manager: noise-c@0.1.11 has been installed!
+Library Manager: Resolving dependencies...
+Library Manager: Installing esphome/libsodium @ 1.10021.0
+Unpacking  [####################################]  100%
+Library Manager: libsodium@1.10021.0 has been installed!
+Library Manager: Installing git+https://github.com/esphome/TinyGPSPlus.git#v1.1.0
+git version 2.39.5
+Cloning into '/data/cache/platformio/cache/tmp/pkg-installing-wzi4w8yn'...
+Library Manager: TinyGPSPlus@1.1.0+sha.6c2675a has been installed!
+HARDWARE: ESP32S3 240MHz, 320KB RAM, 4MB Flash
+ - contrib-piohome @ 3.4.4 
+ - framework-espidf @ 3.50504.0 (5.5.4) 
+ - tool-cmake @ 4.0.3 
+ - tool-esp-rom-elfs @ 2024.10.11 
+ - tool-esptoolpy @ 5.2.0 
+ - tool-ninja @ 1.13.1 
+ - tool-scons @ 4.40801.0 (4.8.1) 
+ - tool-xtensa-esp-elf-gdb @ 16.3.0+20250913 
+ - toolchain-xtensa-esp-elf @ 14.2.0+20260121
+Using Python 3.12.10 environment at: /root/.platformio/penv/.espidf-5.5.4
+Reading CMake configuration...
+Generating assembly for certificate bundle...
+Dependency Graph
+|-- noise-c @ 0.1.11
+|-- TinyGPSPlus @ 1.1.0+sha.6c2675a
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/adc/adc_sensor_common.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/adc/adc_sensor_esp32.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/api/api_buffer.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/api/api_connection.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/api/api_frame_helper.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/api/api_frame_helper_noise.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/api/api_overflow_buffer.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/api/api_pb2.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/api/api_pb2_service.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/api/api_server.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/api/list_entities.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/api/proto.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/api/subscribe_state.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/binary_sensor/automation.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/binary_sensor/binary_sensor.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/binary_sensor/filter.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/button/button.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/esp32/core.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/esp32/crash_handler.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/esp32/gpio.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/esp32/helpers.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/esp32/preferences.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/esp32/printf_stubs.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/esp32/throw_stubs.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/esphome/ota/ota_esphome.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/gpio/output/gpio_binary_output.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/gpio/switch/gpio_switch.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/gps/gps.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/gps/time/gps_time.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/logger/logger.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/logger/logger_esp32.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/logger/task_log_buffer_esp32.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/md5/md5.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/mdns/mdns_component.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/mdns/mdns_esp32.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/network/util.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/nulluart/nulluart.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/ota/ota_backend.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/ota/ota_backend_esp_idf.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/ota/ota_backend_host.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/output/automation.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/output/float_output.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/output/switch/output_switch.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/safe_mode/safe_mode.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/script/script.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/sensor/automation.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/sensor/filter.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/sensor/sensor.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/sha256/sha256.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/socket/bsd_sockets_impl.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/socket/socket.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/status/status_binary_sensor.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/switch/automation.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/switch/switch.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/text_sensor/filter.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/text_sensor/text_sensor.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/time/automation.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/time/posix_tz.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/time/real_time_clock.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/uart/uart.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/uart/uart_component.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/uart/uart_component_esp_idf.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/uart/uart_debugger.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/uptime/sensor/uptime_seconds_sensor.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/uptime/sensor/uptime_timestamp_sensor.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/version/version_text_sensor.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/wifi/wifi_component.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/wifi/wifi_component_esp_idf.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/wifi_info/wifi_info_text_sensor.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/components/wifi_signal/wifi_signal_sensor.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/core/application.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/core/color.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/core/component.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/core/component_iterator.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/core/controller_registry.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/core/entity_base.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/core/gpio.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/core/helpers.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/core/log.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/core/lwip_fast_select.c.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/core/main_task.c.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/core/ring_buffer.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/core/scheduler.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/core/static_task.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/core/time.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/core/util.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/esphome/core/wake.cpp.o
+Compiling .pioenvs/esp-tracker-1/src/main.cpp.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_aead/chacha20poly1305/aead_chacha20poly1305.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_core/ed25519/ref10/ed25519_ref10.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_core/salsa/ref/core_salsa_ref.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_hash/crypto_hash.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_hash/sha256/cp/hash_sha256_cp.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_hash/sha256/hash_sha256.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_onetimeauth/crypto_onetimeauth.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_onetimeauth/poly1305/donna/poly1305_donna.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_onetimeauth/poly1305/onetimeauth_poly1305.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_scalarmult/crypto_scalarmult.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_scalarmult/curve25519/ref10/x25519_ref10.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_scalarmult/curve25519/scalarmult_curve25519.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_stream/chacha20/ref/chacha20_ref.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_stream/chacha20/stream_chacha20.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_stream/crypto_stream.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_stream/salsa20/ref/salsa20_ref.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_stream/salsa20/stream_salsa20.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_stream/salsa20/xmm6/salsa20_xmm6-asm.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_stream/salsa20/xmm6/salsa20_xmm6.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_stream/salsa20/xmm6int/salsa20_xmm6int-avx2.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_stream/salsa20/xmm6int/salsa20_xmm6int-sse2.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/crypto_verify/verify.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/randombytes/internal/randombytes_internal_random.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/randombytes/randombytes.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/randombytes/sysrandom/randombytes_sysrandom.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/sodium/codecs.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/sodium/core.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/sodium/runtime.o
+Compiling .pioenvs/esp-tracker-1/libece/libsodium/sodium/utils.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/backend/openssl/cipher-aesgcm.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/backend/ref/cipher-aesgcm.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/backend/ref/cipher-chachapoly.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/backend/ref/dh-curve25519.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/backend/ref/hash-blake2b.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/backend/ref/hash-blake2s.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/backend/ref/hash-sha256.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/backend/sodium/cipher-aesgcm.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/backend/sodium/cipher-chachapoly.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/backend/sodium/dh-curve25519.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/backend/sodium/hash-blake2b.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/backend/sodium/hash-sha256.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/crypto/aes/rijndael-alg-fst.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/crypto/blake2/blake2b.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/crypto/blake2/blake2s.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/crypto/chacha/chacha.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/crypto/donna/curve25519-donna-c64.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/crypto/donna/curve25519-donna.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/crypto/donna/poly1305-donna.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/crypto/sha2/sha256.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/crypto/sha2/sha512.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/crypto/x25519/x25519.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/protocol/cipherstate.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/protocol/dhstate.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/protocol/errors.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/protocol/handshakestate.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/protocol/hashstate.o
+/config/esphome/esp-tracker.yaml: In lambda function:
+/config/esphome/esp-tracker.yaml:182:32: error: call of overloaded 'millis()' is ambiguous
+  182 |             uint32_t start = millis();
+      |                          ~~~~~~^~
+In file included from .piolibdeps/esp-tracker-1/TinyGPSPlus/src/TinyGPSPlus.h:25,
+                 from src/esphome/components/gps/gps.h:6,
+                 from src/esphome.h:35,
+                 from src/main.cpp:3:
+.piolibdeps/esp-tracker-1/TinyGPSPlus/src/TinyGPS++.h:38:15: note: candidate: 'long unsigned int millis()'
+   38 | unsigned long millis();
+      |               ^~~~~~
+In file included from src/esphome/core/component.h:9,
+                 from src/esphome/components/sensor/sensor.h:3,
+                 from src/esphome/components/adc/adc_sensor.h:3,
+                 from src/esphome.h:3:
+src/esphome/core/hal.h:34:10: note: candidate: 'uint32_t esphome::millis()'
+   34 | uint32_t millis();
+      |          ^~~~~~
+/config/esphome/esp-tracker.yaml:183:22: error: call of overloaded 'millis()' is ambiguous
+  183 |             while (millis() - start < timeout_ms) {
+      |                ~~~~~~^~
+.piolibdeps/esp-tracker-1/TinyGPSPlus/src/TinyGPS++.h:38:15: note: candidate: 'long unsigned int millis()'
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/protocol/internal.o
+   38 | unsigned long millis();
+      |               ^~~~~~
+src/esphome/core/hal.h:34:10: note: candidate: 'uint32_t esphome::millis()'
+   34 | uint32_t millis();
+      |          ^~~~~~
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/protocol/names.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/protocol/patterns.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/protocol/rand_os.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/protocol/rand_sodium.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/protocol/randstate.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/protocol/signstate.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/protocol/symmetricstate.o
+Compiling .pioenvs/esp-tracker-1/lib813/noise-c/protocol/util.o
+Compiling .pioenvs/esp-tracker-1/lib153/TinyGPSPlus/TinyGPS++.o
+Generating LD script .pioenvs/esp-tracker-1/esp-idf/esp_system/ld/memory.ld.in
+Generating LD script .pioenvs/esp-tracker-1/esp-idf/esp_system/ld/sections.ld.in
+Generating LD script .pioenvs/esp-tracker-1/memory.ld
+Compiling .pioenvs/esp-tracker-1/app_trace/app_trace.c.o
+Compiling .pioenvs/esp-tracker-1/app_trace/app_trace_util.c.o
+Compiling .pioenvs/esp-tracker-1/app_trace/host_file_io.c.o
+Compiling .pioenvs/esp-tracker-1/app_trace/port/port_uart.c.o
+Compiling .pioenvs/esp-tracker-1/app_update/esp_ota_ops.c.o
+*** [.pioenvs/esp-tracker-1/src/main.cpp.o] Error 1
+========================= [FAILED] Took 77.23 seconds =========================
