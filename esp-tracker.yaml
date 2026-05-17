@@ -94,15 +94,6 @@ switch:
     id: status_led
     name: "Status LED"
     pin: GPIO12
-  - platform: gpio
-    id: modem_gps_enable
-    name: "Modem GPS Enable"
-    # MODEM_GPS_ENABLE_GPIO on the LilyGo T-SIM7670G-S3: must be driven HIGH
-    # to power the active GPS antenna's LNA, otherwise no satellites will ever
-    # be received even outdoors with a clear sky.
-    pin: GPIO4
-    restore_mode: ALWAYS_ON
-    internal: true
 
 script:
   - id: modem_power_on
@@ -205,22 +196,37 @@ interval:
             return out;
           };
 
-          // GNSS works without a SIM, so power it on as soon as the modem responds.
+          // GNSS works without a SIM. To get a fix on the T-SIM7670G-S3 we have
+          // to (a) configure the modem's own GPIO4 as a HIGH output to power
+          // the active GPS antenna's LNA (MODEM_GPS_ENABLE_GPIO in LilyGo's
+          // utilities.h — note: SIM7670G internal GPIO, NOT an ESP32 pin),
+          // then (b) power the GNSS engine and wait for "+CGNSSPWR: READY!".
           if (!id(gnss_powered_on)) {
             // Wake the AT interface with a couple of harmless commands first
             send_at("AT", 500);
             send_at("ATE0", 500);  // disable echo so responses are cleaner
-            std::string pwr = send_at("AT+CGNSSPWR=1", 2000);
+
+            std::string dir = send_at("AT+CGDRT=4,1", 1000);
+            ESP_LOGI("GNSS", "CGDRT=4,1 (GPS LNA dir=out): '%s'", dir.c_str());
+            std::string lvl = send_at("AT+CGSETV=4,1", 1000);
+            ESP_LOGI("GNSS", "CGSETV=4,1 (GPS LNA power on): '%s'", lvl.c_str());
+
+            // CGNSSPWR=1 returns OK quickly, then emits "+CGNSSPWR: READY!"
+            // when the GNSS subsystem has actually booted (can take ~20 s).
+            std::string pwr = send_at("AT+CGNSSPWR=1", 30000);
             ESP_LOGI("GNSS", "CGNSSPWR=1: '%s'", pwr.c_str());
-            if (pwr.find("OK") == std::string::npos &&
-                pwr.find("already") == std::string::npos) {
+            if (pwr.find("OK") == std::string::npos) {
               ESP_LOGW("GNSS", "Modem not yet ready for GNSS power-on");
               return;
             }
-            // The GNSS engine needs ~1.5s after power-on before it accepts queries.
-            delay(2000);
-            std::string mode = send_at("AT+CGNSSMODE=15,1", 1000);
-            ESP_LOGI("GNSS", "CGNSSMODE=15,1: '%s'", mode.c_str());
+            if (pwr.find("READY") == std::string::npos) {
+              ESP_LOGW("GNSS", "GNSS engine reported OK but not READY yet; "
+                               "the modem will still try to fix in background");
+            }
+
+            // Enable all four constellations for fastest cold-start fix.
+            std::string mode = send_at("AT+CGNSSMODE=15", 1000);
+            ESP_LOGI("GNSS", "CGNSSMODE=15: '%s'", mode.c_str());
             std::string check = send_at("AT+CGNSSPWR?", 1000);
             ESP_LOGI("GNSS", "CGNSSPWR?: '%s'", check.c_str());
             id(gnss_powered_on) = true;
@@ -333,6 +339,13 @@ interval:
 # Diagnostics
 # ---------------------------------------------------------------------------
 sensor:
+  - platform: adc
+    pin: GPIO4
+    name: "Battery Voltage"
+    update_interval: 60s
+    attenuation: 12db
+    filters:
+      - multiply: 2.0    # on-board 1:1 divider
   - platform: wifi_signal
     name: "WiFi Signal"
     update_interval: 60s
