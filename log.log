@@ -1,11 +1,48 @@
-INFO ESPHome 2026.4.5
-INFO Reading configuration /config/esphome/esp-tracker.yaml...
-INFO Detected timezone 'Australia/Brisbane'
 INFO Starting log output from 192.168.4.223 using esphome API
 INFO Successfully resolved esp-tracker-1 @ 192.168.4.223 in 0.000s
-INFO Successfully connected to esp-tracker-1 @ 192.168.4.223 in 0.118s
-INFO Successful handshake with esp-tracker-1 @ 192.168.4.223 in 0.041s
-[17:45:49.657][I][app:154]: ESPHome version 2026.4.5 compiled on 2026-05-17 17:41:51 +1000
-[17:45:49.657][I][app:161]: ESP32 Chip: ESP32-S3 rev0.2, 2 core(s)
-[17:45:51.047][W][GNSS:259]: CGNSSINFO malformed: ,,,,,,,,
-[17:46:10.184][W][GNSS:259]: CGNSSINFO malformed: ,,,,,,,,
+INFO Successfully connected to esp-tracker-1 @ 192.168.4.223 in 5.119s
+INFO Successful handshake with esp-tracker-1 @ 192.168.4.223 in 0.066s
+[18:05:04.952][I][app:154]: ESPHome version 2026.4.5 compiled on 2026-05-17 18:04:34 +1000
+[18:05:04.953][I][app:161]: ESP32 Chip: ESP32-S3 rev0.2, 2 core(s)
+[18:05:05.836][S][binary_sensor]: 'Status' >> ON
+[18:05:20.957][I][GNSS:201]: GNSS engine powered on
+
+
+
+[18:05:20.992]+CGNSSPWR: 1
+
+
+[18:05:21.006][I][GNSS:266]: No GNSS fix yet
+[18:05:21.030][W][component:522]: interval took a long time for an operation (62 ms), max is 30 ms
+[18:05:40.971][I][GNSS:266]: No GNSS fix yet
+[18:05:59.250][I][safe_mode:091]: Boot seems successful; resetting boot loop counter
+[18:05:59.620][S][sensor]: 'WiFi Signal' >> -50 dBm
+[18:06:00.959][I][GNSS:266]: No GNSS fix yet
+[18:06:01.941][S][sensor]: 'Uptime' >> 63 s
+[18:06:03.969][S][sensor]: 'Battery Voltage' >> 0.02 V
+[18:06:20.958][I][GNSS:266]: No GNSS fix yet
+[18:06:40.972][I][GNSS:266]: No GNSS fix yet
+[18:06:59.618][S][sensor]: 'WiFi Signal' >> -50 dBm
+[18:07:00.967][I][GNSS:266]: No GNSS fix yet
+[18:07:01.935][S][sensor]: 'Uptime' >> 123 s
+[18:07:03.972][S][sensor]: 'Battery Voltage' >> 0.02 V
+[18:07:20.963][I][GNSS:266]: No GNSS fix yet
+[18:07:40.979][I][GNSS:266]: No GNSS fix yet
+[18:07:59.620][S][sensor]: 'WiFi Signal' >> -50 dBm
+[18:08:00.971][I][GNSS:266]: No GNSS fix yet
+[18:08:02.004][S][sensor]: 'Uptime' >> 183 s
+[18:08:03.971][S][sensor]: 'Battery Voltage' >> 0.02 V
+[18:08:20.978][I][GNSS:266]: No GNSS fix yet
+[18:08:40.966][I][GNSS:266]: No GNSS fix yet
+[18:08:59.629][S][sensor]: 'WiFi Signal' >> -50 dBm
+[18:09:00.968][I][GNSS:266]: No GNSS fix yet
+[18:09:01.939][S][sensor]: 'Uptime' >> 243 s
+[18:09:03.978][S][sensor]: 'Battery Voltage' >> 0.02 V
+[18:09:20.968][I][GNSS:266]: No GNSS fix yet
+[18:09:40.980][I][GNSS:266]: No GNSS fix yet
+[18:09:59.630][S][sensor]: 'WiFi Signal' >> -50 dBm
+[18:10:00.971][I][GNSS:266]: No GNSS fix yet
+[18:10:01.958][S][sensor]: 'Uptime' >> 303 s
+[18:10:03.979][S][sensor]: 'Battery Voltage' >> 0.02 V
+[18:10:20.971][I][GNSS:266]: No GNSS fix yet
+[18:10:40.973][I][GNSS:266]: No GNSS fix yet
