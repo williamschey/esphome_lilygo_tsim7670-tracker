@@ -199,6 +199,12 @@ interval:
             std::string pwr = send_at("AT+CGNSSPWR=1", 1000);
             if (pwr.find("OK") != std::string::npos) {
               ESP_LOGI("GNSS", "GNSS engine powered on");
+              // Enable all constellations (GPS+GLONASS+Galileo+BeiDou) for fastest fix
+              std::string mode = send_at("AT+CGNSSMODE=15", 1000);
+              ESP_LOGI("GNSS", "CGNSSMODE response: %s", mode.c_str());
+              // Report power state for debugging
+              std::string check = send_at("AT+CGNSSPWR?", 1000);
+              ESP_LOGI("GNSS", "CGNSSPWR? response: %s", check.c_str());
               id(gnss_powered_on) = true;
             } else {
               ESP_LOGD("GNSS", "Modem not yet ready for GNSS power-on");
@@ -256,7 +262,8 @@ interval:
           auto p = split_csv(body);
           if (p.size() == 17) p.push_back("");   // some firmwares omit sat_used
           if (p.size() < 18) {
-            ESP_LOGW("GNSS", "CGNSSINFO malformed: %s", body.c_str());
+            // SIM7670 returns "+CGNSSINFO: ,,,,,,,," when there's no fix yet.
+            ESP_LOGI("GNSS", "No GNSS fix yet");
             return;
           }
 
