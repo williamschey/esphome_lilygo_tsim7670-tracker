@@ -58,6 +58,7 @@ the device used:
 | Modem RESET  | GPIO17        | Active LOW                             |
 | Status LED   | GPIO12        |                                        |
 | Battery ADC  | GPIO4         | 1:2 divider on board                   |
+| Live/ignition| GPIO13        | Drive HIGH = live mode (see below)     |
 
 Source: [LilyGo `utilities.h`](https://github.com/Xinyuan-LilyGO/LilyGO-T-SIM-A76XX/blob/main/examples/Arduino_Basic/utilities.h).
 
@@ -157,6 +158,47 @@ isn't present on the modem.
 For mutual TLS, also upload `clientcert.pem` / `clientkey.pem` with `AT+CCERTDOWN`
 and bind them via `AT+CSSLCFG="clientcert"/"clientkey"` (extend `publish_away()`
 in `tracker.h`).
+
+## Live tracking (motorcycle / ignition)
+
+For active use — e.g. tracking a motorcycle while riding — deep-sleep reporting
+every `report_interval` is too coarse. Driving the **live-mode pin
+(`live_mode_pin`, default `GPIO13`) HIGH** switches the device into a continuous
+mode:
+
+```
+ignition ON  → wake from sleep → disable deep sleep → publish position every live_interval (default 10s)
+ignition OFF → publish one final fix → power GNSS down → deep sleep
+```
+
+* The pin is also configured as a **deep-sleep wake source** (`KEEP_AWAKE`), so
+  turning the ignition on **wakes the device immediately** instead of waiting for
+  the next `report_interval`, and the device refuses to sleep while the pin is
+  held HIGH.
+* While live, GNSS stays powered and the position is pushed every `live_interval`
+  over the same home/cellular path and topic as normal reports — Home Assistant
+  just sees faster updates on the same `device_tracker`.
+* When the pin goes LOW the device publishes a last fix and returns to the
+  battery-friendly deep-sleep cycle.
+
+Tunables (top of `esp-tracker.yaml`):
+
+```yaml
+live_mode_pin: GPIO13   # must be an RTC GPIO (GPIO0–GPIO21) to wake from sleep
+live_interval: 10s      # publish cadence while live
+```
+
+> ⚠️ **Wiring / electrical safety.** A motorcycle ignition/accessory line is
+> **12 V** and **must not** be connected directly to the 3.3 V GPIO. Use an
+> **opto-isolator** (recommended) or a resistor divider to deliver a clean
+> 0/3.3 V signal, share a common ground, and fit an external **pull-down**
+> (e.g. 100 kΩ) so the pin reads LOW when the ignition is off. The internal
+> pull-down alone may not hold reliably through deep sleep.
+
+To bench-test without 12 V, momentarily tie `live_mode_pin` to **3.3 V** (live
+mode on) and back to **GND** (off). The separate **"Stay Awake (maintenance)"**
+switch only suspends deep sleep over the API; it does **not** start the 10 s
+streaming — that is driven solely by the live-mode pin.
 
 ## Battery tuning
 

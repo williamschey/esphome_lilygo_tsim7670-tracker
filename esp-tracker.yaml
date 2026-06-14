@@ -3,15 +3,30 @@ substitutions:
   friendly_name: "ESP Tracker 1"
 
   # Deep-sleep duration between position reports (lower = fresher, higher = longer battery).
-  report_interval: 5min
+  report_interval: 1min
   # Time for the SIM7670G to become AT-responsive after the PWRKEY pulse.
   modem_boot_delay: 12s
   # GNSS fix acquisition per wake: gnss_fix_attempts * gnss_poll_interval = max wait.
   gnss_fix_attempts: "30"
   gnss_poll_interval: 4s
 
+  # Live (continuous) tracking. When live_mode_pin is driven HIGH (e.g. the
+  # motorcycle's ignition / accessory line via an opto-isolator or divider to
+  # 3.3 V), deep sleep is disabled and the position is published every
+  # live_interval. Must be an RTC-capable GPIO (GPIO0-GPIO21) so it can wake the
+  # ESP32-S3 from deep sleep.
+  live_mode_pin: GPIO13
+  live_interval: 10s
+
   # MQTT topic used on BOTH brokers (HA subscribes to it for the device_tracker).
   mqtt_topic: "tracker/esp-tracker-1/location"
+
+  # On-device presence: the tracker compares each fix to this home location and
+  # reports an "at home" diagnostic (and a "home" field in the MQTT payload).
+  # Set these to your home coordinates; home_radius_m is the geofence radius.
+  home_latitude: "-33.8688"
+  home_longitude: "151.2093"
+  home_radius_m: "100"
 
 # ---------------------------------------------------------------------------
 # Away (cellular) broker credentials live in cellular.yaml (git-ignored) so the
@@ -59,6 +74,15 @@ esp32:
 deep_sleep:
   id: deep_sleep_id
   sleep_duration: ${report_interval}
+  # Wake immediately when the live-mode pin goes HIGH (ignition on), and refuse
+  # to sleep while it is still HIGH (KEEP_AWAKE) so the bike streams live.
+  wakeup_pin:
+    number: ${live_mode_pin}
+    allow_other_uses: true
+    mode:
+      input: true
+      pulldown: true
+  wakeup_pin_mode: KEEP_AWAKE
 
 logger:
   level: DEBUG
@@ -166,6 +190,14 @@ globals:
     type: bool
     restore_value: no
     initial_value: "false"
+  - id: live_mode
+    type: bool
+    restore_value: no
+    initial_value: "false"
+  - id: is_home
+    type: bool
+    restore_value: no
+    initial_value: "false"
   - id: fix_payload
     type: std::string
     restore_value: no
@@ -227,9 +259,150 @@ sensor:
     name: "Uptime"
 
 # ---------------------------------------------------------------------------
-# One-shot tracking cycle: wake -> GNSS fix -> publish -> deep sleep.
+# Tracking scripts.
+#   poll_gnss    - one AT+CGNSSINFO poll: parse, update sensors + fix_payload.
+#   publish_fix  - push the current fix_payload (home broker, else cellular).
+#   tracking_cycle - one-shot wake -> fix -> publish -> deep sleep (parked).
+# poll_gnss / publish_fix are shared by tracking_cycle and the live interval.
 # ---------------------------------------------------------------------------
 script:
+  - id: poll_gnss
+    mode: single
+    then:
+      - lambda: |-
+          id(fix_attempts) += 1;
+          std::string resp = tracker::send_at(id(modem_uart), "AT+CGNSSINFO", 1000);
+          ESP_LOGD("GNSS", "Raw CGNSSINFO (try %d): '%s'", id(fix_attempts), resp.c_str());
+          if (resp.find("OK") == std::string::npos) {
+            ESP_LOGW("GNSS", "AT+CGNSSINFO failed: %s", resp.c_str());
+            return;
+          }
+          size_t hdr = resp.find("+CGNSSINFO:");
+          if (hdr == std::string::npos) { ESP_LOGI("GNSS", "No GNSS fix yet"); return; }
+
+          auto split_csv = [](const std::string &s) {
+            std::vector<std::string> out; size_t start = 0;
+            while (true) {
+              size_t pos = s.find(',', start);
+              if (pos == std::string::npos) { out.push_back(s.substr(start)); break; }
+              out.push_back(s.substr(start, pos - start)); start = pos + 1;
+            }
+            return out;
+          };
+          auto to_double = [](const std::string &s) -> double { return s.empty() ? NAN : atof(s.c_str()); };
+          auto to_int = [](const std::string &s) -> int { return s.empty() ? 0 : atoi(s.c_str()); };
+
+          size_t colon = resp.find(':', hdr);
+          if (colon == std::string::npos) return;
+          size_t eol = resp.find('\r', colon);
+          std::string body = resp.substr(colon + 1, (eol == std::string::npos) ? std::string::npos : eol - colon - 1);
+          while (!body.empty() && body[0] == ' ') body.erase(0, 1);
+
+          auto p = split_csv(body);
+          if (p.size() == 17) p.push_back("");   // some firmwares omit sat_used
+          if (p.size() < 18) { ESP_LOGI("GNSS", "No GNSS fix yet"); return; }
+
+          // CGNSSINFO returns signed-magnitude decimal degrees plus N/S, E/W.
+          double lat = to_double(p[5]);
+          std::string lat_dir = p[6].empty() ? "N" : p[6];
+          double lon = to_double(p[7]);
+          std::string lon_dir = p[8].empty() ? "E" : p[8];
+          std::string date_str = p[9];
+          std::string time_str = p[10];
+          double alt_m = to_double(p[11]);
+          double spd   = to_double(p[12]);
+          double cog   = to_double(p[13]);
+          double hdop  = to_double(p[15]);
+          int    sat_used = to_int(p[17]);
+
+          bool valid = std::isfinite(lat) && std::isfinite(lon) &&
+                       !date_str.empty() && !time_str.empty();
+          if (!valid) { ESP_LOGI("GNSS", "No GNSS fix yet"); return; }
+
+          double slat = (lat_dir[0] == 'S' || lat_dir[0] == 's') ? -lat : lat;
+          double slon = (lon_dir[0] == 'W' || lon_dir[0] == 'w') ? -lon : lon;
+          double acc  = std::isfinite(hdop) ? hdop * 5.0 : 0.0;   // rough metres from HDOP
+          double batt = id(batt_voltage).has_state() ? id(batt_voltage).state : NAN;
+
+          // On-device presence: great-circle (haversine) distance to home.
+          const double PI = 3.14159265358979323846;
+          double hlat = ${home_latitude};
+          double hlon = ${home_longitude};
+          double dlat = (slat - hlat) * PI / 180.0;
+          double dlon = (slon - hlon) * PI / 180.0;
+          double ha = sin(dlat / 2) * sin(dlat / 2) +
+                      cos(hlat * PI / 180.0) * cos(slat * PI / 180.0) *
+                      sin(dlon / 2) * sin(dlon / 2);
+          double dist_home = 2.0 * 6371000.0 * asin(sqrt(ha));
+          bool at_home = dist_home <= ${home_radius_m};
+          id(is_home) = at_home;
+
+          // Publish to local sensors (visible over the API on Wi-Fi).
+          id(gps_lat).publish_state(slat);
+          id(gps_lon).publish_state(slon);
+          if (std::isfinite(alt_m)) id(gps_alt).publish_state(alt_m);
+          if (std::isfinite(spd))   id(gps_spd).publish_state(spd);
+          if (std::isfinite(cog))   id(gps_cog).publish_state(cog);
+          id(gps_sats).publish_state(sat_used);
+          id(home_presence).publish_state(at_home);
+
+          // Build the JSON payload published to Home Assistant.
+          char json[256];
+          int n = snprintf(json, sizeof(json),
+            "{\"latitude\":%.6f,\"longitude\":%.6f,\"gps_accuracy\":%.1f,"
+            "\"altitude\":%.1f,\"speed\":%.1f,\"course\":%.1f,\"satellites\":%d",
+            slat, slon, acc,
+            std::isfinite(alt_m) ? alt_m : 0.0,
+            std::isfinite(spd) ? spd : 0.0,
+            std::isfinite(cog) ? cog : 0.0, sat_used);
+          if (std::isfinite(batt))
+            n += snprintf(json + n, sizeof(json) - n, ",\"battery\":%.2f", batt);
+          n += snprintf(json + n, sizeof(json) - n, ",\"home\":%s", at_home ? "true" : "false");
+          snprintf(json + n, sizeof(json) - n, "}");
+          id(fix_payload) = json;
+          id(have_fix) = true;
+          ESP_LOGI("GNSS", "Fix acquired (%.0f m from home, home=%d): %s",
+                   dist_home, at_home, json);
+
+  - id: publish_fix
+    mode: single
+    then:
+      # Prefer the home broker over Wi-Fi, fall back to cellular.
+      - if:
+          condition:
+            wifi.connected:
+          then:
+            - logger.log: "Wi-Fi up — publishing to home broker"
+            - wait_until:
+                condition:
+                  lambda: 'return id(mqtt_home)->is_connected();'
+                timeout: 15s
+            - if:
+                condition:
+                  lambda: 'return id(mqtt_home)->is_connected();'
+                then:
+                  - mqtt.publish:
+                      topic: ${mqtt_topic}
+                      payload: !lambda 'return id(fix_payload);'
+                      qos: 1
+                      retain: true
+                else:
+                  - logger.log: "Home broker unreachable — using cellular"
+                  - lambda: |-
+                      tracker::publish_away(id(modem_uart),
+                        "${mqtt_away_host}", ${mqtt_away_port},
+                        "${mqtt_away_clientid}", "${mqtt_away_user}", "${mqtt_away_password}",
+                        "${mqtt_topic}", id(fix_payload),
+                        ${mqtt_away_authmode}, "${mqtt_away_cafile}");
+          else:
+            - logger.log: "No Wi-Fi — publishing to away broker over cellular"
+            - lambda: |-
+                tracker::publish_away(id(modem_uart),
+                  "${mqtt_away_host}", ${mqtt_away_port},
+                  "${mqtt_away_clientid}", "${mqtt_away_user}", "${mqtt_away_password}",
+                  "${mqtt_topic}", id(fix_payload),
+                  ${mqtt_away_authmode}, "${mqtt_away_cafile}");
+
   - id: tracking_cycle
     mode: single
     then:
@@ -245,134 +418,36 @@ script:
           condition:
             lambda: 'return !id(have_fix) && id(fix_attempts) < ${gnss_fix_attempts};'
           then:
-            - lambda: |-
-                id(fix_attempts) += 1;
-                std::string resp = tracker::send_at(id(modem_uart), "AT+CGNSSINFO", 1000);
-                ESP_LOGD("GNSS", "Raw CGNSSINFO (try %d): '%s'", id(fix_attempts), resp.c_str());
-                if (resp.find("OK") == std::string::npos) {
-                  ESP_LOGW("GNSS", "AT+CGNSSINFO failed: %s", resp.c_str());
-                  return;
-                }
-                size_t hdr = resp.find("+CGNSSINFO:");
-                if (hdr == std::string::npos) { ESP_LOGI("GNSS", "No GNSS fix yet"); return; }
-
-                auto split_csv = [](const std::string &s) {
-                  std::vector<std::string> out; size_t start = 0;
-                  while (true) {
-                    size_t pos = s.find(',', start);
-                    if (pos == std::string::npos) { out.push_back(s.substr(start)); break; }
-                    out.push_back(s.substr(start, pos - start)); start = pos + 1;
-                  }
-                  return out;
-                };
-                auto to_double = [](const std::string &s) -> double { return s.empty() ? NAN : atof(s.c_str()); };
-                auto to_int = [](const std::string &s) -> int { return s.empty() ? 0 : atoi(s.c_str()); };
-
-                size_t colon = resp.find(':', hdr);
-                if (colon == std::string::npos) return;
-                size_t eol = resp.find('\r', colon);
-                std::string body = resp.substr(colon + 1, (eol == std::string::npos) ? std::string::npos : eol - colon - 1);
-                while (!body.empty() && body[0] == ' ') body.erase(0, 1);
-
-                auto p = split_csv(body);
-                if (p.size() == 17) p.push_back("");   // some firmwares omit sat_used
-                if (p.size() < 18) { ESP_LOGI("GNSS", "No GNSS fix yet"); return; }
-
-                // CGNSSINFO returns signed-magnitude decimal degrees plus N/S, E/W.
-                double lat = to_double(p[5]);
-                std::string lat_dir = p[6].empty() ? "N" : p[6];
-                double lon = to_double(p[7]);
-                std::string lon_dir = p[8].empty() ? "E" : p[8];
-                std::string date_str = p[9];
-                std::string time_str = p[10];
-                double alt_m = to_double(p[11]);
-                double spd   = to_double(p[12]);
-                double cog   = to_double(p[13]);
-                double hdop  = to_double(p[15]);
-                int    sat_used = to_int(p[17]);
-
-                bool valid = std::isfinite(lat) && std::isfinite(lon) &&
-                             !date_str.empty() && !time_str.empty();
-                if (!valid) { ESP_LOGI("GNSS", "No GNSS fix yet"); return; }
-
-                double slat = (lat_dir[0] == 'S' || lat_dir[0] == 's') ? -lat : lat;
-                double slon = (lon_dir[0] == 'W' || lon_dir[0] == 'w') ? -lon : lon;
-                double acc  = std::isfinite(hdop) ? hdop * 5.0 : 0.0;   // rough metres from HDOP
-                double batt = id(batt_voltage).has_state() ? id(batt_voltage).state : NAN;
-
-                // Publish to local sensors (visible over the API on Wi-Fi).
-                id(gps_lat).publish_state(slat);
-                id(gps_lon).publish_state(slon);
-                if (std::isfinite(alt_m)) id(gps_alt).publish_state(alt_m);
-                if (std::isfinite(spd))   id(gps_spd).publish_state(spd);
-                if (std::isfinite(cog))   id(gps_cog).publish_state(cog);
-                id(gps_sats).publish_state(sat_used);
-
-                // Build the JSON payload published to Home Assistant.
-                char json[256];
-                int n = snprintf(json, sizeof(json),
-                  "{\"latitude\":%.6f,\"longitude\":%.6f,\"gps_accuracy\":%.1f,"
-                  "\"altitude\":%.1f,\"speed\":%.1f,\"course\":%.1f,\"satellites\":%d",
-                  slat, slon, acc,
-                  std::isfinite(alt_m) ? alt_m : 0.0,
-                  std::isfinite(spd) ? spd : 0.0,
-                  std::isfinite(cog) ? cog : 0.0, sat_used);
-                if (std::isfinite(batt))
-                  n += snprintf(json + n, sizeof(json) - n, ",\"battery\":%.2f", batt);
-                snprintf(json + n, sizeof(json) - n, "}");
-                id(fix_payload) = json;
-                id(have_fix) = true;
-                ESP_LOGI("GNSS", "Fix acquired: %s", json);
+            - script.execute: poll_gnss
+            - wait_until:
+                condition:
+                  not:
+                    script.is_running: poll_gnss
             - if:
                 condition:
                   lambda: 'return !id(have_fix);'
                 then:
                   - delay: ${gnss_poll_interval}
 
-      # Publish: prefer the home broker over Wi-Fi, fall back to cellular.
       - if:
           condition:
             lambda: 'return id(have_fix);'
           then:
-            - if:
+            - script.execute: publish_fix
+            - wait_until:
                 condition:
-                  wifi.connected:
-                then:
-                  - logger.log: "Wi-Fi up — publishing to home broker"
-                  - wait_until:
-                      condition:
-                        lambda: 'return id(mqtt_home)->is_connected();'
-                      timeout: 15s
-                  - if:
-                      condition:
-                        lambda: 'return id(mqtt_home)->is_connected();'
-                      then:
-                        - mqtt.publish:
-                            topic: ${mqtt_topic}
-                            payload: !lambda 'return id(fix_payload);'
-                            qos: 1
-                            retain: true
-                      else:
-                        - logger.log: "Home broker unreachable — using cellular"
-                        - lambda: |-
-                            tracker::publish_away(id(modem_uart),
-                              "${mqtt_away_host}", ${mqtt_away_port},
-                              "${mqtt_away_clientid}", "${mqtt_away_user}", "${mqtt_away_password}",
-                              "${mqtt_topic}", id(fix_payload),
-                              ${mqtt_away_authmode}, "${mqtt_away_cafile}");
-                else:
-                  - logger.log: "No Wi-Fi — publishing to away broker over cellular"
-                  - lambda: |-
-                      tracker::publish_away(id(modem_uart),
-                        "${mqtt_away_host}", ${mqtt_away_port},
-                        "${mqtt_away_clientid}", "${mqtt_away_user}", "${mqtt_away_password}",
-                        "${mqtt_topic}", id(fix_payload),
-                        ${mqtt_away_authmode}, "${mqtt_away_cafile}");
+                  not:
+                    script.is_running: publish_fix
           else:
             - logger.log: "No GNSS fix this cycle — sleeping and retrying next wake"
 
-      # Power the GNSS engine down (the modem radio stays attached for speed).
-      - lambda: 'tracker::gnss_power_off(id(modem_uart));'
+      # In live mode keep GNSS powered so the live interval can keep polling;
+      # otherwise power it down (the modem radio stays attached for speed).
+      - if:
+          condition:
+            lambda: 'return !id(live_mode);'
+          then:
+            - lambda: 'tracker::gnss_power_off(id(modem_uart));'
 
       - if:
           condition:
@@ -381,7 +456,36 @@ script:
             - logger.log: "Entering deep sleep"
             - deep_sleep.enter: deep_sleep_id
           else:
-            - logger.log: "Deep sleep prevented (maintenance mode) — staying awake"
+            - logger.log: "Deep sleep prevented — staying awake (live/maintenance)"
+
+# ---------------------------------------------------------------------------
+# Live mode: while active, stream a fresh position every live_interval instead
+# of deep-sleeping (driven by the live_mode_pin / ignition binary_sensor below).
+# ---------------------------------------------------------------------------
+interval:
+  - interval: ${live_interval}
+    then:
+      - if:
+          condition:
+            lambda: 'return id(live_mode) && id(gnss_powered_on);'
+          then:
+            - lambda: 'id(have_fix) = false;'
+            - script.execute: poll_gnss
+            - wait_until:
+                condition:
+                  not:
+                    script.is_running: poll_gnss
+            - if:
+                condition:
+                  lambda: 'return id(have_fix);'
+                then:
+                  - script.execute: publish_fix
+                  - wait_until:
+                      condition:
+                        not:
+                          script.is_running: publish_fix
+                else:
+                  - logger.log: "Live mode: no fix this tick"
 
 text_sensor:
   - platform: wifi_info
@@ -395,3 +499,58 @@ text_sensor:
 binary_sensor:
   - platform: status
     name: "Status"
+
+  # On-device presence diagnostic: ON when the latest fix is within
+  # home_radius_m of (home_latitude, home_longitude). Updated by poll_gnss.
+  - platform: template
+    id: home_presence
+    name: "Located at Home"
+    device_class: presence
+    entity_category: diagnostic
+
+  # Live-mode / ignition input. Drive HIGH (via opto-isolator or divider to
+  # 3.3 V) to disable deep sleep and stream the position every live_interval;
+  # release (LOW) to publish a final fix and return to the deep-sleep cycle.
+  - platform: gpio
+    id: ignition_in
+    name: "Ignition (Live Tracking)"
+    pin:
+      number: ${live_mode_pin}
+      allow_other_uses: true
+      mode:
+        input: true
+        pulldown: true
+    filters:
+      - delayed_on: 200ms     # debounce ignition on
+      - delayed_off: 2s       # ride out brief drops (stalls, cranking)
+    on_press:
+      then:
+        - logger.log: "Live mode ON — continuous tracking every live_interval"
+        - lambda: |-
+            id(live_mode) = true;
+            id(prevent_sleep) = true;
+            tracker::gnss_power_on(id(modem_uart), id(gnss_powered_on));
+            id(have_fix) = false;
+    on_release:
+      then:
+        - logger.log: "Live mode OFF — publishing final fix and sleeping"
+        - lambda: |-
+            id(live_mode) = false;
+            id(prevent_sleep) = false;
+        - script.execute: poll_gnss
+        - wait_until:
+            condition:
+              not:
+                script.is_running: poll_gnss
+        - if:
+            condition:
+              lambda: 'return id(have_fix);'
+            then:
+              - script.execute: publish_fix
+              - wait_until:
+                  condition:
+                    not:
+                      script.is_running: publish_fix
+        - lambda: 'tracker::gnss_power_off(id(modem_uart));'
+        - logger.log: "Entering deep sleep"
+        - deep_sleep.enter: deep_sleep_id
