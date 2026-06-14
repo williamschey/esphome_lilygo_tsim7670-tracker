@@ -96,7 +96,26 @@ AT-command lambda, and ESPHome cannot expand `!secret` inside a lambda — a
 
 ## Home Assistant — device_tracker
 
-Add an MQTT device tracker that reads the published JSON attributes:
+The published JSON already contains `latitude`, `longitude` and `gps_accuracy`,
+so the simplest match is the **`mqtt_json`** device tracker, which parses those
+fields, places the device on the map and lets Home Assistant **derive
+`home`/zone presence from the coordinates** automatically:
+
+```yaml
+# configuration.yaml
+device_tracker:
+  - platform: mqtt_json
+    devices:
+      esp_tracker_1: "tracker/esp-tracker-1/location"
+```
+
+This reads `latitude`, `longitude`, `gps_accuracy` and `battery`, sets
+`source_type: gps`, and creates `device_tracker.esp_tracker_1`. Make sure the
+topic matches `mqtt_topic` in `esp-tracker.yaml`.
+
+Alternatively, use the `mqtt:` device tracker, which exposes the payload as
+entity attributes (note: this variant does **not** auto-derive zones —
+`value_template` sets the state, the JSON only populates attributes):
 
 ```yaml
 # configuration.yaml
@@ -104,13 +123,13 @@ mqtt:
   device_tracker:
     - name: "ESP Tracker 1"
       state_topic: "tracker/esp-tracker-1/location"
-      value_template: "home"          # presence is derived from coordinates by zones
+      value_template: "home"
       json_attributes_topic: "tracker/esp-tracker-1/location"
 ```
 
-The `latitude`, `longitude` and `gps_accuracy` attributes drive the map and
-zone-based presence. Make sure `state_topic`/`json_attributes_topic` match
-`mqtt_topic` in `esp-tracker.yaml`.
+Either way, make sure `devices`/`state_topic`/`json_attributes_topic` match
+`mqtt_topic` in `esp-tracker.yaml`. ESPHome MQTT discovery is disabled
+(`discovery: false`), so this manual config is required.
 
 ## TLS provisioning for the away (cellular) broker
 
