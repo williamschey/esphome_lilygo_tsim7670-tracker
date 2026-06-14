@@ -1,0 +1,6 @@
+# Local secrets / credentials — never commit
+secrets.yaml
+cellular.yaml
+
+# ESPHome build artifacts
+.esphome/

@@ -2,19 +2,49 @@ substitutions:
   device_name: esp-tracker-1
   friendly_name: "ESP Tracker 1"
 
+  # Deep-sleep duration between position reports (lower = fresher, higher = longer battery).
+  report_interval: 5min
+  # Time for the SIM7670G to become AT-responsive after the PWRKEY pulse.
+  modem_boot_delay: 12s
+  # GNSS fix acquisition per wake: gnss_fix_attempts * gnss_poll_interval = max wait.
+  gnss_fix_attempts: "30"
+  gnss_poll_interval: 4s
+
+  # MQTT topic used on BOTH brokers (HA subscribes to it for the device_tracker).
+  mqtt_topic: "tracker/esp-tracker-1/location"
+
+# ---------------------------------------------------------------------------
+# Away (cellular) broker credentials live in cellular.yaml (git-ignored) so the
+# values can be injected into the AT-command lambda via substitutions. ESPHome
+# cannot expand !secret inside a lambda, so a packages include is used instead.
+# Copy cellular.yaml.example -> cellular.yaml and fill it in.
+# ---------------------------------------------------------------------------
+packages:
+  cellular: !include cellular.yaml
+
 esphome:
   name: ${device_name}
   friendly_name: ${friendly_name}
+  includes:
+    - tracker.h
   on_boot:
+    # Block deep sleep until the tracking cycle decides to enter it.
+    - priority: 800
+      then:
+        - lambda: 'id(prevent_sleep) = false;'
+        - deep_sleep.prevent: deep_sleep_id
     # Pulse PWRKEY directly so the modem is booting while other components init.
-    # The SIM7670 takes ~12s to be AT-responsive; first GNSS poll happens at 20s.
-    priority: 700
-    then:
-      - output.turn_off: modem_reset_out
-      - output.turn_on: modem_pwrkey_out
-      - delay: 100ms
-      - output.turn_off: modem_pwrkey_out
-      - logger.log: "SIM7670G PWRKEY pulsed; modem booting in background"
+    - priority: 700
+      then:
+        - output.turn_off: modem_reset_out
+        - output.turn_on: modem_pwrkey_out
+        - delay: 100ms
+        - output.turn_off: modem_pwrkey_out
+        - logger.log: "SIM7670G PWRKEY pulsed; modem booting"
+    # Run the one-shot wake -> fix -> publish -> sleep cycle after setup.
+    - priority: -100
+      then:
+        - script.execute: tracking_cycle
 
 esp32:
   board: esp32-s3-devkitc-1
@@ -22,29 +52,26 @@ esp32:
   framework:
     type: esp-idf
 
+# ---------------------------------------------------------------------------
+# Deep sleep. No run_duration: sleep is entered explicitly from tracking_cycle
+# once the position has been published.
+# ---------------------------------------------------------------------------
+deep_sleep:
+  id: deep_sleep_id
+  sleep_duration: ${report_interval}
+
 logger:
-  level: INFO
-  logs:
-    GNSS: DEBUG
+  level: DEBUG
   # GPIO43/44 (USB-CDC) is used for logging on T-SIM7670G-S3, modem UART is on GPIO10/11
   baud_rate: 115200
 
-# ---------------------------------------------------------------------------
-# External components.
-#
-# We deliberately do NOT pull in the modem PPP component (PR#6721): its
-# blocking DATA_MODE-exit retries make the Home Assistant API unreachable.
-# GPS data is fetched directly via AT commands over a plain UART.
-# ---------------------------------------------------------------------------
-external_components:
-  - source: github://oarcher/piotech@main
-    components: [ nulluart ]
-    refresh: 1d
-
-# Enable Home Assistant API
+# Native ESPHome API — only reachable on the local LAN (when on Wi-Fi). Kept for
+# local debugging / OTA. reboot_timeout 0s so the device never reboots itself
+# while away from Wi-Fi.
 api:
   encryption:
     key: !secret api_key
+  reboot_timeout: 0s
 
 ota:
   - platform: esphome
@@ -53,21 +80,37 @@ ota:
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
+  reboot_timeout: 0s
 
 # ---------------------------------------------------------------------------
-# Direct UART to the SIM7670G modem for AT commands (used for GNSS only).
+# Home (LAN) MQTT broker — reached over Wi-Fi using ESPHome's built-in stack.
+# Default is plain MQTT on port 1883 (Wi-Fi is already WPA2-encrypted); switch
+# to port 8883 and add certificate_authority for broker TLS if desired.
+# ---------------------------------------------------------------------------
+mqtt:
+  id: mqtt_home
+  broker: !secret mqtt_home_host
+  port: 1883
+  username: !secret mqtt_home_user
+  password: !secret mqtt_home_password
+  discovery: false
+  reboot_timeout: 0s
+  # TLS to the home broker (optional):
+  # port: 8883
+  # certificate_authority: !secret mqtt_home_ca
+
+# ---------------------------------------------------------------------------
+# Direct UART to the SIM7670G modem for AT commands (GNSS + cellular MQTT).
 # ---------------------------------------------------------------------------
 uart:
   id: modem_uart
-  tx_pin: GPIO11      # ESP32 TX  → modem RX (MODEM_TX_PIN on LilyGo schematic)
-  rx_pin: GPIO10      # ESP32 RX  ← modem TX (MODEM_RX_PIN on LilyGo schematic)
+  tx_pin: GPIO11      # ESP32 TX  -> modem RX (MODEM_TX_PIN on LilyGo schematic)
+  rx_pin: GPIO10      # ESP32 RX  <- modem TX (MODEM_RX_PIN on LilyGo schematic)
   baud_rate: 115200
   rx_buffer_size: 1024
 
 # ---------------------------------------------------------------------------
 # Modem hardware control: PWRKEY pulse + RESET helpers.
-# Power-on sequence per LilyGo T-SIM7670G-S3 schematic: pulse PWRKEY high for
-# ~100 ms, wait ~12 s for the modem firmware to come up.
 # ---------------------------------------------------------------------------
 output:
   - platform: gpio
@@ -94,253 +137,84 @@ switch:
     id: status_led
     name: "Status LED"
     pin: GPIO12
-
-script:
-  - id: modem_power_on
-    mode: single
-    then:
-      - logger.log: "Powering on SIM7670G…"
-      - switch.turn_on: modem_pwrkey
-      - delay: 100ms
-      - switch.turn_off: modem_pwrkey
-      - delay: 12s
-      - logger.log: "SIM7670G boot sequence complete"
-
-  - id: modem_power_off
-    mode: single
-    then:
-      - logger.log: "Powering off SIM7670G…"
-      - switch.turn_on: modem_pwrkey
-      - delay: 2700ms
-      - switch.turn_off: modem_pwrkey
-
-button:
+  # Toggle ON over the API while on Wi-Fi to keep the device awake for OTA /
+  # debugging instead of deep-sleeping after each report.
   - platform: template
-    name: "Reboot Modem"
-    on_press:
-      - script.execute: modem_power_off
-      - delay: 3s
-      - script.execute: modem_power_on
-
-# ---------------------------------------------------------------------------
-# GPS — the SIM7670 doesn't expose NMEA via URC, so we poll AT+CGNSSINFO and
-# synthesize NMEA sentences fed into the standard ESPHome gps component.
-# ---------------------------------------------------------------------------
-nulluart:
-  id: nulluart_id
-  on_update:
-    - component.update: gps_id
-
-gps:
-  uart_id: nulluart_id
-  id: gps_id
-  latitude:
-    name: "Latitude"
-    id: gps_lat
-    accuracy_decimals: 6
-  longitude:
-    name: "Longitude"
-    id: gps_lon
-    accuracy_decimals: 6
-  altitude:
-    name: "Altitude"
-  speed:
-    name: "Speed"
-  course:
-    name: "Course"
-  satellites:
-    name: "GPS Satellites"
-  hdop:
-    name: "GPS HDOP"
-  update_interval: never
-
-time:
-  - platform: gps
-    id: gps_time
+    name: "Stay Awake (maintenance)"
+    id: stay_awake
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    on_turn_on:
+      - lambda: 'id(prevent_sleep) = true;'
+    on_turn_off:
+      - lambda: 'id(prevent_sleep) = false;'
 
 globals:
   - id: gnss_powered_on
     type: bool
     restore_value: no
     initial_value: "false"
-
-# Poll the modem's GNSS engine every 20 s and feed synthesized NMEA into gps.
-interval:
-  - interval: 20s
-    then:
-      - lambda: |-
-          // Send an AT command and wait up to `timeout_ms` for OK/ERROR.
-          // Returns the full response text (may be empty if the modem hasn't booted).
-          auto send_at = [](const std::string &cmd, uint32_t timeout_ms) -> std::string {
-            // Drain any leftover RX bytes
-            uint8_t scratch[64];
-            while (id(modem_uart).available() > 0) {
-              size_t n = std::min<size_t>(64, id(modem_uart).available());
-              id(modem_uart).read_array(scratch, n);
-            }
-            std::string full = cmd + "\r\n";
-            id(modem_uart).write_array(reinterpret_cast<const uint8_t *>(full.c_str()), full.size());
-            std::string out;
-            uint32_t start = ::millis();
-            while (::millis() - start < timeout_ms) {
-              while (id(modem_uart).available() > 0) {
-                uint8_t b;
-                if (id(modem_uart).read_byte(&b)) out += static_cast<char>(b);
-              }
-              if (out.find("\r\nOK\r\n") != std::string::npos ||
-                  out.find("\r\nERROR") != std::string::npos) {
-                break;
-              }
-              delay(10);
-            }
-            return out;
-          };
-
-          // GNSS works without a SIM. To get a fix on the T-SIM7670G-S3 we have
-          // to (a) configure the modem's own GPIO4 as a HIGH output to power
-          // the active GPS antenna's LNA (MODEM_GPS_ENABLE_GPIO in LilyGo's
-          // utilities.h — note: SIM7670G internal GPIO, NOT an ESP32 pin),
-          // then (b) power the GNSS engine and wait for "+CGNSSPWR: READY!".
-          if (!id(gnss_powered_on)) {
-            // Wake the AT interface with a couple of harmless commands first
-            send_at("AT", 500);
-            send_at("ATE0", 500);  // disable echo so responses are cleaner
-
-            std::string dir = send_at("AT+CGDRT=4,1", 1000);
-            ESP_LOGI("GNSS", "CGDRT=4,1 (GPS LNA dir=out): '%s'", dir.c_str());
-            std::string lvl = send_at("AT+CGSETV=4,1", 1000);
-            ESP_LOGI("GNSS", "CGSETV=4,1 (GPS LNA power on): '%s'", lvl.c_str());
-
-            // CGNSSPWR=1 returns OK quickly, then emits "+CGNSSPWR: READY!"
-            // when the GNSS subsystem has actually booted (can take ~20 s).
-            std::string pwr = send_at("AT+CGNSSPWR=1", 30000);
-            ESP_LOGI("GNSS", "CGNSSPWR=1: '%s'", pwr.c_str());
-            if (pwr.find("OK") == std::string::npos) {
-              ESP_LOGW("GNSS", "Modem not yet ready for GNSS power-on");
-              return;
-            }
-            if (pwr.find("READY") == std::string::npos) {
-              ESP_LOGW("GNSS", "GNSS engine reported OK but not READY yet; "
-                               "the modem will still try to fix in background");
-            }
-
-            // Enable all four constellations for fastest cold-start fix.
-            std::string mode = send_at("AT+CGNSSMODE=15", 1000);
-            ESP_LOGI("GNSS", "CGNSSMODE=15: '%s'", mode.c_str());
-            std::string check = send_at("AT+CGNSSPWR?", 1000);
-            ESP_LOGI("GNSS", "CGNSSPWR?: '%s'", check.c_str());
-            id(gnss_powered_on) = true;
-            ESP_LOGI("GNSS", "GNSS engine powered on");
-          }
-
-          std::string resp = send_at("AT+CGNSSINFO", 1000);
-          ESP_LOGD("GNSS", "Raw CGNSSINFO: '%s'", resp.c_str());
-          if (resp.find("OK") == std::string::npos) {
-            ESP_LOGW("GNSS", "AT+CGNSSINFO failed: %s", resp.c_str());
-            return;
-          }
-          size_t hdr = resp.find("+CGNSSINFO:");
-          if (hdr == std::string::npos) {
-            ESP_LOGI("GNSS", "No GNSS fix yet");
-            return;
-          }
-
-          auto checksum = [](const std::string &s) -> uint8_t {
-            uint8_t cs = 0;
-            for (char c : s) cs ^= static_cast<uint8_t>(c);
-            return cs;
-          };
-          auto split_csv = [](const std::string &s) {
-            std::vector<std::string> out;
-            size_t start = 0;
-            while (true) {
-              size_t pos = s.find(',', start);
-              if (pos == std::string::npos) { out.push_back(s.substr(start)); break; }
-              out.push_back(s.substr(start, pos - start));
-              start = pos + 1;
-            }
-            return out;
-          };
-          auto to_double = [](const std::string &s) -> double { return s.empty() ? NAN : atof(s.c_str()); };
-          auto to_int = [](const std::string &s) -> int { return s.empty() ? 0 : atoi(s.c_str()); };
-          auto decdeg_to_nmea = [](double deg, bool is_lat) -> std::string {
-            if (!std::isfinite(deg)) return "";
-            double a = fabs(deg);
-            int d = (int) floor(a);
-            double m = (a - d) * 60.0;
-            char buf[24];
-            if (is_lat) snprintf(buf, sizeof(buf), "%02d%07.4f", d, m);
-            else        snprintf(buf, sizeof(buf), "%03d%07.4f", d, m);
-            return std::string(buf);
-          };
-
-          // Extract just the "+CGNSSINFO: ..." line
-          size_t colon = resp.find(':', hdr);
-          if (colon == std::string::npos) return;
-          size_t eol = resp.find('\r', colon);
-          std::string body = resp.substr(colon + 1, (eol == std::string::npos) ? std::string::npos : eol - colon - 1);
-          while (!body.empty() && body[0] == ' ') body.erase(0, 1);
-
-          auto p = split_csv(body);
-          if (p.size() == 17) p.push_back("");   // some firmwares omit sat_used
-          if (p.size() < 18) {
-            // SIM7670 returns "+CGNSSINFO: ,,,,,,,," when there's no fix yet.
-            ESP_LOGI("GNSS", "No GNSS fix yet");
-            return;
-          }
-
-          double lat = to_double(p[5]);
-          std::string lat_dir = p[6].empty() ? "N" : p[6];
-          double lon = to_double(p[7]);
-          std::string lon_dir = p[8].empty() ? "E" : p[8];
-          std::string date_str = p[9];
-          std::string time_str = p[10];
-          double alt_m = to_double(p[11]);
-          double spd   = to_double(p[12]);
-          double cog   = to_double(p[13]);
-          double hdop  = to_double(p[15]);
-          int    sat_used = to_int(p[17]);
-
-          std::string lat_ddmm = decdeg_to_nmea(lat, true);
-          std::string lon_ddmm = decdeg_to_nmea(lon, false);
-          bool valid = !lat_ddmm.empty() && !lon_ddmm.empty() &&
-                       !date_str.empty() && !time_str.empty();
-          int fix_quality = valid ? 1 : 0;
-          char sat_str[4];
-          snprintf(sat_str, sizeof(sat_str), "%02d", sat_used > 99 ? 99 : sat_used);
-
-          char gga[160], rmc[160];
-          snprintf(gga, sizeof(gga),
-                   "GPGGA,%s,%s,%c,%s,%c,%d,%s,%.1f,%.1f,M,,M,,",
-                   time_str.c_str(),
-                   lat_ddmm.c_str(), lat_dir[0],
-                   lon_ddmm.c_str(), lon_dir[0],
-                   fix_quality, sat_str,
-                   std::isfinite(hdop) ? hdop : 0.0,
-                   std::isfinite(alt_m) ? alt_m : 0.0);
-          snprintf(rmc, sizeof(rmc),
-                   "GPRMC,%s,%c,%s,%c,%s,%c,%.1f,%.1f,%s,,,",
-                   time_str.c_str(),
-                   valid ? 'A' : 'V',
-                   lat_ddmm.c_str(), lat_dir[0],
-                   lon_ddmm.c_str(), lon_dir[0],
-                   std::isfinite(spd) ? spd : 0.0,
-                   std::isfinite(cog) ? cog : 0.0,
-                   date_str.c_str());
-
-          char full_gga[176], full_rmc[176];
-          snprintf(full_gga, sizeof(full_gga), "$%s*%02X\r\n", gga, checksum(gga));
-          snprintf(full_rmc, sizeof(full_rmc), "$%s*%02X\r\n", rmc, checksum(rmc));
-          id(nulluart_id)->write_array((const uint8_t *) full_gga, strlen(full_gga));
-          id(nulluart_id)->write_array((const uint8_t *) full_rmc, strlen(full_rmc));
-          id(gps_id)->update();
+  - id: have_fix
+    type: bool
+    restore_value: no
+    initial_value: "false"
+  - id: fix_attempts
+    type: int
+    restore_value: no
+    initial_value: "0"
+  - id: prevent_sleep
+    type: bool
+    restore_value: no
+    initial_value: "false"
+  - id: fix_payload
+    type: std::string
+    restore_value: no
 
 # ---------------------------------------------------------------------------
-# Diagnostics
+# Position sensors. We parse AT+CGNSSINFO ourselves and publish into these
+# template sensors, so the live position is available locally over the API when
+# on Wi-Fi (in addition to being pushed via MQTT).
 # ---------------------------------------------------------------------------
 sensor:
+  - platform: template
+    name: "Latitude"
+    id: gps_lat
+    accuracy_decimals: 6
+    unit_of_measurement: "°"
+    update_interval: never
+  - platform: template
+    name: "Longitude"
+    id: gps_lon
+    accuracy_decimals: 6
+    unit_of_measurement: "°"
+    update_interval: never
+  - platform: template
+    name: "Altitude"
+    id: gps_alt
+    accuracy_decimals: 1
+    unit_of_measurement: "m"
+    update_interval: never
+  - platform: template
+    name: "Speed"
+    id: gps_spd
+    accuracy_decimals: 1
+    unit_of_measurement: "km/h"
+    update_interval: never
+  - platform: template
+    name: "Course"
+    id: gps_cog
+    accuracy_decimals: 1
+    unit_of_measurement: "°"
+    update_interval: never
+  - platform: template
+    name: "GPS Satellites"
+    id: gps_sats
+    accuracy_decimals: 0
+    update_interval: never
+
   - platform: adc
     pin: GPIO4
+    id: batt_voltage
     name: "Battery Voltage"
     update_interval: 60s
     attenuation: 12db
@@ -351,6 +225,163 @@ sensor:
     update_interval: 60s
   - platform: uptime
     name: "Uptime"
+
+# ---------------------------------------------------------------------------
+# One-shot tracking cycle: wake -> GNSS fix -> publish -> deep sleep.
+# ---------------------------------------------------------------------------
+script:
+  - id: tracking_cycle
+    mode: single
+    then:
+      - logger.log: "Tracking cycle started"
+      - delay: ${modem_boot_delay}
+      - lambda: |-
+          tracker::gnss_power_on(id(modem_uart), id(gnss_powered_on));
+          id(have_fix) = false;
+          id(fix_attempts) = 0;
+
+      # Poll the GNSS engine until we get a valid fix or run out of attempts.
+      - while:
+          condition:
+            lambda: 'return !id(have_fix) && id(fix_attempts) < ${gnss_fix_attempts};'
+          then:
+            - lambda: |-
+                id(fix_attempts) += 1;
+                std::string resp = tracker::send_at(id(modem_uart), "AT+CGNSSINFO", 1000);
+                ESP_LOGD("GNSS", "Raw CGNSSINFO (try %d): '%s'", id(fix_attempts), resp.c_str());
+                if (resp.find("OK") == std::string::npos) {
+                  ESP_LOGW("GNSS", "AT+CGNSSINFO failed: %s", resp.c_str());
+                  return;
+                }
+                size_t hdr = resp.find("+CGNSSINFO:");
+                if (hdr == std::string::npos) { ESP_LOGI("GNSS", "No GNSS fix yet"); return; }
+
+                auto split_csv = [](const std::string &s) {
+                  std::vector<std::string> out; size_t start = 0;
+                  while (true) {
+                    size_t pos = s.find(',', start);
+                    if (pos == std::string::npos) { out.push_back(s.substr(start)); break; }
+                    out.push_back(s.substr(start, pos - start)); start = pos + 1;
+                  }
+                  return out;
+                };
+                auto to_double = [](const std::string &s) -> double { return s.empty() ? NAN : atof(s.c_str()); };
+                auto to_int = [](const std::string &s) -> int { return s.empty() ? 0 : atoi(s.c_str()); };
+
+                size_t colon = resp.find(':', hdr);
+                if (colon == std::string::npos) return;
+                size_t eol = resp.find('\r', colon);
+                std::string body = resp.substr(colon + 1, (eol == std::string::npos) ? std::string::npos : eol - colon - 1);
+                while (!body.empty() && body[0] == ' ') body.erase(0, 1);
+
+                auto p = split_csv(body);
+                if (p.size() == 17) p.push_back("");   // some firmwares omit sat_used
+                if (p.size() < 18) { ESP_LOGI("GNSS", "No GNSS fix yet"); return; }
+
+                // CGNSSINFO returns signed-magnitude decimal degrees plus N/S, E/W.
+                double lat = to_double(p[5]);
+                std::string lat_dir = p[6].empty() ? "N" : p[6];
+                double lon = to_double(p[7]);
+                std::string lon_dir = p[8].empty() ? "E" : p[8];
+                std::string date_str = p[9];
+                std::string time_str = p[10];
+                double alt_m = to_double(p[11]);
+                double spd   = to_double(p[12]);
+                double cog   = to_double(p[13]);
+                double hdop  = to_double(p[15]);
+                int    sat_used = to_int(p[17]);
+
+                bool valid = std::isfinite(lat) && std::isfinite(lon) &&
+                             !date_str.empty() && !time_str.empty();
+                if (!valid) { ESP_LOGI("GNSS", "No GNSS fix yet"); return; }
+
+                double slat = (lat_dir[0] == 'S' || lat_dir[0] == 's') ? -lat : lat;
+                double slon = (lon_dir[0] == 'W' || lon_dir[0] == 'w') ? -lon : lon;
+                double acc  = std::isfinite(hdop) ? hdop * 5.0 : 0.0;   // rough metres from HDOP
+                double batt = id(batt_voltage).has_state() ? id(batt_voltage).state : NAN;
+
+                // Publish to local sensors (visible over the API on Wi-Fi).
+                id(gps_lat).publish_state(slat);
+                id(gps_lon).publish_state(slon);
+                if (std::isfinite(alt_m)) id(gps_alt).publish_state(alt_m);
+                if (std::isfinite(spd))   id(gps_spd).publish_state(spd);
+                if (std::isfinite(cog))   id(gps_cog).publish_state(cog);
+                id(gps_sats).publish_state(sat_used);
+
+                // Build the JSON payload published to Home Assistant.
+                char json[256];
+                int n = snprintf(json, sizeof(json),
+                  "{\"latitude\":%.6f,\"longitude\":%.6f,\"gps_accuracy\":%.1f,"
+                  "\"altitude\":%.1f,\"speed\":%.1f,\"course\":%.1f,\"satellites\":%d",
+                  slat, slon, acc,
+                  std::isfinite(alt_m) ? alt_m : 0.0,
+                  std::isfinite(spd) ? spd : 0.0,
+                  std::isfinite(cog) ? cog : 0.0, sat_used);
+                if (std::isfinite(batt))
+                  n += snprintf(json + n, sizeof(json) - n, ",\"battery\":%.2f", batt);
+                snprintf(json + n, sizeof(json) - n, "}");
+                id(fix_payload) = json;
+                id(have_fix) = true;
+                ESP_LOGI("GNSS", "Fix acquired: %s", json);
+            - if:
+                condition:
+                  lambda: 'return !id(have_fix);'
+                then:
+                  - delay: ${gnss_poll_interval}
+
+      # Publish: prefer the home broker over Wi-Fi, fall back to cellular.
+      - if:
+          condition:
+            lambda: 'return id(have_fix);'
+          then:
+            - if:
+                condition:
+                  wifi.connected:
+                then:
+                  - logger.log: "Wi-Fi up — publishing to home broker"
+                  - wait_until:
+                      condition:
+                        lambda: 'return id(mqtt_home)->is_connected();'
+                      timeout: 15s
+                  - if:
+                      condition:
+                        lambda: 'return id(mqtt_home)->is_connected();'
+                      then:
+                        - mqtt.publish:
+                            topic: ${mqtt_topic}
+                            payload: !lambda 'return id(fix_payload);'
+                            qos: 1
+                            retain: true
+                      else:
+                        - logger.log: "Home broker unreachable — using cellular"
+                        - lambda: |-
+                            tracker::publish_away(id(modem_uart),
+                              "${mqtt_away_host}", ${mqtt_away_port},
+                              "${mqtt_away_clientid}", "${mqtt_away_user}", "${mqtt_away_password}",
+                              "${mqtt_topic}", id(fix_payload),
+                              ${mqtt_away_authmode}, "${mqtt_away_cafile}");
+                else:
+                  - logger.log: "No Wi-Fi — publishing to away broker over cellular"
+                  - lambda: |-
+                      tracker::publish_away(id(modem_uart),
+                        "${mqtt_away_host}", ${mqtt_away_port},
+                        "${mqtt_away_clientid}", "${mqtt_away_user}", "${mqtt_away_password}",
+                        "${mqtt_topic}", id(fix_payload),
+                        ${mqtt_away_authmode}, "${mqtt_away_cafile}");
+          else:
+            - logger.log: "No GNSS fix this cycle — sleeping and retrying next wake"
+
+      # Power the GNSS engine down (the modem radio stays attached for speed).
+      - lambda: 'tracker::gnss_power_off(id(modem_uart));'
+
+      - if:
+          condition:
+            lambda: 'return !id(prevent_sleep);'
+          then:
+            - logger.log: "Entering deep sleep"
+            - deep_sleep.enter: deep_sleep_id
+          else:
+            - logger.log: "Deep sleep prevented (maintenance mode) — staying awake"
 
 text_sensor:
   - platform: wifi_info
@@ -364,4 +395,3 @@ text_sensor:
 binary_sensor:
   - platform: status
     name: "Status"
-

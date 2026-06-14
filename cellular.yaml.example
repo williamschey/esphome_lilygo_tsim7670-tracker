@@ -1,0 +1,17 @@
+# Away (cellular) MQTT broker — reached over the SIM7670G's own MQTT/TLS engine
+# when no Wi-Fi is available. These values are injected into an AT-command
+# lambda, so they must be substitutions (ESPHome cannot expand !secret inside a
+# lambda). This file is git-ignored; copy it to cellular.yaml and fill it in.
+substitutions:
+  mqtt_away_host: "broker.example.com"
+  mqtt_away_port: "8883"
+  mqtt_away_clientid: "esp-tracker-1"
+  mqtt_away_user: "tracker"
+  mqtt_away_password: "change-me"
+
+  # 1 = verify the broker's certificate against the CA you pre-provisioned on
+  #     the modem (secure, recommended — see README "TLS provisioning").
+  # 0 = encrypt but skip server-certificate verification (quick start only).
+  mqtt_away_authmode: "1"
+  # Filename of the CA certificate stored in the modem's NVM (authmode 1 only).
+  mqtt_away_cafile: "cacert.pem"
