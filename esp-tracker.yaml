@@ -2,21 +2,16 @@ substitutions:
   device_name: esp-tracker-1
   friendly_name: "ESP Tracker 1"
 
-  # Deep-sleep duration between position reports (lower = fresher, higher = longer battery).
-  report_interval: 1min
+  # Deep-sleep duration between position reports. Two cadences are used: the
+  # device sleeps report_interval_near when the last fix was within
+  # near_home_radius_m of home, and report_interval_far otherwise.
+  report_interval_far: 30s
+  report_interval_near: 10s
   # Time for the SIM7670G to become AT-responsive after the PWRKEY pulse.
   modem_boot_delay: 12s
   # GNSS fix acquisition per wake: gnss_fix_attempts * gnss_poll_interval = max wait.
   gnss_fix_attempts: "30"
   gnss_poll_interval: 4s
-
-  # Live (continuous) tracking. When live_mode_pin is driven HIGH (e.g. the
-  # motorcycle's ignition / accessory line via an opto-isolator or divider to
-  # 3.3 V), deep sleep is disabled and the position is published every
-  # live_interval. Must be an RTC-capable GPIO (GPIO0-GPIO21) so it can wake the
-  # ESP32-S3 from deep sleep.
-  live_mode_pin: GPIO13
-  live_interval: 10s
 
   # MQTT topic used on BOTH brokers (HA subscribes to it for the device_tracker).
   mqtt_topic: "tracker/esp-tracker-1/location"
@@ -24,9 +19,11 @@ substitutions:
   # On-device presence: the tracker compares each fix to this home location and
   # reports an "at home" diagnostic (and a "home" field in the MQTT payload).
   # Set these to your home coordinates; home_radius_m is the geofence radius.
+  # near_home_radius_m is the larger zone that selects the faster sleep cadence.
   home_latitude: "-33.8688"
   home_longitude: "151.2093"
   home_radius_m: "100"
+  near_home_radius_m: "1000"
 
 # ---------------------------------------------------------------------------
 # Away (cellular) broker credentials live in cellular.yaml (git-ignored) so the
@@ -47,6 +44,7 @@ esphome:
     - priority: 800
       then:
         - lambda: 'id(prevent_sleep) = false;'
+        - lambda: 'id(boot_done) = true;'
         - deep_sleep.prevent: deep_sleep_id
     # Pulse PWRKEY directly so the modem is booting while other components init.
     - priority: 700
@@ -68,21 +66,13 @@ esp32:
     type: esp-idf
 
 # ---------------------------------------------------------------------------
-# Deep sleep. No run_duration: sleep is entered explicitly from tracking_cycle
-# once the position has been published.
+# Deep sleep. No run_duration: sleep is entered explicitly from sleep_if_idle
+# once the position has been published. The duration is chosen at enter time
+# (report_interval_near when close to home, report_interval_far otherwise).
 # ---------------------------------------------------------------------------
 deep_sleep:
   id: deep_sleep_id
-  sleep_duration: ${report_interval}
-  # Wake immediately when the live-mode pin goes HIGH (ignition on), and refuse
-  # to sleep while it is still HIGH (KEEP_AWAKE) so the bike streams live.
-  wakeup_pin:
-    number: ${live_mode_pin}
-    allow_other_uses: true
-    mode:
-      input: true
-      pulldown: true
-  wakeup_pin_mode: KEEP_AWAKE
+  sleep_duration: ${report_interval_far}
 
 logger:
   level: DEBUG
@@ -171,7 +161,14 @@ switch:
     on_turn_on:
       - lambda: 'id(prevent_sleep) = true;'
     on_turn_off:
+      # Drop the maintenance hold. Guarded by boot_done so the restore-time OFF
+      # at boot never sleeps us.
       - lambda: 'id(prevent_sleep) = false;'
+      - if:
+          condition:
+            lambda: 'return id(boot_done);'
+          then:
+            - script.execute: sleep_if_idle
 
 globals:
   - id: gnss_powered_on
@@ -190,11 +187,15 @@ globals:
     type: bool
     restore_value: no
     initial_value: "false"
-  - id: live_mode
+  - id: near_home
     type: bool
     restore_value: no
     initial_value: "false"
   - id: is_home
+    type: bool
+    restore_value: no
+    initial_value: "false"
+  - id: boot_done
     type: bool
     restore_value: no
     initial_value: "false"
@@ -262,8 +263,8 @@ sensor:
 # Tracking scripts.
 #   poll_gnss    - one AT+CGNSSINFO poll: parse, update sensors + fix_payload.
 #   publish_fix  - push the current fix_payload (home broker, else cellular).
-#   tracking_cycle - one-shot wake -> fix -> publish -> deep sleep (parked).
-# poll_gnss / publish_fix are shared by tracking_cycle and the live interval.
+#   tracking_cycle - one-shot wake -> fix -> publish -> deep sleep.
+#   sleep_if_idle  - power GNSS down and deep-sleep (near/far cadence).
 # ---------------------------------------------------------------------------
 script:
   - id: poll_gnss
@@ -336,6 +337,7 @@ script:
           double dist_home = 2.0 * 6371000.0 * asin(sqrt(ha));
           bool at_home = dist_home <= ${home_radius_m};
           id(is_home) = at_home;
+          id(near_home) = dist_home <= ${near_home_radius_m};
 
           // Publish to local sensors (visible over the API on Wi-Fi).
           id(gps_lat).publish_state(slat);
@@ -441,51 +443,37 @@ script:
           else:
             - logger.log: "No GNSS fix this cycle — sleeping and retrying next wake"
 
-      # In live mode keep GNSS powered so the live interval can keep polling;
-      # otherwise power it down (the modem radio stays attached for speed).
-      - if:
-          condition:
-            lambda: 'return !id(live_mode);'
-          then:
-            - lambda: 'tracker::gnss_power_off(id(modem_uart));'
+      # Power GNSS down and deep-sleep unless the "Stay Awake" switch is holding
+      # us awake. Sleep duration depends on proximity to home.
+      - script.execute: sleep_if_idle
 
+  # Power GNSS down, then deep-sleep only if nothing is holding the device awake
+  # ("Stay Awake"). The sleep duration is report_interval_near when the last fix
+  # was within near_home_radius_m of home, report_interval_far otherwise. Shared
+  # by tracking_cycle and the Stay Awake switch.
+  - id: sleep_if_idle
+    mode: single
+    then:
+      - lambda: 'tracker::gnss_power_off(id(modem_uart));'
       - if:
           condition:
             lambda: 'return !id(prevent_sleep);'
           then:
-            - logger.log: "Entering deep sleep"
-            - deep_sleep.enter: deep_sleep_id
-          else:
-            - logger.log: "Deep sleep prevented — staying awake (live/maintenance)"
-
-# ---------------------------------------------------------------------------
-# Live mode: while active, stream a fresh position every live_interval instead
-# of deep-sleeping (driven by the live_mode_pin / ignition binary_sensor below).
-# ---------------------------------------------------------------------------
-interval:
-  - interval: ${live_interval}
-    then:
-      - if:
-          condition:
-            lambda: 'return id(live_mode) && id(gnss_powered_on);'
-          then:
-            - lambda: 'id(have_fix) = false;'
-            - script.execute: poll_gnss
-            - wait_until:
-                condition:
-                  not:
-                    script.is_running: poll_gnss
             - if:
                 condition:
-                  lambda: 'return id(have_fix);'
+                  lambda: 'return id(near_home);'
                 then:
-                  - script.execute: publish_fix
-                  - wait_until:
-                      condition:
-                        not:
-                          script.is_running: publish_fix
+                  - logger.log: "Nothing holding awake — deep sleep (near home)"
+                  - deep_sleep.enter:
+                      id: deep_sleep_id
+                      sleep_duration: ${report_interval_near}
                 else:
-                  - logger.log: "Live mode: no fix this tick"
+                  - logger.log: "Nothing holding awake — deep sleep (away)"
+                  - deep_sleep.enter:
+                      id: deep_sleep_id
+                      sleep_duration: ${report_interval_far}
+          else:
+            - logger.log: "Staying awake (Stay Awake active)"
 
 text_sensor:
   - platform: wifi_info
@@ -507,50 +495,3 @@ binary_sensor:
     name: "Located at Home"
     device_class: presence
     entity_category: diagnostic
-
-  # Live-mode / ignition input. Drive HIGH (via opto-isolator or divider to
-  # 3.3 V) to disable deep sleep and stream the position every live_interval;
-  # release (LOW) to publish a final fix and return to the deep-sleep cycle.
-  - platform: gpio
-    id: ignition_in
-    name: "Ignition (Live Tracking)"
-    pin:
-      number: ${live_mode_pin}
-      allow_other_uses: true
-      mode:
-        input: true
-        pulldown: true
-    filters:
-      - delayed_on: 200ms     # debounce ignition on
-      - delayed_off: 2s       # ride out brief drops (stalls, cranking)
-    on_press:
-      then:
-        - logger.log: "Live mode ON — continuous tracking every live_interval"
-        - lambda: |-
-            id(live_mode) = true;
-            id(prevent_sleep) = true;
-            tracker::gnss_power_on(id(modem_uart), id(gnss_powered_on));
-            id(have_fix) = false;
-    on_release:
-      then:
-        - logger.log: "Live mode OFF — publishing final fix and sleeping"
-        - lambda: |-
-            id(live_mode) = false;
-            id(prevent_sleep) = false;
-        - script.execute: poll_gnss
-        - wait_until:
-            condition:
-              not:
-                script.is_running: poll_gnss
-        - if:
-            condition:
-              lambda: 'return id(have_fix);'
-            then:
-              - script.execute: publish_fix
-              - wait_until:
-                  condition:
-                    not:
-                      script.is_running: publish_fix
-        - lambda: 'tracker::gnss_power_off(id(modem_uart));'
-        - logger.log: "Entering deep sleep"
-        - deep_sleep.enter: deep_sleep_id

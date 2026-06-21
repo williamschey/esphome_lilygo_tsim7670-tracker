@@ -24,9 +24,11 @@ wake → power GNSS → wait for a fix → publish position → power GNSS down 
   (`AT+CMQTT*` / `AT+CSSLCFG`). No PPP/IP stack is brought up on the ESP32, which
   keeps RAM and power low and works through carrier CGNAT (the device *pushes*,
   so Home Assistant never has to reach it).
-* **Deep sleep** — between reports the ESP32 deep-sleeps for `report_interval`.
-  The GNSS engine is powered down; the modem radio is intentionally left
-  attached to the network so the next cellular publish is fast.
+* **Deep sleep** — between reports the ESP32 deep-sleeps with an adaptive
+  cadence: `report_interval_near` (default `10s`) when the last fix was within
+  `near_home_radius_m` (default `1000` m) of home, and `report_interval_far`
+  (default `30s`) otherwise. The GNSS engine is powered down; the modem radio is
+  intentionally left attached to the network so the next cellular publish is fast.
 
 > **No custom Home Assistant integration is required.** You only need an MQTT
 > broker (e.g. the Mosquitto add-on) and HA's built-in MQTT integration. The
@@ -58,7 +60,6 @@ the device used:
 | Modem RESET  | GPIO17        | Active LOW                             |
 | Status LED   | GPIO12        |                                        |
 | Battery ADC  | GPIO4         | 1:2 divider on board                   |
-| Live/ignition| GPIO13        | Drive HIGH = live mode (see below)     |
 
 Source: [LilyGo `utilities.h`](https://github.com/Xinyuan-LilyGO/LilyGO-T-SIM-A76XX/blob/main/examples/Arduino_Basic/utilities.h).
 
@@ -87,7 +88,11 @@ AT-command lambda, and ESPHome cannot expand `!secret` inside a lambda — a
      and your **home** broker host/user/password.
    * `cellular.yaml` — your **away** broker host/port/client-id/user/password.
 2. Adjust the tunables at the top of `esp-tracker.yaml`:
-   * `report_interval` — deep-sleep time between reports (default `5min`).
+   * `report_interval_far` / `report_interval_near` — deep-sleep time between
+     reports when away from / near home (defaults `30s` / `10s`).
+   * `home_latitude` / `home_longitude` — your home coordinates.
+   * `near_home_radius_m` — distance from home within which the faster
+     `report_interval_near` cadence is used (default `1000` m).
    * `mqtt_topic` — the topic both brokers publish to.
 3. (Cellular TLS) provision the broker CA on the modem — see below.
 4. Compile & flash:
@@ -159,51 +164,40 @@ For mutual TLS, also upload `clientcert.pem` / `clientkey.pem` with `AT+CCERTDOW
 and bind them via `AT+CSSLCFG="clientcert"/"clientkey"` (extend `publish_away()`
 in `tracker.h`).
 
-## Live tracking (motorcycle / ignition)
+## Adaptive reporting cadence (near home)
 
-For active use — e.g. tracking a motorcycle while riding — deep-sleep reporting
-every `report_interval` is too coarse. Driving the **live-mode pin
-(`live_mode_pin`, default `GPIO13`) HIGH** switches the device into a continuous
-mode:
+The deep-sleep interval adapts to how far the last fix was from home:
 
 ```
-ignition ON  → wake from sleep → disable deep sleep → publish position every live_interval (default 10s)
-ignition OFF → publish one final fix → power GNSS down → deep sleep
+fix within near_home_radius_m of home → sleep report_interval_near (default 10s)
+fix farther than near_home_radius_m    → sleep report_interval_far  (default 30s)
 ```
 
-* The pin is also configured as a **deep-sleep wake source** (`KEEP_AWAKE`), so
-  turning the ignition on **wakes the device immediately** instead of waiting for
-  the next `report_interval`, and the device refuses to sleep while the pin is
-  held HIGH.
-* While live, GNSS stays powered and the position is pushed every `live_interval`
-  over the same home/cellular path and topic as normal reports — Home Assistant
-  just sees faster updates on the same `device_tracker`.
-* When the pin goes LOW the device publishes a last fix and returns to the
-  battery-friendly deep-sleep cycle.
+* Each wake the device computes the great-circle (haversine) distance from the
+  fix to `(home_latitude, home_longitude)`. If it is within `near_home_radius_m`
+  (default `1000` m) the next deep sleep uses the faster `report_interval_near`
+  cadence; otherwise it uses `report_interval_far`.
+* The distance is evaluated on every cycle, so the device automatically speeds up
+  as it approaches home and slows down again as it leaves — no external pin or
+  wiring is required.
+* This is independent of the 100 m `home_radius_m` geofence used for the
+  "Located at Home" presence diagnostic and the `home` field in the MQTT payload.
 
 Tunables (top of `esp-tracker.yaml`):
 
 ```yaml
-live_mode_pin: GPIO13   # must be an RTC GPIO (GPIO0–GPIO21) to wake from sleep
-live_interval: 10s      # publish cadence while live
+report_interval_far: 30s     # deep-sleep cadence when away from home
+report_interval_near: 10s    # deep-sleep cadence within near_home_radius_m
+near_home_radius_m: "1000"   # radius (metres) selecting the faster cadence
 ```
 
-> ⚠️ **Wiring / electrical safety.** A motorcycle ignition/accessory line is
-> **12 V** and **must not** be connected directly to the 3.3 V GPIO. Use an
-> **opto-isolator** (recommended) or a resistor divider to deliver a clean
-> 0/3.3 V signal, share a common ground, and fit an external **pull-down**
-> (e.g. 100 kΩ) so the pin reads LOW when the ignition is off. The internal
-> pull-down alone may not hold reliably through deep sleep.
-
-To bench-test without 12 V, momentarily tie `live_mode_pin` to **3.3 V** (live
-mode on) and back to **GND** (off). The separate **"Stay Awake (maintenance)"**
-switch only suspends deep sleep over the API; it does **not** start the 10 s
-streaming — that is driven solely by the live-mode pin.
+The **"Stay Awake (maintenance)"** switch suspends deep sleep entirely over the
+API (while on WiFi) for OTA updates and debugging.
 
 ## Battery tuning
 
-The biggest lever is `report_interval` (longer sleep = longer battery). Further
-options:
+The biggest lever is the report cadence — raising `report_interval_far` /
+`report_interval_near` (longer sleep = longer battery). Further options:
 
 * **Keep the modem attached** (current behaviour) for fast re-publish, or for
   the lowest idle draw enable LTE **PSM/eDRX**, or fully power the modem off
